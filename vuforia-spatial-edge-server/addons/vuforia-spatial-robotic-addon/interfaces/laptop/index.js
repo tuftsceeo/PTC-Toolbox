@@ -5,7 +5,7 @@ var settings = server.loadHardwareInterface(__dirname);
 var player = require('play-sound')(opts = {});
 var noble = require('@abandonware/noble');
 
-var song = 'hands.mp3' // Change this to your mp3 file
+var song = 'song.mp3' // Change this to your mp3 file
 
 var audio = player.play(song, function(err){
   if (err && !err.killed) throw err
