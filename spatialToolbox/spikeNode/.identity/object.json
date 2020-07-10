@@ -5,7 +5,7 @@
 	"isAnchor": false,
 	"ip": "192.168.7.106",
 	"version": "3.2.2",
-	"deactivated": true,
+	"deactivated": false,
 	"protocol": "R2",
 	"tcs": "1BItq4",
 	"visible": false,
