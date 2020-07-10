@@ -87,14 +87,14 @@
 					"objectId": "spikeNodemLiiywjcrni2",
 					"frameId": "spikeNodemLiiywjcrni2code",
 					"data": {
-						"value": 75,
+						"value": 89,
 						"mode": "f",
 						"unit": false,
 						"unitMin": 0,
 						"unitMax": 1
 					},
-					"x": -48.03198294976784,
-					"y": -189.94590335349025,
+					"x": -80.16288212509426,
+					"y": -191.58111597075387,
 					"scale": 0.2,
 					"matrix": [
 						0.9999740872452363,
@@ -121,7 +121,7 @@
 					"frameSizeX": 100,
 					"frameSizeY": 100,
 					"processedData": {
-						"value": 75,
+						"value": 89,
 						"mode": "f",
 						"unit": false,
 						"unitMin": 0,
@@ -139,8 +139,8 @@
 						"unitMin": 0,
 						"unitMax": 1
 					},
-					"x": 44.355061318047206,
-					"y": -152.338909294579,
+					"x": -5.356324385602932,
+					"y": -166.02988797377353,
 					"scale": 0.2,
 					"matrix": [
 						0.9999751398875723,
@@ -179,14 +179,14 @@
 					"objectId": "spikeNodemLiiywjcrni2",
 					"frameId": "spikeNodemLiiywjcrni2code",
 					"data": {
-						"value": 93,
+						"value": 99,
 						"mode": "f",
 						"unit": false,
 						"unitMin": 0,
 						"unitMax": 1
 					},
-					"x": -98.41919162101792,
-					"y": -95.15257292237789,
+					"x": -108.710001353899,
+					"y": -92.03923529736775,
 					"scale": 0.2,
 					"matrix": [
 						0.9998399818388464,
@@ -213,7 +213,7 @@
 					"frameSizeX": 100,
 					"frameSizeY": 100,
 					"processedData": {
-						"value": 93,
+						"value": 99,
 						"mode": "f",
 						"unit": false,
 						"unitMin": 0,
@@ -225,7 +225,7 @@
 					"objectId": "spikeNodemLiiywjcrni2",
 					"frameId": "spikeNodemLiiywjcrni2code",
 					"data": {
-						"value": 7,
+						"value": 1,
 						"mode": "f",
 						"unit": false,
 						"unitMin": 0,
@@ -259,7 +259,7 @@
 					"frameSizeX": 100,
 					"frameSizeY": 100,
 					"processedData": {
-						"value": 7,
+						"value": 1,
 						"mode": "f",
 						"unit": false,
 						"unitMin": 0,
@@ -271,7 +271,7 @@
 					"objectId": "spikeNodemLiiywjcrni2",
 					"frameId": "spikeNodemLiiywjcrni2code",
 					"data": {
-						"value": 986,
+						"value": 989,
 						"mode": "f",
 						"unit": false,
 						"unitMin": 0,
@@ -305,7 +305,7 @@
 					"frameSizeX": 100,
 					"frameSizeY": 100,
 					"processedData": {
-						"value": 986,
+						"value": 989,
 						"mode": "f",
 						"unit": false,
 						"unitMin": 0,
@@ -430,6 +430,35 @@
 					"frameSizeY": 100,
 					"processedData": {
 						"value": 8,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					}
+				},
+				"spikeNodemLiiywjcrni2codecolor": {
+					"name": "color",
+					"objectId": "spikeNodemLiiywjcrni2",
+					"frameId": "spikeNodemLiiywjcrni2code",
+					"data": {
+						"value": "black",
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": 56.957974681281996,
+					"y": -186.7446262538864,
+					"scale": 0.2,
+					"matrix": [],
+					"type": "node",
+					"stress": 0,
+					"privateData": {},
+					"publicData": {},
+					"frameSizeX": 100,
+					"frameSizeY": 100,
+					"processedData": {
+						"value": "black",
 						"mode": "f",
 						"unit": false,
 						"unitMin": 0,

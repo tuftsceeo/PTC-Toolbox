@@ -70,7 +70,7 @@ function startHardwareInterface() {
 
     // Adds sensor nodes to the object on the app
     server.addNode(objectName, TOOL_NAME, "stopMotors", "node");
-	//server.addNode(objectName, TOOL_NAME, "color", "node");
+	server.addNode(objectName, TOOL_NAME, "color", "node");
     server.addNode(objectName, TOOL_NAME, "distance", "node");
     server.addNode(objectName, TOOL_NAME, "force", "node");
     server.addNode(objectName, TOOL_NAME, "accelerometerX", "node");
@@ -221,8 +221,7 @@ function processDistance(sensorData) {
 function processColor(sensorData) {
     color = sensorData
     //console.log(color)
-    // Waiting for more functionality to be able to write strings
-    //server.write(objectName, TOOL_NAME, "color", server.map(color, 0, 1000, 0, 1000), "f")
+    server.write(objectName, TOOL_NAME, "color", color, "f")
 }
 
 // Processes accelerometer data
