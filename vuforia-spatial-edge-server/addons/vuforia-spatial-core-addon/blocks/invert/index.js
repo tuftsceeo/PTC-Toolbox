@@ -92,13 +92,7 @@ exports.properties = generalProperties;
  */
 exports.render = function (object, frame, node, block, index, thisBlock, callback) {
 
-    for (var key in thisBlock.data[index]) {
-        if (key === 'value') {
-            thisBlock.processedData[index].value = 1 - thisBlock.data[index].value;
-        } else {
-            thisBlock.processedData[index][key] = thisBlock.data[index][key];
-        }
-    }
+    thisBlock.processedData[0] = thisBlock.data[0].value * -1;
     callback(object, frame, node, block, index, thisBlock);
 };
 
