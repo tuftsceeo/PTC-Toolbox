@@ -1,0 +1,191 @@
+{
+	"objectId": "playButtonZl9kefe5y98c",
+	"name": "playButton",
+	"matrix": [],
+	"isAnchor": false,
+	"ip": "192.168.7.106",
+	"version": "3.2.0",
+	"deactivated": true,
+	"protocol": "R2",
+	"tcs": "3zh05z",
+	"visible": false,
+	"visibleText": false,
+	"visibleEditing": false,
+	"memory": {},
+	"memoryCameraMatrix": {},
+	"memoryProjectionMatrix": {},
+	"frames": {
+		"playButtonZl9kefe5y98cmusic": {
+			"objectId": "playButtonZl9kefe5y98c",
+			"name": "music",
+			"visualization": "ar",
+			"ar": {
+				"x": 0,
+				"y": 0,
+				"scale": 1,
+				"matrix": []
+			},
+			"screen": {
+				"x": 0,
+				"y": 0,
+				"scale": 1
+			},
+			"visible": false,
+			"visibleText": false,
+			"visibleEditing": false,
+			"developer": true,
+			"links": {},
+			"nodes": {
+				"playButtonZl9kefe5y98cmusicbutton": {
+					"name": "button",
+					"objectId": "playButtonZl9kefe5y98c",
+					"frameId": "playButtonZl9kefe5y98cmusic",
+					"data": {
+						"value": 0,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": -74.72462201687557,
+					"y": -39.8384173415738,
+					"scale": 0.7104042497731049,
+					"matrix": [],
+					"type": "node",
+					"stress": 0,
+					"privateData": {},
+					"publicData": {},
+					"frameSizeX": 100,
+					"frameSizeY": 100,
+					"processedData": {
+						"value": 0,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					}
+				}
+			},
+			"location": "local",
+			"src": "editor",
+			"privateData": {},
+			"publicData": {},
+			"staticCopy": false,
+			"distanceScale": 1,
+			"groupID": null
+		},
+		"playButtonZl9kefe5y98cswitchDadstmo5ot0z": {
+			"objectId": "playButtonZl9kefe5y98c",
+			"name": "switchDadstmo5ot0z",
+			"visualization": "ar",
+			"ar": {
+				"x": 0,
+				"y": 0,
+				"scale": 0.5,
+				"matrix": [
+					1.0276696231552402,
+					-0.01585860911017678,
+					-0.0874922820003885,
+					0.000015657509889542565,
+					0.0021428994959282743,
+					1.020686890838743,
+					-0.1319811783180036,
+					-0.000002641182455565688,
+					0.2956768671975496,
+					0.23603968335843462,
+					1.6162994279615077,
+					0.0009007700682515107,
+					65.70592519348429,
+					1.9205140087606196,
+					60.706731729296735,
+					0.6423586574080531
+				]
+			},
+			"screen": {
+				"x": 0,
+				"y": 0,
+				"scale": 0.5
+			},
+			"visible": false,
+			"visibleText": false,
+			"visibleEditing": false,
+			"developer": true,
+			"links": {
+				"qIm18zof": {
+					"objectA": "playButtonZl9kefe5y98c",
+					"frameA": "playButtonZl9kefe5y98cswitchDadstmo5ot0z",
+					"nodeA": "playButtonZl9kefe5y98cswitchDadstmo5ot0zvalue",
+					"logicA": false,
+					"namesA": [
+						"playButton",
+						"switchDadstmo5ot0z",
+						"value"
+					],
+					"objectB": "playButtonZl9kefe5y98c",
+					"frameB": "playButtonZl9kefe5y98cmusic",
+					"nodeB": "playButtonZl9kefe5y98cmusicbutton",
+					"logicB": false,
+					"namesB": [
+						"playButton",
+						"music",
+						"button"
+					],
+					"lastEditor": "c9M5iv13",
+					"loop": false
+				}
+			},
+			"nodes": {
+				"playButtonZl9kefe5y98cswitchDadstmo5ot0zvalue": {
+					"name": "value",
+					"objectId": "playButtonZl9kefe5y98c",
+					"frameId": "playButtonZl9kefe5y98cswitchDadstmo5ot0z",
+					"data": {
+						"value": 0,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": 0,
+					"y": 0,
+					"scale": 0.25,
+					"matrix": [],
+					"type": "node",
+					"src": "",
+					"stress": 0,
+					"privateData": {},
+					"publicData": {},
+					"lockPassword": null,
+					"lockType": null,
+					"lastEditor": "aJwf2izn",
+					"processedData": {
+						"value": 0,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					}
+				}
+			},
+			"location": "global",
+			"src": "switch",
+			"privateData": {},
+			"publicData": {},
+			"staticCopy": false,
+			"distanceScale": 1,
+			"groupID": null,
+			"uuid": "playButtonZl9kefe5y98cswitchDadstmo5ot0z"
+		}
+	},
+	"framesHistory": {},
+	"visualization": "ar",
+	"zone": "",
+	"targetSize": {
+		"width": 0.14,
+		"height": 0.209783
+	},
+	"isWorldObject": false,
+	"timestamp": null,
+	"port": 8080,
+	"developer": true
+}

@@ -215,7 +215,7 @@ function processDistance(sensorData) {
 // Processes color data
 function processColor(sensorData) {
     color = sensorData
-    console.log(color)
+    //console.log(color)
     // Waiting for more functionality to be able to write strings
     //server.write(objectName, TOOL_NAME, "color", server.map(color, 0, 1000, 0, 1000), "f")
 }

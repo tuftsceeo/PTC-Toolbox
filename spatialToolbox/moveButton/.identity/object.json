@@ -1,0 +1,177 @@
+{
+	"objectId": "moveButton1Ej0oxmafupy",
+	"name": "moveButton",
+	"matrix": [],
+	"isAnchor": false,
+	"ip": "192.168.7.106",
+	"version": "3.2.0",
+	"deactivated": true,
+	"protocol": "R2",
+	"tcs": "4xMaHo",
+	"visible": false,
+	"visibleText": false,
+	"visibleEditing": false,
+	"memory": {},
+	"memoryCameraMatrix": {},
+	"memoryProjectionMatrix": {},
+	"frames": {
+		"moveButton1Ej0oxmafupymotor": {
+			"objectId": "moveButton1Ej0oxmafupy",
+			"name": "motor",
+			"visualization": "ar",
+			"ar": {
+				"x": 0,
+				"y": 0,
+				"scale": 1,
+				"matrix": []
+			},
+			"screen": {
+				"x": 0,
+				"y": 0,
+				"scale": 1
+			},
+			"visible": false,
+			"visibleText": false,
+			"visibleEditing": false,
+			"developer": true,
+			"links": {},
+			"nodes": {
+				"moveButton1Ej0oxmafupymotorbutton": {
+					"name": "button",
+					"objectId": "moveButton1Ej0oxmafupy",
+					"frameId": "moveButton1Ej0oxmafupymotor",
+					"data": {
+						"value": 0,
+						"mode": "f",
+						"unit": "",
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": -29,
+					"y": -22,
+					"scale": 1,
+					"matrix": [],
+					"type": "node",
+					"stress": 0,
+					"privateData": {},
+					"publicData": {},
+					"frameSizeX": 100,
+					"frameSizeY": 100
+				}
+			},
+			"location": "local",
+			"src": "editor",
+			"privateData": {},
+			"publicData": {},
+			"staticCopy": false,
+			"distanceScale": 1,
+			"groupID": null
+		},
+		"moveButton1Ej0oxmafupyswitchJ91la2uekl7w": {
+			"objectId": "moveButton1Ej0oxmafupy",
+			"name": "switchJ91la2uekl7w",
+			"visualization": "ar",
+			"ar": {
+				"x": 24.885127526054248,
+				"y": -4.267591745313695,
+				"scale": 0.2,
+				"matrix": [
+					1.0639815575949947,
+					0.01655653789551481,
+					-0.021828305968918826,
+					0.000015657509889546034,
+					-0.024272015362147625,
+					1.0161299203577423,
+					-0.3055010836165497,
+					-0.000002641182455572627,
+					0.15345446060396029,
+					0.4960870739205063,
+					1.7165737868121482,
+					0.0009007700682515107,
+					66.60321509793084,
+					6.96045086027334,
+					167.95732475577825,
+					0.6423586574080531
+				]
+			},
+			"screen": {
+				"x": 0,
+				"y": 0,
+				"scale": 0.5
+			},
+			"visible": false,
+			"visibleText": false,
+			"visibleEditing": false,
+			"developer": true,
+			"links": {
+				"USW50hru": {
+					"objectA": "moveButton1Ej0oxmafupy",
+					"frameA": "moveButton1Ej0oxmafupyswitchJ91la2uekl7w",
+					"nodeA": "moveButton1Ej0oxmafupyswitchJ91la2uekl7wvalue",
+					"logicA": false,
+					"namesA": [
+						"moveButton",
+						"switchJ91la2uekl7w",
+						"value"
+					],
+					"objectB": "moveButton1Ej0oxmafupy",
+					"frameB": "moveButton1Ej0oxmafupymotor",
+					"nodeB": "moveButton1Ej0oxmafupymotorbutton",
+					"logicB": false,
+					"namesB": [
+						"moveButton",
+						"motor",
+						"button"
+					],
+					"lastEditor": "UrR6i20i",
+					"loop": false
+				}
+			},
+			"nodes": {
+				"moveButton1Ej0oxmafupyswitchJ91la2uekl7wvalue": {
+					"name": "value",
+					"objectId": "moveButton1Ej0oxmafupy",
+					"frameId": "moveButton1Ej0oxmafupyswitchJ91la2uekl7w",
+					"data": {
+						"value": 0,
+						"mode": "f",
+						"unit": "",
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": 0,
+					"y": 0,
+					"scale": 0.25,
+					"matrix": [],
+					"type": "node",
+					"src": "",
+					"stress": 0,
+					"privateData": {},
+					"publicData": {},
+					"lockPassword": null,
+					"lockType": null,
+					"lastEditor": "hlul35ka"
+				}
+			},
+			"location": "global",
+			"src": "switch",
+			"privateData": {},
+			"publicData": {},
+			"staticCopy": false,
+			"distanceScale": 1,
+			"groupID": null,
+			"uuid": "moveButton1Ej0oxmafupyswitchJ91la2uekl7w"
+		}
+	},
+	"framesHistory": {},
+	"visualization": "ar",
+	"zone": "",
+	"targetSize": {
+		"width": 0.14,
+		"height": 0.209783
+	},
+	"isWorldObject": false,
+	"timestamp": null,
+	"port": 8080,
+	"developer": true
+}
