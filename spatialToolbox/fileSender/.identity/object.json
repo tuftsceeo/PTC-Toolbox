@@ -1,0 +1,2429 @@
+{
+	"objectId": "fileSenderr435ztsjzokw",
+	"name": "fileSender",
+	"matrix": [],
+	"isAnchor": false,
+	"ip": "192.168.7.106",
+	"version": "3.2.2",
+	"deactivated": false,
+	"protocol": "R2",
+	"tcs": "CJqEX",
+	"visible": false,
+	"visibleText": false,
+	"visibleEditing": false,
+	"memory": {},
+	"memoryCameraMatrix": {},
+	"memoryProjectionMatrix": {},
+	"frames": {
+		"fileSenderr435ztsjzokwgraphUIDCgr5xis7grl": {
+			"objectId": "fileSenderr435ztsjzokw",
+			"name": "graphUIDCgr5xis7grl",
+			"visualization": "ar",
+			"ar": {
+				"x": 45.9595502382287,
+				"y": -24.942595193071355,
+				"scale": 0.2,
+				"matrix": [
+					1.06324893317346,
+					-0.04226064793253218,
+					0.011813289946342398,
+					0.00001565750988957856,
+					0.039275057199229524,
+					1.0539429665992168,
+					0.1214126480483344,
+					-0.0000026411824559646746,
+					0.06884686534114337,
+					-0.19819114256480974,
+					1.9091662690443627,
+					0.0009007700682519548,
+					35.80035154282746,
+					-39.33525599610729,
+					253.7757291719172,
+					0.6423586574082805
+				]
+			},
+			"screen": {
+				"x": 0,
+				"y": 0,
+				"scale": 0.5
+			},
+			"visible": false,
+			"visibleText": false,
+			"visibleEditing": false,
+			"developer": true,
+			"links": {},
+			"nodes": {
+				"fileSenderr435ztsjzokwgraphUIDCgr5xis7grlvalue": {
+					"name": "value",
+					"objectId": "fileSenderr435ztsjzokw",
+					"frameId": "fileSenderr435ztsjzokwgraphUIDCgr5xis7grl",
+					"data": {
+						"value": 983,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": 0,
+					"y": 0,
+					"scale": 0.25,
+					"matrix": [],
+					"type": "node",
+					"src": "",
+					"stress": 0,
+					"privateData": {},
+					"publicData": {},
+					"lockPassword": null,
+					"lockType": null,
+					"lastEditor": "g49ry1pj",
+					"processedData": {
+						"value": 983,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					}
+				}
+			},
+			"location": "global",
+			"src": "graphUI",
+			"privateData": {},
+			"publicData": {},
+			"staticCopy": false,
+			"distanceScale": 1,
+			"groupID": null,
+			"uuid": "fileSenderr435ztsjzokwgraphUIDCgr5xis7grl"
+		},
+		"fileSenderr435ztsjzokwvalueX8j0oy3ddm06": {
+			"objectId": "fileSenderr435ztsjzokw",
+			"name": "valueX8j0oy3ddm06",
+			"visualization": "ar",
+			"ar": {
+				"x": 81.40256246218314,
+				"y": -0.36243046306515225,
+				"scale": 0.2,
+				"matrix": [
+					1.0182856718479982,
+					-0.19945237514179226,
+					-0.23093060948809097,
+					0.00001565750988943848,
+					0.10913086066643651,
+					0.9922424117450401,
+					-0.36230645939443207,
+					-0.0000026411824554199714,
+					0.515220912847802,
+					0.48264823714647775,
+					1.7174421923398882,
+					0.0009007700682494013,
+					40.829885979906976,
+					-13.824656027400124,
+					223.3720979946811,
+					0.6423586574075983
+				]
+			},
+			"screen": {
+				"x": 0,
+				"y": 0,
+				"scale": 0.5
+			},
+			"visible": false,
+			"visibleText": false,
+			"visibleEditing": false,
+			"developer": true,
+			"links": {},
+			"nodes": {
+				"fileSenderr435ztsjzokwvalueX8j0oy3ddm06value": {
+					"name": "value",
+					"objectId": "fileSenderr435ztsjzokw",
+					"frameId": "fileSenderr435ztsjzokwvalueX8j0oy3ddm06",
+					"data": {
+						"value": 983,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": 0,
+					"y": 0,
+					"scale": 0.25,
+					"matrix": [],
+					"type": "node",
+					"src": "",
+					"stress": 0,
+					"privateData": {},
+					"publicData": {},
+					"lockPassword": null,
+					"lockType": null,
+					"lastEditor": "2t18pw3i",
+					"processedData": {
+						"value": 983,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					}
+				}
+			},
+			"location": "global",
+			"src": "value",
+			"privateData": {},
+			"publicData": {},
+			"staticCopy": false,
+			"distanceScale": 1,
+			"groupID": null,
+			"uuid": "fileSenderr435ztsjzokwvalueX8j0oy3ddm06"
+		},
+		"fileSenderr435ztsjzokwvalue2wufdjehark1v": {
+			"objectId": "fileSenderr435ztsjzokw",
+			"name": "value2wufdjehark1v",
+			"visualization": "ar",
+			"ar": {
+				"x": -34.32029947145685,
+				"y": 27.65535767196576,
+				"scale": 0.2,
+				"matrix": [
+					1.063044837017594,
+					-0.039240755541785216,
+					-0.03641726411871993,
+					0.000015657509889539095,
+					0.03260429884800853,
+					1.0553853304406406,
+					-0.11594108603960507,
+					-0.000002641182455572627,
+					0.15832667662786548,
+					0.1629343307084392,
+					1.9117062189808394,
+					0.0009007700682517328,
+					40.496388556036436,
+					-28.877387504171793,
+					262.6979947999207,
+					0.6423586574080673
+				]
+			},
+			"screen": {
+				"x": 0,
+				"y": 0,
+				"scale": 0.5
+			},
+			"visible": false,
+			"visibleText": false,
+			"visibleEditing": false,
+			"developer": true,
+			"links": {
+				"sw1ezy7t": {
+					"objectA": "fileSenderr435ztsjzokw",
+					"frameA": "fileSenderr435ztsjzokwvalue2wufdjehark1v",
+					"nodeA": "fileSenderr435ztsjzokwvalue2wufdjehark1vvalue",
+					"logicA": false,
+					"namesA": [
+						"fileSender",
+						"value2wufdjehark1v",
+						"value"
+					],
+					"objectB": "fileSenderr435ztsjzokw",
+					"frameB": "fileSenderr435ztsjzokwtransferKvdi6trk4nzw",
+					"nodeB": "fileSenderr435ztsjzokwtransferKvdi6trk4nzwvalue",
+					"logicB": false,
+					"namesB": [
+						"fileSender",
+						"transferKvdi6trk4nzw",
+						"value"
+					],
+					"lastEditor": "HYoqpgqh",
+					"loop": false
+				}
+			},
+			"nodes": {
+				"fileSenderr435ztsjzokwvalue2wufdjehark1vvalue": {
+					"name": "value",
+					"objectId": "fileSenderr435ztsjzokw",
+					"frameId": "fileSenderr435ztsjzokwvalue2wufdjehark1v",
+					"data": {
+						"value": 91,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": 0,
+					"y": 0,
+					"scale": 0.25,
+					"matrix": [],
+					"type": "node",
+					"src": "",
+					"stress": 0,
+					"privateData": {},
+					"publicData": {},
+					"lockPassword": null,
+					"lockType": null,
+					"lastEditor": "2JHkk6on",
+					"processedData": {
+						"value": 91,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					}
+				}
+			},
+			"location": "global",
+			"src": "value",
+			"privateData": {},
+			"publicData": {},
+			"staticCopy": false,
+			"distanceScale": 1,
+			"groupID": null,
+			"uuid": "fileSenderr435ztsjzokwvalue2wufdjehark1v"
+		},
+		"fileSenderr435ztsjzokwcode": {
+			"objectId": "fileSenderr435ztsjzokw",
+			"name": "code",
+			"visualization": "ar",
+			"ar": {
+				"x": 0,
+				"y": 0,
+				"scale": 1,
+				"matrix": []
+			},
+			"screen": {
+				"x": 0,
+				"y": 0,
+				"scale": 1
+			},
+			"visible": false,
+			"visibleText": false,
+			"visibleEditing": false,
+			"developer": true,
+			"links": {
+				"Us01i37v": {
+					"objectA": "fileSenderr435ztsjzokw",
+					"frameA": "fileSenderr435ztsjzokwcode",
+					"nodeA": "fileSenderr435ztsjzokwcodeaccelerometerZ",
+					"logicA": false,
+					"namesA": [
+						"fileSender",
+						"code",
+						"accelerometerZ"
+					],
+					"objectB": "fileSenderr435ztsjzokw",
+					"frameB": "fileSenderr435ztsjzokwvalueX8j0oy3ddm06",
+					"nodeB": "fileSenderr435ztsjzokwvalueX8j0oy3ddm06value",
+					"logicB": false,
+					"namesB": [
+						"fileSender",
+						"valueX8j0oy3ddm06",
+						"value"
+					],
+					"lastEditor": "FV63egen",
+					"loop": false
+				},
+				"fKj6xxwr": {
+					"objectA": "fileSenderr435ztsjzokw",
+					"frameA": "fileSenderr435ztsjzokwcode",
+					"nodeA": "fileSenderr435ztsjzokwcodeaccelerometerZ",
+					"logicA": false,
+					"namesA": [
+						"fileSender",
+						"code",
+						"accelerometerZ"
+					],
+					"objectB": "fileSenderr435ztsjzokw",
+					"frameB": "fileSenderr435ztsjzokwgraphUIDCgr5xis7grl",
+					"nodeB": "fileSenderr435ztsjzokwgraphUIDCgr5xis7grlvalue",
+					"logicB": false,
+					"namesB": [
+						"fileSender",
+						"graphUIDCgr5xis7grl",
+						"value"
+					],
+					"lastEditor": "FV63egen",
+					"loop": false
+				},
+				"RTZ1dgy1": {
+					"objectA": "fileSenderr435ztsjzokw",
+					"frameA": "fileSenderr435ztsjzokwcode",
+					"nodeA": "fileSenderr435ztsjzokwcodedistance",
+					"logicA": false,
+					"namesA": [
+						"fileSender",
+						"code",
+						"distance"
+					],
+					"objectB": "fileSenderr435ztsjzokw",
+					"frameB": "fileSenderr435ztsjzokwvalue2wufdjehark1v",
+					"nodeB": "fileSenderr435ztsjzokwvalue2wufdjehark1vvalue",
+					"logicB": false,
+					"namesB": [
+						"fileSender",
+						"value2wufdjehark1v",
+						"value"
+					],
+					"lastEditor": "k8R47wg1",
+					"loop": false
+				},
+				"blxmvznt": {
+					"objectA": "fileSenderr435ztsjzokw",
+					"frameA": "fileSenderr435ztsjzokwcode",
+					"nodeA": "tng5wa1wayah",
+					"logicA": 1,
+					"namesA": [
+						"fileSender",
+						"code",
+						"LOGIC1:GREEN"
+					],
+					"objectB": "fileSenderr435ztsjzokw",
+					"frameB": "fileSenderr435ztsjzokwcode",
+					"nodeB": "fileSenderr435ztsjzokwcodemotor2",
+					"logicB": false,
+					"namesB": [
+						"fileSender",
+						"code",
+						"motor2"
+					],
+					"lastEditor": "g017ymm9",
+					"loop": false
+				},
+				"EEJ17t8p": {
+					"objectA": "fileSenderr435ztsjzokw",
+					"frameA": "fileSenderr435ztsjzokwcode",
+					"nodeA": "tng5wa1wayah",
+					"logicA": 0,
+					"namesA": [
+						"fileSender",
+						"code",
+						"LOGIC1:BLUE"
+					],
+					"objectB": "fileSenderr435ztsjzokw",
+					"frameB": "fileSenderr435ztsjzokwcode",
+					"nodeB": "fileSenderr435ztsjzokwcodemotor1",
+					"logicB": false,
+					"namesB": [
+						"fileSender",
+						"code",
+						"motor1"
+					],
+					"lastEditor": "g017ymm9",
+					"loop": false
+				}
+			},
+			"nodes": {
+				"fileSenderr435ztsjzokwcodestopMotors": {
+					"name": "stopMotors",
+					"objectId": "fileSenderr435ztsjzokw",
+					"frameId": "fileSenderr435ztsjzokwcode",
+					"data": {
+						"value": 1,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": -39.04523827725666,
+					"y": -191.56424719931587,
+					"scale": 0.2,
+					"matrix": [
+						0.9995182954610913,
+						0.0023178797874357226,
+						0.030868126575906984,
+						3.469446951953614e-18,
+						-0.0026974894362052915,
+						0.999920694981658,
+						0.012203112550189132,
+						-1.3877787807814457e-17,
+						-0.030839439283640857,
+						-0.01227991961556496,
+						0.9994484038051041,
+						-5.551115123125783e-17,
+						13.756996276792052,
+						2.272113180305041,
+						6.137860672897659,
+						1.0000000000002274
+					],
+					"type": "node",
+					"stress": 0,
+					"privateData": {},
+					"publicData": {},
+					"frameSizeX": 100,
+					"frameSizeY": 100,
+					"processedData": {
+						"value": 1,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					}
+				},
+				"fileSenderr435ztsjzokwcodedistance": {
+					"name": "distance",
+					"objectId": "fileSenderr435ztsjzokw",
+					"frameId": "fileSenderr435ztsjzokwcode",
+					"data": {
+						"value": 91,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": -153.8744973274728,
+					"y": -140.62230917145868,
+					"scale": 0.2,
+					"matrix": [
+						0.9997283286001557,
+						0.011261362290398091,
+						-0.02041617046019617,
+						6.938893903907228e-18,
+						-0.011433065603749792,
+						0.9998999232107466,
+						-0.008358181135683651,
+						2.0816681711721685e-17,
+						0.020320692830239517,
+						0.00858811710274665,
+						0.99975707204527,
+						-5.551115123125783e-17,
+						-10.72229278958821,
+						-3.5773757752140227,
+						-7.173699649691116,
+						1.0000000000002842
+					],
+					"type": "node",
+					"stress": 0,
+					"privateData": {},
+					"publicData": {},
+					"frameSizeX": 100,
+					"frameSizeY": 100,
+					"processedData": {
+						"value": 91,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					}
+				},
+				"fileSenderr435ztsjzokwcodeforce": {
+					"name": "force",
+					"objectId": "fileSenderr435ztsjzokw",
+					"frameId": "fileSenderr435ztsjzokwcode",
+					"data": {
+						"value": null,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": -165.83131534004355,
+					"y": -55.46328061465458,
+					"scale": 0.20704727894914332,
+					"matrix": [],
+					"type": "node",
+					"stress": 0,
+					"privateData": {},
+					"publicData": {},
+					"frameSizeX": 100,
+					"frameSizeY": 100,
+					"processedData": {
+						"value": null,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					}
+				},
+				"fileSenderr435ztsjzokwcodeaccelerometerX": {
+					"name": "accelerometerX",
+					"objectId": "fileSenderr435ztsjzokw",
+					"frameId": "fileSenderr435ztsjzokwcode",
+					"data": {
+						"value": 93,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": 244.89536523390927,
+					"y": -190.57838833791058,
+					"scale": 0.2,
+					"matrix": [],
+					"type": "node",
+					"stress": 0,
+					"privateData": {},
+					"publicData": {},
+					"frameSizeX": 100,
+					"frameSizeY": 100,
+					"processedData": {
+						"value": 93,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					}
+				},
+				"fileSenderr435ztsjzokwcodeaccelerometerY": {
+					"name": "accelerometerY",
+					"objectId": "fileSenderr435ztsjzokw",
+					"frameId": "fileSenderr435ztsjzokwcode",
+					"data": {
+						"value": 6,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": 267.2557879663485,
+					"y": -74.98250038596879,
+					"scale": 0.2,
+					"matrix": [
+						0.9998744347623094,
+						0.004093030967717848,
+						-0.015312443933616748,
+						5.551115123125783e-17,
+						-0.0041924643671003015,
+						0.9999713210394825,
+						-0.006352561350283281,
+						2.0816681711721685e-17,
+						0.015285326215828121,
+						0.006416837593874902,
+						0.9998631432440561,
+						-4.440892098500626e-16,
+						-12.152706676568414,
+						-6.407307771474734,
+						0.608147143793758,
+						1.0000000000000568
+					],
+					"type": "node",
+					"stress": 0,
+					"privateData": {},
+					"publicData": {},
+					"frameSizeX": 100,
+					"frameSizeY": 100,
+					"processedData": {
+						"value": 6,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					}
+				},
+				"fileSenderr435ztsjzokwcodeaccelerometerZ": {
+					"name": "accelerometerZ",
+					"objectId": "fileSenderr435ztsjzokw",
+					"frameId": "fileSenderr435ztsjzokwcode",
+					"data": {
+						"value": 983,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": 271.6715034237076,
+					"y": 32.96542672182035,
+					"scale": 0.2,
+					"matrix": [
+						0.9994355851198757,
+						-0.026769976985059785,
+						-0.020311958502709615,
+						-4.85722573273506e-17,
+						0.02658556787055877,
+						0.9996042972066175,
+						-0.009291125429676583,
+						-3.469446951953614e-18,
+						0.02055392229355668,
+						0.008744229343029986,
+						0.9997507418459577,
+						2.220446049250313e-16,
+						-17.096740109898747,
+						-5.159433147269738,
+						2.5111205639550462,
+						1.0000000000000568
+					],
+					"type": "node",
+					"stress": 0,
+					"privateData": {},
+					"publicData": {},
+					"frameSizeX": 100,
+					"frameSizeY": 100,
+					"processedData": {
+						"value": 983,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					}
+				},
+				"fileSenderr435ztsjzokwcodemotor1": {
+					"name": "motor1",
+					"objectId": "fileSenderr435ztsjzokw",
+					"frameId": "fileSenderr435ztsjzokwcode",
+					"data": {
+						"value": 0,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": 155.85280605075093,
+					"y": -150.42589654571884,
+					"scale": 0.2,
+					"matrix": [
+						0.9997989504279943,
+						-0.018077717289788797,
+						0.00874330526214706,
+						2.42861286636753e-17,
+						0.017266009688275033,
+						0.996196815780812,
+						0.08539551659739875,
+						6.938893903907228e-18,
+						-0.01025463310561614,
+						-0.08522734496168027,
+						0.9963088469976356,
+						-4.440892098500626e-16,
+						-11.868018159309486,
+						-36.5022619176234,
+						-17.302094571990892,
+						1.000000000000341
+					],
+					"type": "node",
+					"stress": 0,
+					"privateData": {},
+					"publicData": {},
+					"frameSizeX": 100,
+					"frameSizeY": 100,
+					"processedData": {
+						"value": 0,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					}
+				},
+				"fileSenderr435ztsjzokwcodemotor2": {
+					"name": "motor2",
+					"objectId": "fileSenderr435ztsjzokw",
+					"frameId": "fileSenderr435ztsjzokwcode",
+					"data": {
+						"value": 0,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": 123.90254025072801,
+					"y": -56.00618120679306,
+					"scale": 0.2,
+					"matrix": [
+						0.999773492309465,
+						-0.001533957322700008,
+						0.021227306483474706,
+						-6.938893903907228e-17,
+						0.0017957871717647622,
+						0.9999227738574674,
+						-0.012334068913908425,
+						2.2551405187698492e-17,
+						-0.02120815446444624,
+						0.012369856759740117,
+						0.9996992378190726,
+						-1.3322676295501878e-15,
+						19.873881267600154,
+						-16.90354619278878,
+						0.008496483613271266,
+						1.0000000000009095
+					],
+					"type": "node",
+					"stress": 0,
+					"privateData": {},
+					"publicData": {},
+					"frameSizeX": 100,
+					"frameSizeY": 100,
+					"processedData": {
+						"value": 0,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					}
+				},
+				"fileSenderr435ztsjzokwcodemotor3": {
+					"name": "motor3",
+					"objectId": "fileSenderr435ztsjzokw",
+					"frameId": "fileSenderr435ztsjzokwcode",
+					"data": {
+						"value": 992,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": 296.7010720596968,
+					"y": -13.846303308166625,
+					"scale": 0.2,
+					"matrix": [
+						0.9991103017800718,
+						-0.020466657893789986,
+						-0.036880630215378574,
+						5.551115123125783e-17,
+						0.017938662101728342,
+						0.9975518533162369,
+						-0.06759963977673777,
+						6.938893903907228e-18,
+						0.038173312936512716,
+						0.0668784199873258,
+						0.9970310708577017,
+						-1.6653345369377348e-16,
+						-26.66431029217165,
+						-7.376774189840944,
+						9.923804923018906,
+						1.0000000000001705
+					],
+					"type": "node",
+					"stress": 0,
+					"privateData": {},
+					"publicData": {},
+					"frameSizeX": 100,
+					"frameSizeY": 100,
+					"processedData": {
+						"value": 992,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					}
+				},
+				"tng5wa1wayah": {
+					"name": "LOGIC1",
+					"data": {
+						"value": 0,
+						"mode": "f",
+						"unit": "",
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": -20.85247355601325,
+					"y": 60.46324757017865,
+					"scale": 0.2,
+					"matrix": [
+						1.0621119484147565,
+						-0.07729352202294903,
+						0.008595910852246647,
+						0.000015657509889532156,
+						0.07382020247518051,
+						1.0318506305618835,
+						-0.2434017855681283,
+						-0.000002641182455610791,
+						0.13520965498517867,
+						0.33999261659262814,
+						1.9469459737999273,
+						0.0009007700682517328,
+						53.50212273592706,
+						-26.92919719686597,
+						310.38322289173084,
+						0.6423586574080105
+					],
+					"visible": false,
+					"visibleEditing": false,
+					"lastSetting": false,
+					"lastSettingBlock": "",
+					"iconImage": "auto",
+					"nameInput": [
+						"",
+						"",
+						"",
+						""
+					],
+					"nameOutput": [
+						"",
+						"",
+						"",
+						""
+					],
+					"type": "logic",
+					"lockPassword": null,
+					"lockType": null,
+					"uuid": "tng5wa1wayah",
+					"objectId": "fileSenderr435ztsjzokw",
+					"frameId": "fileSenderr435ztsjzokwcode",
+					"screenZ": 1000,
+					"loaded": false,
+					"frameSizeX": 220,
+					"width": 220,
+					"frameSizeY": 220,
+					"height": 220,
+					"begin": [
+						1,
+						0,
+						0,
+						0,
+						0,
+						1,
+						0,
+						0,
+						0,
+						0,
+						1,
+						0,
+						0,
+						0,
+						0,
+						1
+					],
+					"temp": [
+						1,
+						0,
+						0,
+						0,
+						0,
+						1,
+						0,
+						0,
+						0,
+						0,
+						1,
+						0,
+						0,
+						0,
+						0,
+						1
+					],
+					"animationScale": 0,
+					"blocks": {
+						"in0": {
+							"name": "",
+							"data": [
+								{
+									"value": 91,
+									"mode": "f",
+									"unit": false,
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								}
+							],
+							"stress": 0,
+							"type": "default",
+							"processedData": [
+								{
+									"value": 91,
+									"mode": "f",
+									"unit": false,
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{},
+								{},
+								{}
+							]
+						},
+						"in1": {
+							"name": "",
+							"data": [
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								}
+							],
+							"stress": 0,
+							"type": "default"
+						},
+						"in2": {
+							"name": "",
+							"data": [
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								}
+							],
+							"stress": 0,
+							"type": "default"
+						},
+						"in3": {
+							"name": "",
+							"data": [
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								}
+							],
+							"stress": 0,
+							"type": "default"
+						},
+						"out0": {
+							"name": "",
+							"data": [
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": false,
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								}
+							],
+							"stress": 0,
+							"type": "default",
+							"processedData": [
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": false,
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{},
+								{},
+								{}
+							]
+						},
+						"out1": {
+							"name": "",
+							"data": [
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								}
+							],
+							"stress": 0,
+							"type": "default"
+						},
+						"out2": {
+							"name": "",
+							"data": [
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								}
+							],
+							"stress": 0,
+							"type": "default"
+						},
+						"out3": {
+							"name": "",
+							"data": [
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								}
+							],
+							"stress": 0,
+							"type": "default"
+						},
+						"edgePlaceholderIn0": {
+							"type": "default",
+							"x": 0,
+							"y": 0,
+							"blockSize": 1,
+							"globalId": "edgePlaceholderIn0",
+							"checksum": null,
+							"data": [
+								{
+									"value": 91,
+									"mode": "f",
+									"unit": false,
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								}
+							],
+							"privateData": {},
+							"publicData": {},
+							"activeInputs": [
+								false,
+								false,
+								false,
+								false
+							],
+							"activeOutputs": [
+								true,
+								false,
+								false,
+								false
+							],
+							"nameInput": [
+								"",
+								"",
+								"",
+								""
+							],
+							"nameOutput": [
+								"",
+								"",
+								"",
+								""
+							],
+							"iconImage": null,
+							"name": "edgePlaceholderIn0",
+							"stress": 0,
+							"isTempBlock": false,
+							"isPortBlock": true,
+							"lastEditor": "g017ymm9",
+							"processedData": [
+								{
+									"value": 91,
+									"mode": "f",
+									"unit": false,
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{},
+								{},
+								{}
+							]
+						},
+						"edgePlaceholderIn3": {
+							"type": "default",
+							"x": 3,
+							"y": 0,
+							"blockSize": 1,
+							"globalId": "edgePlaceholderIn3",
+							"checksum": null,
+							"data": [
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								}
+							],
+							"privateData": {},
+							"publicData": {},
+							"activeInputs": [
+								false,
+								false,
+								false,
+								false
+							],
+							"activeOutputs": [
+								true,
+								false,
+								false,
+								false
+							],
+							"nameInput": [
+								"",
+								"",
+								"",
+								""
+							],
+							"nameOutput": [
+								"",
+								"",
+								"",
+								""
+							],
+							"iconImage": null,
+							"name": "edgePlaceholderIn3",
+							"stress": 0,
+							"isTempBlock": false,
+							"isPortBlock": true,
+							"lastEditor": "g017ymm9"
+						},
+						"edgePlaceholderIn2": {
+							"type": "default",
+							"x": 2,
+							"y": 0,
+							"blockSize": 1,
+							"globalId": "edgePlaceholderIn2",
+							"checksum": null,
+							"data": [
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								}
+							],
+							"privateData": {},
+							"publicData": {},
+							"activeInputs": [
+								false,
+								false,
+								false,
+								false
+							],
+							"activeOutputs": [
+								true,
+								false,
+								false,
+								false
+							],
+							"nameInput": [
+								"",
+								"",
+								"",
+								""
+							],
+							"nameOutput": [
+								"",
+								"",
+								"",
+								""
+							],
+							"iconImage": null,
+							"name": "edgePlaceholderIn2",
+							"stress": 0,
+							"isTempBlock": false,
+							"isPortBlock": true,
+							"lastEditor": "g017ymm9"
+						},
+						"edgePlaceholderOut0": {
+							"type": "default",
+							"x": 0,
+							"y": 3,
+							"blockSize": 1,
+							"globalId": "edgePlaceholderOut0",
+							"checksum": null,
+							"data": [
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": false,
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								}
+							],
+							"privateData": {},
+							"publicData": {},
+							"activeInputs": [
+								true,
+								false,
+								false,
+								false
+							],
+							"activeOutputs": [
+								false,
+								false,
+								false,
+								false
+							],
+							"nameInput": [
+								"",
+								"",
+								"",
+								""
+							],
+							"nameOutput": [
+								"",
+								"",
+								"",
+								""
+							],
+							"iconImage": null,
+							"name": "edgePlaceholderOut0",
+							"stress": 0,
+							"isTempBlock": false,
+							"isPortBlock": true,
+							"lastEditor": "g017ymm9",
+							"processedData": [
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": false,
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{},
+								{},
+								{}
+							]
+						},
+						"edgePlaceholderOut1": {
+							"type": "default",
+							"x": 1,
+							"y": 3,
+							"blockSize": 1,
+							"globalId": "edgePlaceholderOut1",
+							"checksum": null,
+							"data": [
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								}
+							],
+							"privateData": {},
+							"publicData": {},
+							"activeInputs": [
+								true,
+								false,
+								false,
+								false
+							],
+							"activeOutputs": [
+								false,
+								false,
+								false,
+								false
+							],
+							"nameInput": [
+								"",
+								"",
+								"",
+								""
+							],
+							"nameOutput": [
+								"",
+								"",
+								"",
+								""
+							],
+							"iconImage": null,
+							"name": "edgePlaceholderOut1",
+							"stress": 0,
+							"isTempBlock": false,
+							"isPortBlock": true,
+							"lastEditor": "g017ymm9"
+						},
+						"edgePlaceholderOut2": {
+							"type": "default",
+							"x": 2,
+							"y": 3,
+							"blockSize": 1,
+							"globalId": "edgePlaceholderOut2",
+							"checksum": null,
+							"data": [
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								}
+							],
+							"privateData": {},
+							"publicData": {},
+							"activeInputs": [
+								true,
+								false,
+								false,
+								false
+							],
+							"activeOutputs": [
+								false,
+								false,
+								false,
+								false
+							],
+							"nameInput": [
+								"",
+								"",
+								"",
+								""
+							],
+							"nameOutput": [
+								"",
+								"",
+								"",
+								""
+							],
+							"iconImage": null,
+							"name": "edgePlaceholderOut2",
+							"stress": 0,
+							"isTempBlock": false,
+							"isPortBlock": true,
+							"lastEditor": "g017ymm9"
+						},
+						"edgePlaceholderOut3": {
+							"type": "default",
+							"x": 3,
+							"y": 3,
+							"blockSize": 1,
+							"globalId": "edgePlaceholderOut3",
+							"checksum": null,
+							"data": [
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								}
+							],
+							"privateData": {},
+							"publicData": {},
+							"activeInputs": [
+								true,
+								false,
+								false,
+								false
+							],
+							"activeOutputs": [
+								false,
+								false,
+								false,
+								false
+							],
+							"nameInput": [
+								"",
+								"",
+								"",
+								""
+							],
+							"nameOutput": [
+								"",
+								"",
+								"",
+								""
+							],
+							"iconImage": null,
+							"name": "edgePlaceholderOut3",
+							"stress": 0,
+							"isTempBlock": false,
+							"isPortBlock": true,
+							"lastEditor": "g017ymm9"
+						},
+						"blockjN3k6a64xre4": {
+							"type": "scale",
+							"x": 1,
+							"y": 0,
+							"blockSize": 1,
+							"globalId": "blockjN3k6a64xre4",
+							"checksum": null,
+							"data": [
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								}
+							],
+							"privateData": {},
+							"publicData": {
+								"scale": 0.5
+							},
+							"activeInputs": [
+								true,
+								false,
+								false,
+								false
+							],
+							"activeOutputs": [
+								true,
+								false,
+								false,
+								false
+							],
+							"nameInput": [
+								"in",
+								"",
+								"",
+								""
+							],
+							"nameOutput": [
+								"out",
+								"",
+								"",
+								""
+							],
+							"iconImage": null,
+							"name": "scale",
+							"stress": 0,
+							"isTempBlock": false,
+							"isPortBlock": false,
+							"lastEditor": "g017ymm9"
+						},
+						"block7W6t5e2slf0v": {
+							"type": "multiply",
+							"x": 0,
+							"y": 1,
+							"blockSize": 2,
+							"globalId": "block7W6t5e2slf0v",
+							"checksum": null,
+							"data": [
+								{
+									"value": 91,
+									"mode": "f",
+									"unit": false,
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								}
+							],
+							"privateData": {},
+							"publicData": {},
+							"activeInputs": [
+								true,
+								true,
+								false,
+								false
+							],
+							"activeOutputs": [
+								true,
+								false,
+								false,
+								false
+							],
+							"nameInput": [
+								"A",
+								"B",
+								"",
+								""
+							],
+							"nameOutput": [
+								"A * B",
+								"",
+								"",
+								""
+							],
+							"iconImage": null,
+							"name": "multiply",
+							"stress": 0,
+							"isTempBlock": false,
+							"isPortBlock": false,
+							"lastEditor": "g017ymm9",
+							"processedData": [
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": false,
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{},
+								{},
+								{}
+							]
+						},
+						"block4f3r9i1klumo": {
+							"type": "invert",
+							"x": 1,
+							"y": 2,
+							"blockSize": 1,
+							"globalId": "block4f3r9i1klumo",
+							"checksum": null,
+							"data": [
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": false,
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								},
+								{
+									"value": 0,
+									"mode": "f",
+									"unit": "",
+									"unitMin": 0,
+									"unitMax": 1
+								}
+							],
+							"privateData": {},
+							"publicData": {},
+							"activeInputs": [
+								true,
+								false,
+								false,
+								false
+							],
+							"activeOutputs": [
+								true,
+								false,
+								false,
+								false
+							],
+							"nameInput": [
+								"in",
+								"",
+								"",
+								""
+							],
+							"nameOutput": [
+								"out",
+								"",
+								"",
+								""
+							],
+							"iconImage": null,
+							"name": "invert",
+							"stress": 0,
+							"isTempBlock": false,
+							"isPortBlock": false,
+							"lastEditor": "g017ymm9",
+							"processedData": [
+								0,
+								{},
+								{},
+								{}
+							]
+						}
+					},
+					"links": {
+						"blockLink-in0-edgePlaceholderIn0": {
+							"nodeA": "in0",
+							"logicA": 0,
+							"nodeB": "edgePlaceholderIn0",
+							"logicB": 0,
+							"loop": false,
+							"health": 0,
+							"ballAnimationCount": 0,
+							"globalId": "blockLink-in0-edgePlaceholderIn0",
+							"route": null,
+							"lastEditor": "g017ymm9"
+						},
+						"blockLink-in2-edgePlaceholderIn2": {
+							"nodeA": "in2",
+							"logicA": 0,
+							"nodeB": "edgePlaceholderIn2",
+							"logicB": 0,
+							"loop": false,
+							"health": 0,
+							"ballAnimationCount": 0,
+							"globalId": "blockLink-in2-edgePlaceholderIn2",
+							"route": null,
+							"lastEditor": "g017ymm9"
+						},
+						"blockLink-in3-edgePlaceholderIn3": {
+							"nodeA": "in3",
+							"logicA": 0,
+							"nodeB": "edgePlaceholderIn3",
+							"logicB": 0,
+							"loop": false,
+							"health": 0,
+							"ballAnimationCount": 0,
+							"globalId": "blockLink-in3-edgePlaceholderIn3",
+							"route": null,
+							"lastEditor": "g017ymm9"
+						},
+						"blockLink-edgePlaceholderOut0-out0": {
+							"nodeA": "edgePlaceholderOut0",
+							"logicA": 0,
+							"nodeB": "out0",
+							"logicB": 0,
+							"loop": false,
+							"health": 0,
+							"ballAnimationCount": 0,
+							"globalId": "blockLink-edgePlaceholderOut0-out0",
+							"route": null,
+							"lastEditor": "g017ymm9"
+						},
+						"blockLink-edgePlaceholderOut1-out1": {
+							"nodeA": "edgePlaceholderOut1",
+							"logicA": 0,
+							"nodeB": "out1",
+							"logicB": 0,
+							"loop": false,
+							"health": 0,
+							"ballAnimationCount": 0,
+							"globalId": "blockLink-edgePlaceholderOut1-out1",
+							"route": null,
+							"lastEditor": "g017ymm9"
+						},
+						"blockLink-edgePlaceholderOut2-out2": {
+							"nodeA": "edgePlaceholderOut2",
+							"logicA": 0,
+							"nodeB": "out2",
+							"logicB": 0,
+							"loop": false,
+							"health": 0,
+							"ballAnimationCount": 0,
+							"globalId": "blockLink-edgePlaceholderOut2-out2",
+							"route": null,
+							"lastEditor": "g017ymm9"
+						},
+						"blockLink-edgePlaceholderOut3-out3": {
+							"nodeA": "edgePlaceholderOut3",
+							"logicA": 0,
+							"nodeB": "out3",
+							"logicB": 0,
+							"loop": false,
+							"health": 0,
+							"ballAnimationCount": 0,
+							"globalId": "blockLink-edgePlaceholderOut3-out3",
+							"route": null,
+							"lastEditor": "g017ymm9"
+						},
+						"blockLinkKs100fthxv6d": {
+							"nodeA": "in1",
+							"logicA": 0,
+							"nodeB": "blockjN3k6a64xre4",
+							"logicB": 0,
+							"loop": false,
+							"health": 0,
+							"ballAnimationCount": 0,
+							"globalId": "blockLinkKs100fthxv6d",
+							"route": null,
+							"lastEditor": "g017ymm9"
+						},
+						"blockLinkychqm11daffo": {
+							"nodeA": "edgePlaceholderIn0",
+							"logicA": 0,
+							"nodeB": "block7W6t5e2slf0v",
+							"logicB": 0,
+							"loop": false,
+							"health": 0,
+							"ballAnimationCount": 0,
+							"globalId": "blockLinkychqm11daffo",
+							"route": null,
+							"lastEditor": "g017ymm9"
+						},
+						"blockLinkSjf6g6oqagth": {
+							"nodeA": "blockjN3k6a64xre4",
+							"logicA": 0,
+							"nodeB": "block7W6t5e2slf0v",
+							"logicB": 1,
+							"loop": false,
+							"health": 0,
+							"ballAnimationCount": 0,
+							"globalId": "blockLinkSjf6g6oqagth",
+							"route": null,
+							"lastEditor": "g017ymm9"
+						},
+						"blockLinkgb708ly89g4f": {
+							"nodeA": "block7W6t5e2slf0v",
+							"logicA": 0,
+							"nodeB": "edgePlaceholderOut0",
+							"logicB": 0,
+							"loop": false,
+							"health": 0,
+							"ballAnimationCount": 0,
+							"globalId": "blockLinkgb708ly89g4f",
+							"route": null,
+							"lastEditor": "g017ymm9"
+						},
+						"blockLinkl032g8hjyibz": {
+							"nodeA": "block7W6t5e2slf0v",
+							"logicA": 0,
+							"nodeB": "block4f3r9i1klumo",
+							"logicB": 0,
+							"loop": false,
+							"health": 0,
+							"ballAnimationCount": 0,
+							"globalId": "blockLinkl032g8hjyibz",
+							"route": null,
+							"lastEditor": "g017ymm9"
+						},
+						"blockLinkkXesx7y2drv6": {
+							"nodeA": "block4f3r9i1klumo",
+							"logicA": 0,
+							"nodeB": "edgePlaceholderOut1",
+							"logicB": 0,
+							"loop": false,
+							"health": 0,
+							"ballAnimationCount": 0,
+							"globalId": "blockLinkkXesx7y2drv6",
+							"route": null,
+							"lastEditor": "g017ymm9"
+						}
+					},
+					"lastEditor": "g017ymm9",
+					"routeBuffer": [
+						91,
+						0,
+						0,
+						0
+					]
+				}
+			},
+			"location": "local",
+			"src": "editor",
+			"privateData": {},
+			"publicData": {},
+			"staticCopy": false,
+			"distanceScale": 1,
+			"groupID": null
+		},
+		"fileSenderr435ztsjzokwswitchps7avfrbawdj": {
+			"objectId": "fileSenderr435ztsjzokw",
+			"name": "switchps7avfrbawdj",
+			"visualization": "ar",
+			"ar": {
+				"x": -37.0758166740938,
+				"y": -30.644264708123245,
+				"scale": 0.2,
+				"matrix": [
+					1.0629060511158026,
+					-0.007954636341975574,
+					-0.034335515236803005,
+					0.000015657509889549504,
+					0.008676088207583144,
+					1.0589414951032476,
+					0.07654383336140569,
+					-0.0000026411824555691576,
+					0.11715434828036742,
+					-0.15209782650342163,
+					1.925481893061999,
+					0.0009007700682515107,
+					19.573108157871047,
+					-53.83523674741991,
+					263.8870218122902,
+					0.6423586574080673
+				]
+			},
+			"screen": {
+				"x": 0,
+				"y": 0,
+				"scale": 0.5
+			},
+			"visible": false,
+			"visibleText": false,
+			"visibleEditing": false,
+			"developer": true,
+			"links": {
+				"BdC44ea3": {
+					"objectA": "fileSenderr435ztsjzokw",
+					"frameA": "fileSenderr435ztsjzokwswitchps7avfrbawdj",
+					"nodeA": "fileSenderr435ztsjzokwswitchps7avfrbawdjvalue",
+					"logicA": false,
+					"namesA": [
+						"fileSender",
+						"switchps7avfrbawdj",
+						"value"
+					],
+					"objectB": "fileSenderr435ztsjzokw",
+					"frameB": "fileSenderr435ztsjzokwcode",
+					"nodeB": "fileSenderr435ztsjzokwcodestopMotors",
+					"logicB": false,
+					"namesB": [
+						"fileSender",
+						"code",
+						"stopMotors"
+					],
+					"lastEditor": "FV63egen",
+					"loop": false
+				}
+			},
+			"nodes": {
+				"fileSenderr435ztsjzokwswitchps7avfrbawdjvalue": {
+					"name": "value",
+					"objectId": "fileSenderr435ztsjzokw",
+					"frameId": "fileSenderr435ztsjzokwswitchps7avfrbawdj",
+					"data": {
+						"value": 1,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": 0,
+					"y": 0,
+					"scale": 0.25,
+					"matrix": [],
+					"type": "node",
+					"src": "",
+					"stress": 0,
+					"privateData": {},
+					"publicData": {},
+					"lockPassword": null,
+					"lockType": null,
+					"lastEditor": "FV63egen",
+					"processedData": {
+						"value": 1,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					}
+				}
+			},
+			"location": "global",
+			"src": "switch",
+			"privateData": {},
+			"publicData": {},
+			"staticCopy": false,
+			"distanceScale": 1,
+			"groupID": null,
+			"uuid": "fileSenderr435ztsjzokwswitchps7avfrbawdj"
+		},
+		"fileSenderr435ztsjzokwswitch2sh2vd0m4fmuy": {
+			"objectId": "fileSenderr435ztsjzokw",
+			"name": "switch2sh2vd0m4fmuy",
+			"visualization": "ar",
+			"ar": {
+				"x": -64.4830169797375,
+				"y": -14.845648179595457,
+				"scale": 0.2,
+				"matrix": [
+					1.062713853255804,
+					-0.07059031246742664,
+					-0.00019922516798054346,
+					0.000015657509889546034,
+					0.06459668619619452,
+					1.0220488967759438,
+					-0.2839844588991518,
+					-0.00000264118245555528,
+					0.156992597381155,
+					0.40116783364112507,
+					1.8726337335840526,
+					0.0009007700682512887,
+					60.12968606625964,
+					-25.428657452410334,
+					269.19472977249825,
+					0.6423586574081099
+				]
+			},
+			"screen": {
+				"x": 0,
+				"y": 0,
+				"scale": 0.5
+			},
+			"visible": false,
+			"visibleText": false,
+			"visibleEditing": false,
+			"developer": true,
+			"links": {
+				"NEKuqxm9": {
+					"objectA": "fileSenderr435ztsjzokw",
+					"frameA": "fileSenderr435ztsjzokwswitch2sh2vd0m4fmuy",
+					"nodeA": "fileSenderr435ztsjzokwswitch2sh2vd0m4fmuyvalue",
+					"logicA": false,
+					"namesA": [
+						"fileSender",
+						"switch2sh2vd0m4fmuy",
+						"value"
+					],
+					"objectB": "fileSenderr435ztsjzokw",
+					"frameB": "fileSenderr435ztsjzokwcode",
+					"nodeB": "tng5wa1wayah",
+					"logicB": 1,
+					"namesB": [
+						"fileSender",
+						"code",
+						"LOGIC1:GREEN"
+					],
+					"lastEditor": "g017ymm9",
+					"loop": false
+				}
+			},
+			"nodes": {
+				"fileSenderr435ztsjzokwswitch2sh2vd0m4fmuyvalue": {
+					"name": "value",
+					"objectId": "fileSenderr435ztsjzokw",
+					"frameId": "fileSenderr435ztsjzokwswitch2sh2vd0m4fmuy",
+					"data": {
+						"value": 1,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": 0,
+					"y": 0,
+					"scale": 0.25,
+					"matrix": [],
+					"type": "node",
+					"src": "",
+					"stress": 0,
+					"privateData": {},
+					"publicData": {},
+					"lockPassword": null,
+					"lockType": null,
+					"lastEditor": "g017ymm9",
+					"processedData": {
+						"value": 1,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					}
+				}
+			},
+			"location": "global",
+			"src": "switch",
+			"privateData": {},
+			"publicData": {},
+			"staticCopy": false,
+			"distanceScale": 1,
+			"groupID": null,
+			"uuid": "fileSenderr435ztsjzokwswitch2sh2vd0m4fmuy"
+		},
+		"fileSenderr435ztsjzokwtransferKvdi6trk4nzw": {
+			"objectId": "fileSenderr435ztsjzokw",
+			"name": "transferKvdi6trk4nzw",
+			"visualization": "ar",
+			"ar": {
+				"x": -65.58256734914337,
+				"y": 30.58062001152942,
+				"scale": 0.2,
+				"matrix": [
+					1.0512996046043104,
+					-0.14542242485413892,
+					-0.07457586593309351,
+					0.000015657509889546034,
+					0.11116899118693024,
+					0.9980425334007019,
+					-0.34471934143275185,
+					-0.000002641182455603852,
+					0.2860952230453293,
+					0.5358002660892396,
+					1.7461556245883685,
+					0.0009007700682516218,
+					48.88387043559305,
+					11.066143881105745,
+					207.76162371895043,
+					0.6423586574080815
+				]
+			},
+			"screen": {
+				"x": 0,
+				"y": 0,
+				"scale": 0.5
+			},
+			"visible": false,
+			"visibleText": false,
+			"visibleEditing": false,
+			"developer": true,
+			"links": {
+				"TViex2yh": {
+					"objectA": "fileSenderr435ztsjzokw",
+					"frameA": "fileSenderr435ztsjzokwtransferKvdi6trk4nzw",
+					"nodeA": "fileSenderr435ztsjzokwtransferKvdi6trk4nzwvalue",
+					"logicA": false,
+					"namesA": [
+						"fileSender",
+						"transferKvdi6trk4nzw",
+						"value"
+					],
+					"objectB": "fileSenderr435ztsjzokw",
+					"frameB": "fileSenderr435ztsjzokwcode",
+					"nodeB": "tng5wa1wayah",
+					"logicB": 0,
+					"namesB": [
+						"fileSender",
+						"code",
+						"LOGIC1:BLUE"
+					],
+					"lastEditor": "HYoqpgqh",
+					"loop": false
+				}
+			},
+			"nodes": {
+				"fileSenderr435ztsjzokwtransferKvdi6trk4nzwvalue": {
+					"name": "value",
+					"objectId": "fileSenderr435ztsjzokw",
+					"frameId": "fileSenderr435ztsjzokwtransferKvdi6trk4nzw",
+					"data": {
+						"value": 91,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": 0,
+					"y": 0,
+					"scale": 0.25,
+					"matrix": [],
+					"type": "node",
+					"src": "",
+					"stress": 0,
+					"privateData": {},
+					"publicData": {},
+					"lockPassword": null,
+					"lockType": null,
+					"lastEditor": "HYoqpgqh",
+					"processedData": {
+						"value": 91,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					}
+				}
+			},
+			"location": "global",
+			"src": "transfer",
+			"privateData": {},
+			"publicData": {},
+			"staticCopy": false,
+			"distanceScale": 1,
+			"groupID": null,
+			"uuid": "fileSenderr435ztsjzokwtransferKvdi6trk4nzw"
+		}
+	},
+	"framesHistory": {},
+	"visualization": "ar",
+	"zone": "",
+	"targetSize": {
+		"width": 0.14,
+		"height": 0.209783
+	},
+	"isWorldObject": false,
+	"timestamp": null,
+	"port": 8080,
+	"developer": true
+}
