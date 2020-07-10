@@ -10,11 +10,12 @@ var noble = require('@abandonware/noble');
 var colors = ["black", "violet", "blue", "cyan", "green", "yellow", "red", "white"]
 var portLetters = ["A", "B", "C", "D", "E", "F"]
 var ports = ["none", "none", "none", "none", "none", "none"]
-var sensorData, arr, isReading
+var sensorData, arr
 var distance, color, accel, accelArr
 var [motor1, motor2, motor3, distanceSensor, colorSensor, forceSensor] = ports
 var firstMotor, secondMotor, thirdMotor
 var TOOL_NAME = "code"
+var runMotors = true
 
 exports.enabled = settings('enabled');
 exports.configurable = true;
@@ -63,7 +64,7 @@ function startHardwareInterface() {
 	server.enableDeveloperUI(true)
 
     // Adds sensor nodes to the object on the app
-    server.addNode(objectName, TOOL_NAME, "stopRead", "node");
+    server.addNode(objectName, TOOL_NAME, "stopMotors", "node");
 	//server.addNode(objectName, TOOL_NAME, "color", "node");
     server.addNode(objectName, TOOL_NAME, "distance", "node");
     server.addNode(objectName, TOOL_NAME, "force", "node");
@@ -79,47 +80,51 @@ function startHardwareInterface() {
     // Constantly sort the sensor data
     setInterval(() => { sortSensor(); }, 10);
 
-    // Listens for the stopRead node
-	server.addReadListener(objectName, TOOL_NAME, "stopRead", function(data){
-		// When true, stop the Spike
+    // Listens for the stopMotors node
+	server.addReadListener(objectName, TOOL_NAME, "stopMotors", function(data){
+		// When true, stop the Spike motors
         if(data.value == 1) {
-            console.log('switch on')
-            stopRead()
-            isReading = true
+            console.log('motors off')
+            stopMotors()
 		}
-		if(data.value == 0) {
-			console.log('switch off')
-            continuousSensor()
-		}	
+        if(data.value == 0) {
+            runMotors = true
+        }
 	});
 
     // Listen for the motor1 node
     server.addReadListener(objectName, TOOL_NAME, "motor1", function(data){
-        console.log("sending1")
-        setTimeout(() => { serial.writePort(motor1 + ".start(" + Math.round(data.value/2) + ")\r\n") }, 0);
+        if(runMotors) {
+            setTimeout(() => { serial.writePort(motor1 + ".start(" + Math.round(data.value/2) + ")\r\n") }, 0);
+        }
+        else {
+            stopMotors()
+        }
     });
 
     // Listen for the motor2 node
     server.addReadListener(objectName, TOOL_NAME, "motor2", function(data){
-        console.log("sending2")
-        setTimeout(() => { serial.writePort(motor2 + ".start(" + Math.round(-1 * data.value/2) + ")\r\n") }, 0);
+        if(runMotors) {
+            setTimeout(() => { serial.writePort(motor2 + ".start(" + Math.round(-1 * data.value/2) + ")\r\n") }, 0);
+        }
+        else {
+            stopMotors()
+        }
     });
 
     // Listen for the motor3 node
     server.addReadListener(objectName, TOOL_NAME, "motor3", function(data){
-        // When true, turn the motor on at the speed
-        if(data.value == 1) {
-            console.log('motor3 on')
-            setTimeout(() => { serial.writePort(motor3 + ".start(-10)\r\n") }, 10);
+        if(runMotors) {
+            setTimeout(() => { serial.writePort(motor3 + ".start(" + Math.round(-1 * data.value/2) + ")\r\n") }, 0);
         }
-        if(data.value == 0) {
-            console.log('motor3 off')
-            setTimeout(() => { serial.writePort(motor3 + ".stop()\r\n") }, 10);
-        }   
+        else {
+            stopMotors()
+        }
     });
 
-    setInterval(() => { continuousSensor(); }, 100)
-	updateEvery(0, 100);
+    // Constantly read the sensor data
+    setInterval(() => { continuousSensor(); }, 50)
+	updateEvery(0, 10);
 }
 
 // Gets the port ordering from the Spike Prime, which initialized itself
@@ -135,7 +140,7 @@ function initializePorts() {
         }
         console.log(ports)
         definePorts()
-        setTimeout(() => { continuousSensor(); }, 1000)
+        //setTimeout(() => { continuousSensor(); }, 1000)
     }
     else {
         setTimeout(() => { initializePorts(); }, 0);
@@ -178,30 +183,6 @@ function readSensor() {
 // Tells the Spike to continutiously print color, force, distance, and accelerometer data
 function continuousSensor() {
     serial.writePort("read()\r\n")
-    /*stopRead()
-    isReading = true
-    serial.writePort("while True:\r\n");
-    if (colorSensor != "none") {
-        serial.writePort("print(" + colorSensor + ".get_color())\r\n")
-    }
-    if (distanceSensor != "none") {
-        serial.writePort("print(" + distanceSensor + ".get_distance_cm())\r\n")
-    }
-    if (forceSensor != "none") {
-        serial.writePort("print(" + forceSensor + ".get_force_percentage()/100)\r\n")
-    }
-    serial.writePort("utime.sleep_ms(1000)\r\n")
-    serial.writePort("print(hub.motion.accelerometer())\r\n")
-    serial.writePort("\r\n\r\n\r\n\r\n")*/
-}
-
-function checkReading() {
-    console.log("checking")
-    if(!isReading) {
-        isReading = true
-        console.log("reading")
-        setTimeout(() => { continuousSensor(); }, 100);
-    }
 }
 
 // Sorts the sensor data and sends it to the appropriate process function
@@ -259,11 +240,17 @@ function processForce(sensorData) {
 }
 
 // Send Control + C a few times to kill anything that is running
-function stopRead() {
-    isReading = false
-    serial.writePort('\x03')
-    serial.writePort('\x03')
-    serial.writePort('\x03')
+function stopMotors() {
+    runMotors = false
+    if (motor1 != "none") {
+        serial.writePort(motor1 + ".stop()\r\n")
+    }
+    if (motor2 != "none") {
+        serial.writePort(motor2 + ".stop()\r\n")
+    }
+    if (motor3 != "none") {
+        serial.writePort(motor3 + ".stop()\r\n")
+    }
 }
 
 function updateEvery(i, time){
@@ -273,9 +260,9 @@ function updateEvery(i, time){
 }
 
 server.addEventListener("initialize", function () {
-    if (exports.enabled) setTimeout(() => { startHardwareInterface() }, 6000)
+    if (exports.enabled) setTimeout(() => { startHardwareInterface() }, 10000)
 });
 
 server.addEventListener("shutdown", function () {
-    stopRead()
+    stopMotors()
 });

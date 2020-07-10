@@ -29,11 +29,17 @@ for i in range(6):
         portType[i] = "color"
         colorSensor = i
 
-for i in range(10):
-    print(portType)
-
 def read():
     if (colorSensor != -1):
-        print(portName(colorSensor).get_color)
+        exec("print(" + portName[colorSensor] + ".get_color())")
+    if (distanceSensor != -1):
+        exec("print(" + portName[distanceSensor] + ".get_distance_cm())")
+    if (forceSensor != -1):
+        exec("print(" + portName[forceSensor] + ".get_force_percentage()/100)")
+    exec("utime.sleep_ms(2)")
+    exec("print(hub.motion.accelerometer())")
+
+for i in range(10):
+    print(portType)
 
 #end
