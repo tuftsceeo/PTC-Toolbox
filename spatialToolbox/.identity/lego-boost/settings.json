@@ -5,5 +5,8 @@
     "wheelType": 1,
     "wheelDiameter": 0.04,
     "wheelSeparation": 0.065,
-    "enableRobotConnection": true
+    "enableRobotConnection": true,
+    "wheelA_driftOffset": 7,
+    "wheelB_driftOffset": 5,
+    "isRobotConnected": false
 }

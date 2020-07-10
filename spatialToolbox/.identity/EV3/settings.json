@@ -1,4 +1,4 @@
 {
-    "enabled": false,
-    "objectName": "moveButton"
+    "enabled": true,
+    "objectName": "ev3Node"
 }

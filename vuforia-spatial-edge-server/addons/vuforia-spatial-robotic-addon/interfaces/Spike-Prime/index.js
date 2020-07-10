@@ -17,6 +17,8 @@ var firstMotor, secondMotor, thirdMotor
 var TOOL_NAME = "code"
 var runMotors = true
 
+let objectName = 'spikeNode';
+
 exports.enabled = settings('enabled');
 exports.configurable = true;
 
@@ -32,13 +34,15 @@ if (exports.enabled){
     // Code executed when your robotic addon is enabled
     setup();
 
+    console.log('Spike: Settings loaded: ', objectName)
+
     console.log("Spike is connected");
 
     function setup() {
     	exports.settings = {
     		// Object
-            objectName: {
-    			value: settings('objectName'),
+            spikeName: {
+    			value: settings('objectName', 'spikeNode'),
     			type: 'text',
     			default: 'spikeNode',
     			disabled: false,
@@ -47,7 +51,8 @@ if (exports.enabled){
     	};
     }
 
-    objectName = exports.settings.objectName.value;
+    objectName = exports.settings.spikeName.value;
+    console.log("Spike" + objectName)
 
     server.addEventListener('reset', function () {
     	settings = server.loadHardwareInterface(__dirname);

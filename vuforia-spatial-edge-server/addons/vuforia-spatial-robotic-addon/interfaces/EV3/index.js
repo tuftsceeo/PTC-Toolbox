@@ -14,6 +14,8 @@ var msgUltra = "ignore", msgGyro = "ignore", msgTouch = "ignore", msgColor = "ig
 var val_u, val_t, val_c, val_g;
 const TOOL_NAME = "IO";
 
+let objectName = "ev3Node";
+
 // ZeroRPC client with client.py file
 var zeroServer = new zerorpc.Server({
     messageA: function(reply) {
@@ -128,21 +130,24 @@ if (exports.enabled){
     // Code executed when your robotic addon is enabled
     setup();
 
+    console.log('EV3: Settings loaded: ', objectName)
+
     console.log("EV3 is connected");
 
     function setup() {
     	exports.settings = {
-    		objectName: {
-    			value: settings('objectName'),
+    		ev3Name: {
+    			value: settings('objectName', 'ev3Node'),
     			type: 'text',
-    			default: 'moveButton',
+    			default: 'ev3Node',
     			disabled: false,
     			helpText: 'The name of the object that connects to this hardware interface.'
     		}
     	};
     }
 
-    objectName = exports.settings.objectName.value;
+    objectName = exports.settings.ev3Name.value;
+    console.log("EV3" + objectName)
 
     server.addEventListener('reset', function () {
     	settings = server.loadHardwareInterface(__dirname);
