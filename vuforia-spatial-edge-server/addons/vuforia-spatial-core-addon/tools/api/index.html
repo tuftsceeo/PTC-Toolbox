@@ -85,7 +85,10 @@
 
     try {
         var realityInterface = new RealityInterface();
-        realityInterface.initNode('value', 'node', 0, 0);
+        realityInterface.initNode('value', 'node', 40, -25); // 0 = x, -25 = y position of the node in the UI 
+        // To create more nodes do: 
+        // realityInterface.initNode('NAME', 'node', X-pos, Y-pos); // Note: keep second value as 'node'
+
         realityInterface.initNode('storage', 'storeData');
 
         var _envelopeContents = new EnvelopeContents(realityInterface, document.body);
@@ -168,8 +171,6 @@
     {
         if (properties.value <= -255) properties.value = -255;
         if (properties.value >= 255) properties.value = 255;
-        
-        // var NEW_URL = document.getElementById("input");
 
         var new_url = input.innerText;
         
@@ -179,28 +180,34 @@
 
     function api_call(theUrl, DOM)
     {
+        // Deleting white space when the user clicks to input url 
         theUrl = theUrl.trim();
-        // theUrl = "https://api.wheretheiss.at/v1/satellites/25544";
 
-        // theUrl = "https://api.icndb.com/jokes/random";
+        // Making API request 
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.onreadystatechange = function() { 
             if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
                 var val = xmlHttp.responseText;
+
+                // Parsing API call and converting it into a JSON object
+                // To access a specifc value, do: val.VariableName (see below)
                 val = JSON.parse(val);
 
-                // DOM.innerHTML = val.value.joke;
-                // realityInterface.write('value',DOM.innerHTML);
-                
-                var new_output = "The Latitude of the ISS is: " + val.latitude.toFixed(2) + " And the Longitutde is: " + val.longitude.toFixed(2);
+                // Set display equal to what you want to display on the API tool
+                // Note: This is different from sending values to other nodes
+                var display = "The Latitude of the ISS is: " + val.latitude.toFixed(2) + " And the Longitutde is: " + val.longitude.toFixed(2); // .toFixed rounds the number to 2 decimal places
 
-                DOM.innerHTML = new_output;
+                // Set UI equal to display 
+                DOM.innerHTML = display;
 
-                // DOM.innerHTML = "The ISS Latitude is: " + val.latitude.toFixed(2) " and the Longitutde is: " + val.longitutde.toFixed(2);
-                realityInterface.write('value',DOM.innerHTML);
+                // This gives the node named 'value' the value of 'val.latitude'
+                realityInterface.write('value', val.latitude);
+                // Create more nodes if you want to send more than one value, Checkout line 88
+                // If you create a new node, then do: 
+                // realityInterface.write('NAME',VALUE);
             }
             else {
-                DOM.innerHTML = xmlHttp.status;
+                DOM.innerHTML = xmlHttp.status; // If request does not work, print out status code to UI 
             }
         }
         xmlHttp.open("GET", theUrl, true); // true for asynchronous 
