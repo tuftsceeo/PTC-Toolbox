@@ -40,7 +40,7 @@ if (exports.enabled){
             objectName: {
     			value: settings('objectName'),
     			type: 'text',
-    			default: 'fileSender',
+    			default: 'spikeNode',
     			disabled: false,
     			helpText: 'The name of the object that connects to this hardware interface.'
     		}
