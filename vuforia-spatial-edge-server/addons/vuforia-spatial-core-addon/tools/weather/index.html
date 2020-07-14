@@ -5,7 +5,7 @@
     <script src="objectDefaultFiles/pep.min.js"></script>
     <script src="objectDefaultFiles/envelopeContents.js"></script>
     <meta charset="UTF-8">
-    <title>label</title>
+    <title>weather</title>
     <style>
         @font-face {
             font-family: 'Roboto';
@@ -252,6 +252,7 @@
                 var temperature = (val.main.temp - 273.15) * (9/5) + 32; // Converting kelvins to fahrenheit
                 DOM.innerText = temperature.toFixed(0) + "\u2109";
 
+                realityInterface.write('value', temperature);
                 // Getting image
                 var icon = val.weather[0].icon; // Weather is an array, that has 1 element of a JSON object 
                 var img_url = "https://openweathermap.org/img/wn/"+icon+"@2x.png";
