@@ -22,6 +22,7 @@ let objectName = 'spikeNode';
 exports.enabled = settings('enabled');
 exports.configurable = true;
 
+// Send the initialize file to the Spike Prime, which determines motor/sensor ports
 try {
     serial.openPort()
     serial.sendFile('initialize.py')
@@ -84,6 +85,7 @@ function startHardwareInterface() {
     server.addNode(objectName, TOOL_NAME, "motor1", "node");
     server.addNode(objectName, TOOL_NAME, "motor2", "node");
     server.addNode(objectName, TOOL_NAME, "motor3", "node");
+    //server.addNode(objectName, TOOL_NAME, "screen", "node");
 
     // Constantly sort the sensor data
     setInterval(() => { sortSensor(); }, 10);
@@ -129,6 +131,11 @@ function startHardwareInterface() {
             stopMotors()
         }
     });
+
+    // Listen for the screen node
+    /*server.addReadListener(objectName, TOOL_NAME, "screen", function(data){
+        setTimeout(() => { serial.writePort("hub.display.show(\"" + data.value + "\")\r\n") }, 0);
+    });*/
 
     // Constantly read the sensor data
     setInterval(() => { continuousSensor(); }, 50)
@@ -188,7 +195,7 @@ function readSensor() {
     return sensorData
 }
 
-// Tells the Spike to continutiously print color, force, distance, and accelerometer data
+// Tells the Spike to execute the read function defined in initialize.py
 function continuousSensor() {
     serial.writePort("read()\r\n")
 }
@@ -249,7 +256,7 @@ function processForce(sensorData) {
     server.write(objectName, TOOL_NAME, "force", server.map(force, 0, 10, 0, 10), "f")
 }
 
-// Send Control + C a few times to kill anything that is running
+// Send commands to stop all the motors
 function stopMotors() {
     runMotors = false
     if (motor1 != "none") {
