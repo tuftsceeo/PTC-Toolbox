@@ -76,6 +76,9 @@ function startHardwareInterface() {
     server.addNode(objectName, TOOL_NAME, "accelerometerX", "node");
     server.addNode(objectName, TOOL_NAME, "accelerometerY", "node");
     server.addNode(objectName, TOOL_NAME, "accelerometerZ", "node");
+    server.addNode(objectName, TOOL_NAME, "gyroscopeX", "node");
+    server.addNode(objectName, TOOL_NAME, "gyroscopeY", "node");
+    server.addNode(objectName, TOOL_NAME, "gyroscopeZ", "node");
 
     // Adds motor nodes to the object on the app
     server.addNode(objectName, TOOL_NAME, "motor1", "node");
@@ -205,7 +208,7 @@ async function sortSensor() {
     else if (!isNaN(sensorData) && parseInt(sensorData) > 1 && sensorData.toString().length > 0) {
         processDistance(sensorData)
     }
-    else if (arr.length == 3) {
+    else if (arr.length == 6) {
         processAccelerometer(sensorData)
     }
 }
@@ -234,6 +237,9 @@ function processAccelerometer(sensorData) {
     server.write(objectName, TOOL_NAME, "accelerometerX", server.map(accelArr[0], -5000, 5000, -5000, 5000), "f")
     server.write(objectName, TOOL_NAME, "accelerometerY", server.map(accelArr[1], -5000, 5000, -5000, 5000), "f")
     server.write(objectName, TOOL_NAME, "accelerometerZ", server.map(accelArr[2], -5000, 5000, -5000, 5000), "f")
+    server.write(objectName, TOOL_NAME, "gyroscopeX", server.map(accelArr[3], -5000, 5000, -5000, 5000), "f")
+    server.write(objectName, TOOL_NAME, "gyroscopeY", server.map(accelArr[4], -5000, 5000, -5000, 5000), "f")
+    server.write(objectName, TOOL_NAME, "gyroscopeZ", server.map(accelArr[5], -5000, 5000, -5000, 5000), "f")
 }
 
 // Process force data

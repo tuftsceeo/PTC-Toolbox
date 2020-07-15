@@ -41,7 +41,7 @@
 					"objectId": "spikeNodemLiiywjcrni2",
 					"frameId": "spikeNodemLiiywjcrni2code",
 					"data": {
-						"value": 8,
+						"value": 1,
 						"mode": "f",
 						"unit": false,
 						"unitMin": 0,
@@ -75,7 +75,7 @@
 					"frameSizeX": 100,
 					"frameSizeY": 100,
 					"processedData": {
-						"value": 8,
+						"value": 1,
 						"mode": "f",
 						"unit": false,
 						"unitMin": 0,
@@ -87,7 +87,7 @@
 					"objectId": "spikeNodemLiiywjcrni2",
 					"frameId": "spikeNodemLiiywjcrni2code",
 					"data": {
-						"value": 89,
+						"value": 4,
 						"mode": "f",
 						"unit": false,
 						"unitMin": 0,
@@ -121,7 +121,7 @@
 					"frameSizeX": 100,
 					"frameSizeY": 100,
 					"processedData": {
-						"value": 89,
+						"value": 4,
 						"mode": "f",
 						"unit": false,
 						"unitMin": 0,
@@ -133,7 +133,7 @@
 					"objectId": "spikeNodemLiiywjcrni2",
 					"frameId": "spikeNodemLiiywjcrni2code",
 					"data": {
-						"value": 8,
+						"value": 0,
 						"mode": "f",
 						"unit": false,
 						"unitMin": 0,
@@ -167,7 +167,7 @@
 					"frameSizeX": 100,
 					"frameSizeY": 100,
 					"processedData": {
-						"value": 8,
+						"value": 0,
 						"mode": "f",
 						"unit": false,
 						"unitMin": 0,
@@ -179,7 +179,7 @@
 					"objectId": "spikeNodemLiiywjcrni2",
 					"frameId": "spikeNodemLiiywjcrni2code",
 					"data": {
-						"value": 99,
+						"value": 79,
 						"mode": "f",
 						"unit": false,
 						"unitMin": 0,
@@ -213,7 +213,7 @@
 					"frameSizeX": 100,
 					"frameSizeY": 100,
 					"processedData": {
-						"value": 99,
+						"value": 79,
 						"mode": "f",
 						"unit": false,
 						"unitMin": 0,
@@ -225,7 +225,7 @@
 					"objectId": "spikeNodemLiiywjcrni2",
 					"frameId": "spikeNodemLiiywjcrni2code",
 					"data": {
-						"value": 1,
+						"value": -48,
 						"mode": "f",
 						"unit": false,
 						"unitMin": 0,
@@ -259,7 +259,7 @@
 					"frameSizeX": 100,
 					"frameSizeY": 100,
 					"processedData": {
-						"value": 1,
+						"value": -48,
 						"mode": "f",
 						"unit": false,
 						"unitMin": 0,
@@ -271,7 +271,7 @@
 					"objectId": "spikeNodemLiiywjcrni2",
 					"frameId": "spikeNodemLiiywjcrni2code",
 					"data": {
-						"value": 989,
+						"value": 992,
 						"mode": "f",
 						"unit": false,
 						"unitMin": 0,
@@ -305,7 +305,7 @@
 					"frameSizeX": 100,
 					"frameSizeY": 100,
 					"processedData": {
-						"value": 989,
+						"value": 992,
 						"mode": "f",
 						"unit": false,
 						"unitMin": 0,
@@ -317,9 +317,9 @@
 					"objectId": "spikeNodemLiiywjcrni2",
 					"frameId": "spikeNodemLiiywjcrni2code",
 					"data": {
-						"value": 0,
+						"value": 4,
 						"mode": "f",
-						"unit": "",
+						"unit": false,
 						"unitMin": 0,
 						"unitMax": 1
 					},
@@ -349,16 +349,23 @@
 					"privateData": {},
 					"publicData": {},
 					"frameSizeX": 100,
-					"frameSizeY": 100
+					"frameSizeY": 100,
+					"processedData": {
+						"value": 4,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					}
 				},
 				"spikeNodemLiiywjcrni2codemotor2": {
 					"name": "motor2",
 					"objectId": "spikeNodemLiiywjcrni2",
 					"frameId": "spikeNodemLiiywjcrni2code",
 					"data": {
-						"value": 0,
+						"value": 4,
 						"mode": "f",
-						"unit": "",
+						"unit": false,
 						"unitMin": 0,
 						"unitMax": 1
 					},
@@ -388,7 +395,14 @@
 					"privateData": {},
 					"publicData": {},
 					"frameSizeX": 100,
-					"frameSizeY": 100
+					"frameSizeY": 100,
+					"processedData": {
+						"value": 4,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					}
 				},
 				"spikeNodemLiiywjcrni2codemotor3": {
 					"name": "motor3",
@@ -441,7 +455,7 @@
 					"objectId": "spikeNodemLiiywjcrni2",
 					"frameId": "spikeNodemLiiywjcrni2code",
 					"data": {
-						"value": "black",
+						"value": "white",
 						"mode": "f",
 						"unit": false,
 						"unitMin": 0,
@@ -458,7 +472,128 @@
 					"frameSizeX": 100,
 					"frameSizeY": 100,
 					"processedData": {
-						"value": "black",
+						"value": "white",
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					}
+				},
+				"spikeNodemLiiywjcrni2codegyroscopeX": {
+					"name": "gyroscopeX",
+					"objectId": "spikeNodemLiiywjcrni2",
+					"frameId": "spikeNodemLiiywjcrni2code",
+					"data": {
+						"value": -1,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": -208.25179350893248,
+					"y": -110.10805707372992,
+					"scale": 0.2,
+					"matrix": [],
+					"type": "node",
+					"stress": 0,
+					"privateData": {},
+					"publicData": {},
+					"frameSizeX": 100,
+					"frameSizeY": 100,
+					"processedData": {
+						"value": -1,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					}
+				},
+				"spikeNodemLiiywjcrni2codegyroscopeY": {
+					"name": "gyroscopeY",
+					"objectId": "spikeNodemLiiywjcrni2",
+					"frameId": "spikeNodemLiiywjcrni2code",
+					"data": {
+						"value": 3,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": -199.20187348902826,
+					"y": -7.341006628495634,
+					"scale": 0.2,
+					"matrix": [
+						0.9999620676138952,
+						-0.0069773709739502365,
+						-0.005126076740586072,
+						-6.591949208711867e-17,
+						0.006836734963515667,
+						0.9996027516303219,
+						-0.027295070669609345,
+						1.5265566588595902e-16,
+						0.005312418754208181,
+						0.027258636808014103,
+						0.9996155270972054,
+						-4.440892098500626e-16,
+						-6.406217034476867,
+						-17.8086919021589,
+						1.2823115764476825,
+						1.0000000000001137
+					],
+					"type": "node",
+					"stress": 0,
+					"privateData": {},
+					"publicData": {},
+					"frameSizeX": 100,
+					"frameSizeY": 100,
+					"processedData": {
+						"value": 3,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					}
+				},
+				"spikeNodemLiiywjcrni2codegyroscopeZ": {
+					"name": "gyroscopeZ",
+					"objectId": "spikeNodemLiiywjcrni2",
+					"frameId": "spikeNodemLiiywjcrni2code",
+					"data": {
+						"value": -9,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": -163.61554462192095,
+					"y": 68.36112200850353,
+					"scale": 0.2,
+					"matrix": [
+						0.9982729694275827,
+						-0.01868332198538436,
+						-0.05570998773942648,
+						5.551115123125783e-17,
+						0.018072392515236402,
+						0.9997717627989502,
+						-0.011461022315160108,
+						-5.551115123125783e-17,
+						0.05591084413251224,
+						0.010433216218245889,
+						0.9983813582981611,
+						-1.6653345369377348e-16,
+						-45.16768565426173,
+						-14.039995854189328,
+						-11.323089369630907,
+						0.9999999999997158
+					],
+					"type": "node",
+					"stress": 0,
+					"privateData": {},
+					"publicData": {},
+					"frameSizeX": 100,
+					"frameSizeY": 100,
+					"processedData": {
+						"value": -9,
 						"mode": "f",
 						"unit": false,
 						"unitMin": 0,
