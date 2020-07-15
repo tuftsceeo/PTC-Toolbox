@@ -16,6 +16,7 @@
     "has-ansi": "^4.0.0",
     "ip": "^1.1.5",
     "jimp": "^0.10.3",
+    "jsdom": "^16.3.0",
     "lodash": "^4.17.15",
     "module-alias": "^2.2.2",
     "monaco-editor": "^0.20.0",
@@ -31,6 +32,7 @@
     "socket.io-client": "~2.3.0",
     "winston": "^3.3.3",
     "xml2js": "^0.4.23",
+    "xmlhttprequest": "^1.8.0",
     "zerorpc": "^0.9.8"
   },
   "repository": {
