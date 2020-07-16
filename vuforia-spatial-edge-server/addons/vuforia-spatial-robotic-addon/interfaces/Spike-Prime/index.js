@@ -110,7 +110,6 @@ function startHardwareInterface() {
 
         // Removing more nodes for beginner
         if (complexity == 'beginner') {
-            server.removeNode(objectName, TOOL_NAME, "stopMotors")
             server.removeNode(objectName, TOOL_NAME, "color")
             server.removeNode(objectName, TOOL_NAME, "force")
             
