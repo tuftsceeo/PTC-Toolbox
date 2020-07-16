@@ -65,7 +65,7 @@
     </g>
 </svg>
 
-<div id="text">1.000</div>
+<div id="text">-1.000</div>
 
 
 <script>
@@ -88,50 +88,6 @@
         unit: ""
     };
 
-    function scaleVal(number) {
-        return -1 * (number * (properties.unitMax - properties.unitMin)) + properties.unitMin;
-    }
-
-    function numberToText(value) {
-        var num = scaleVal(value);
-        realityInterface.write('value', num);
-        return num.toPrecision(4).substring(0, 6) + " " + properties.unit;
-    }
-    
-    // TODO: TURN GREEN OR RED DEPENDING ON VALUE
-    // function checkScope() {
-    //     if (properties.value > (sliderHeight - limits.currentMin) / sliderHeight && properties.value < (sliderHeight - limits.currentMax) / sliderHeight) {
-    //         dataValueOutline.setAttribute('class', "numberOutline greenStroke");
-    //         dataValue.setAttribute('class', "dataFont green");
-    //     } else {
-    //         dataValueOutline.setAttribute('class', "numberOutline redStroke");
-    //         dataValue.setAttribute('class', "dataFont red");
-    //     }
-    // }
-
-    function renderProperties() {
-        
-        // checkScope();
-
-        if (properties.value <= -100) {
-            properties.value = -100;
-        }
-        if (properties.value >= 100) {
-            properties.value = 100;
-        }
-
-        text.innerText = numberToText(properties.value);
-    }
-
-    function ready() {
-        renderProperties();
-    }
-    ready();
-
-    // setInterval(function () {
-    //     renderProperties();
-    // }, time);
-    //
     try {
         realityInterface.addReadListener('value', function (e) {
 
@@ -144,7 +100,7 @@
             properties.unitMax = e.unitMax;
             properties.unitMin = e.unitMin;
 
-            renderProperties();
+            realityInterface.write('value', -1 * properties.value);
         });
     } catch (e) {
         console.warn('Reality Interface is not accessible');
