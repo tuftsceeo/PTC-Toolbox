@@ -99,6 +99,11 @@ function startHardwareInterface() {
     server.addNode(objectName, TOOL_NAME, "motor2", "node", {x: 125, y: -25, scale:0.175});
     server.addNode(objectName, TOOL_NAME, "motor3", "node", {x: 125, y: 50, scale:0.175});
 
+    // Removes nodes that are only found in beginner
+    server.removeNode(objectName, TOOL_NAME, "LED")
+    server.removeNode(objectName, TOOL_NAME, "screen")
+    server.removeNode(objectName, TOOL_NAME, "motors")    
+
     if (complexity == 'beginner' || complexity == 'intermediate') {
         // Remove the accelerometer/gyroscope nodes
         server.removeNode(objectName, TOOL_NAME, "accelerometerX")
