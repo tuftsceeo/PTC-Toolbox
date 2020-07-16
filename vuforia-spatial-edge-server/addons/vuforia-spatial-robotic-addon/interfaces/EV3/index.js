@@ -142,11 +142,19 @@ if (exports.enabled){
     			default: 'ev3Node',
     			disabled: false,
     			helpText: 'The name of the object that connects to this hardware interface.'
-    		}
+    		},
+            complexity: {
+                value: settings('complexity', 'advanced'),
+                type: 'text',
+                default: 'advanced',
+                disabled: false,
+                helpText: 'The complexity of the interface. "beginner" gives a few nodes, "intermediate" gives more, and "advanced" gives full control.'
+            }
     	};
     }
 
     objectName = exports.settings.ev3Name.value;
+    complexity = exports.settings.complexity.value.toLowerCase();
     console.log("EV3" + objectName)
 
     server.addEventListener('reset', function () {
@@ -163,18 +171,44 @@ function startHardwareInterface() {
 
 	server.enableDeveloperUI(true)
 
-    // Adds a button node to the object on the app
-	server.addNode(objectName, TOOL_NAME, "motorA", "node");
-    server.addNode(objectName, TOOL_NAME, "motorB", "node");
-    server.addNode(objectName, TOOL_NAME, "motorC", "node");
-    server.addNode(objectName, TOOL_NAME, "motorD", "node");
-    server.addNode(objectName, TOOL_NAME, "ultra", "node");
-    server.addNode(objectName, TOOL_NAME, "touch", "node");
-    server.addNode(objectName, TOOL_NAME, "color", "node");
-    server.addNode(objectName, TOOL_NAME, "gyro", "node");
-    server.addNode(objectName, TOOL_NAME, "ledLeft", "node");
-    server.addNode(objectName, TOOL_NAME, "ledRight", "node");
-    server.addNode(objectName, TOOL_NAME, "speaker", "node");
+    // add all nodes to app for advanced mode
+	server.addNode(objectName, TOOL_NAME, "motorA", "node", {x: -40, y: -40, scale: 0.2});
+    server.addNode(objectName, TOOL_NAME, "motorB", "node", {x: -40, y: -5, scale: 0.2});
+    server.addNode(objectName, TOOL_NAME, "motorC", "node", {x: -40, y: 30, scale: 0.2});
+    server.addNode(objectName, TOOL_NAME, "motorD", "node", {x: -40, y: 65, scale: 0.2});
+    server.addNode(objectName, TOOL_NAME, "ultra", "node", {x: -10, y: 65, scale: 0.2});
+    server.addNode(objectName, TOOL_NAME, "touch", "node", {x: 20, y: 65, scale: 0.2});
+    server.addNode(objectName, TOOL_NAME, "color", "node", {x: 50, y: 65, scale: 0.2});
+    server.addNode(objectName, TOOL_NAME, "gyro", "node", {x: 50, y: 30, scale: 0.2});
+    server.addNode(objectName, TOOL_NAME, "ledLeft", "node", {x: 50, y: -5, scale: 0.2});
+    server.addNode(objectName, TOOL_NAME, "ledRight", "node", {x: 50, y: -40, scale: 0.2});
+    server.addNode(objectName, TOOL_NAME, "speaker", "node", {x: 50, y: -75, scale: 0.2});
+
+    //all motors controlled from one node, right led light node, speaker node, ultra node
+    if (complexity == "beginner") {
+        server.removeNode(objectName, TOOL_NAME, "motorA");
+        server.removeNode(objectName, TOOL_NAME, "motorB");
+        server.removeNode(objectName, TOOL_NAME, "motorC");
+        server.removeNode(objectName, TOOL_NAME, "motorD");
+        server.removeNode(objectName, TOOL_NAME, "color");
+        server.removeNode(objectName, TOOL_NAME, "gyro");
+        server.removeNode(objectName, TOOL_NAME, "touch");
+        server.removeNode(objectName, TOOL_NAME, "ledLeft");
+
+        server.moveNode(objectName, TOOL_NAME, "ledRight", -40, -5);
+        server.moveNode(objectName, TOOL_NAME, "speaker", -40, 30);
+        server.moveNode(objectName, TOOL_NAME, "ultra", 40, 30);
+        server.addNode(objectName, TOOL_NAME, "motors", "node", {x: 40, y: -5, scale: 0.2});
+
+    }
+
+    //all motor and sensor nodes
+    if (complexity == "intermediate") {
+        server.removeNode(objectName, TOOL_NAME, "ledLeft");
+        server.removeNode(objectName, TOOL_NAME, "ledRight");
+        server.removeNode(objectName, TOOL_NAME, "speaker");
+        server.removeNode(objectName, TOOL_NAME, "motors");
+    }
 
     server.addReadListener(objectName, TOOL_NAME, "motorA", function(data) {
         console.log(data.value);
@@ -183,7 +217,7 @@ function startHardwareInterface() {
     });
 
     server.addReadListener(objectName, TOOL_NAME, "motorB", function(data) {
-        console.log("here " + get_val(data.value));
+        console.log("here " + data.value);
         msgB = "B.on(" + get_val(data.value) + ")"; 
         // console.log("here" + get_val(flowDataObject.value))  
     });
@@ -196,6 +230,15 @@ function startHardwareInterface() {
     server.addReadListener(objectName, TOOL_NAME, "motorD", function(data) {
         console.log(data.value);
         msgD = "D.on(" + get_val(data.value) + ")";   
+    });
+
+    server.addReadListener(objectName, TOOL_NAME, "motors", function(data) {
+        console.log(data.value);
+        var num = get_val(data.value);
+        msgA = "A.on(" + num + ")";
+        msgB = "B.on(" + num + ")";
+        msgC = "C.on(" + num + ")";
+        msgD = "D.on(" + num + ")";
     });
 
     server.addReadListener(objectName, TOOL_NAME, "ledLeft", function(data) {
@@ -231,7 +274,6 @@ function startHardwareInterface() {
     setUltraVal()
     setGyroVal()
     setColorVal()
-
 
 
     // server.addReadListener(objectName, TOOL_NAME, "ultra", function(data) {
@@ -323,11 +365,22 @@ function get_val(data){
     return speed;
 }
 
+function stop() {
+    msgA = "A.stop()";
+    msgB = "B.stop()";
+    msgC = "C.stop()";
+    msgD = "D.stop()";
+    msgRight = "leds.set_color('RIGHT', 'GREEN')";
+    msgLeft = "leds.set_color('LEFT', 'GREEN')";
+    msgSpkr = "spkr.play_tone(" + 0 + ", 1, 0, 100, 0)";
+}
+
 server.addEventListener("initialize", function () {
     if (exports.enabled) startHardwareInterface();
 });
 
 server.addEventListener("shutdown", function () {
+    stop();
 });
 
 
