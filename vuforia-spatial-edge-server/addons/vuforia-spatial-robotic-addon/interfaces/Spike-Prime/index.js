@@ -122,6 +122,8 @@ function startHardwareInterface() {
             server.addNode(objectName, TOOL_NAME, "LED", "node", {x: -125, y: 50, scale:0.175});
             server.addNode(objectName, TOOL_NAME, "motors", "node", {x: 125, y: -25, scale:0.175});
             server.moveNode(objectName, TOOL_NAME, "distance", 125, 50)
+
+            sensorRefresh = 100
         }
         else {
             server.moveNode(objectName, TOOL_NAME, "color", -125, -100)
