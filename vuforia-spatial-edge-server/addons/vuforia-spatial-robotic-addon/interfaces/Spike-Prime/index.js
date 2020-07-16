@@ -198,10 +198,10 @@ function startHardwareInterface() {
                 setTimeout(() => { serial.writePort(motor1 + ".start(" + Math.round(data.value) + ")\r\n") }, 0);
             }
             if (motor2 != 'none') {
-                setTimeout(() => { serial.writePort(motor2 + ".start(" + Math.round(data.value) + ")\r\n") }, 0);
+                setTimeout(() => { serial.writePort(motor2 + ".start(" + Math.round(-data.value) + ")\r\n") }, 0);
             }
             if (motor3 != 'none') {
-                setTimeout(() => { serial.writePort(motor3 + ".start(" + Math.round(data.value) + ")\r\n") }, 0);
+                setTimeout(() => { serial.writePort(motor3 + ".start(" + Math.round(-data.value) + ")\r\n") }, 0);
             }
         }
         else {
