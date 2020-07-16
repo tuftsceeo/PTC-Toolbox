@@ -1,4 +1,5 @@
 {
     "enabled": true,
-    "objectName": "spikeNode"
+    "objectName": "spikeNode",
+    "complexity": "beginner"
 }
