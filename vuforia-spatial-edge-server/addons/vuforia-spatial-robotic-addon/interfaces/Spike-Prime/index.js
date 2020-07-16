@@ -16,6 +16,7 @@ var [motor1, motor2, motor3, distanceSensor, colorSensor, forceSensor] = ports
 var firstMotor, secondMotor, thirdMotor
 var TOOL_NAME = "code"
 var runMotors = true
+var sensorRefresh = 50
 
 let objectName = 'spikeNode';
 
@@ -48,12 +49,24 @@ if (exports.enabled){
     			default: 'spikeNode',
     			disabled: false,
     			helpText: 'The name of the object that connects to this hardware interface.'
-    		}
+            },
+            complexity: {
+                value: settings('complexity', 'advanced'),
+                type: 'text',
+                default: 'advanced',
+                disabled: false,
+                helpText: 'The complexity of the interface. "beginner" gives a few nodes, "intermediate" \
+                gives more, and "advanced" gives full control. If you want super accurate sensor data, \
+                you can use the complexity "sensor" to get faster sensor data in exchange for no motor control.'
+            }
+    		
     	};
     }
 
     objectName = exports.settings.spikeName.value;
-    console.log("Spike" + objectName)
+    complexity = exports.settings.complexity.value.toLowerCase();
+    console.log("Spike: " + objectName)
+    console.log("with complexity: " + complexity)
 
     server.addEventListener('reset', function () {
     	settings = server.loadHardwareInterface(__dirname);
@@ -70,22 +83,67 @@ function startHardwareInterface() {
 	server.enableDeveloperUI(true)
 
     // Adds sensor nodes to the object on the app
-    server.addNode(objectName, TOOL_NAME, "stopMotors", "node");
-	server.addNode(objectName, TOOL_NAME, "color", "node");
-    server.addNode(objectName, TOOL_NAME, "distance", "node");
-    server.addNode(objectName, TOOL_NAME, "force", "node");
-    server.addNode(objectName, TOOL_NAME, "accelerometerX", "node");
-    server.addNode(objectName, TOOL_NAME, "accelerometerY", "node");
-    server.addNode(objectName, TOOL_NAME, "accelerometerZ", "node");
-    server.addNode(objectName, TOOL_NAME, "gyroscopeX", "node");
-    server.addNode(objectName, TOOL_NAME, "gyroscopeY", "node");
-    server.addNode(objectName, TOOL_NAME, "gyroscopeZ", "node");
+    server.addNode(objectName, TOOL_NAME, "stopMotors", "node", {x: 0, y: 125, scale:0.175});
+	server.addNode(objectName, TOOL_NAME, "color", "node", {x: 75, y: -175, scale:0.175});
+    server.addNode(objectName, TOOL_NAME, "distance", "node", {x: 0, y: -175, scale:0.175});
+    server.addNode(objectName, TOOL_NAME, "force", "node", {x: -75, y: -175, scale:0.175});
+    server.addNode(objectName, TOOL_NAME, "accelerometerX", "node", {x: -125, y: -100, scale:0.175});
+    server.addNode(objectName, TOOL_NAME, "accelerometerY", "node", {x: -125, y: -25, scale:0.175});
+    server.addNode(objectName, TOOL_NAME, "accelerometerZ", "node", {x: -125, y: 50, scale:0.175});
+    server.addNode(objectName, TOOL_NAME, "gyroscopeX", "node", {x: -200, y: -100, scale:0.175});
+    server.addNode(objectName, TOOL_NAME, "gyroscopeY", "node", {x: -200, y: -25, scale:0.175});
+    server.addNode(objectName, TOOL_NAME, "gyroscopeZ", "node", {x: -200, y: 50, scale:0.175});
 
     // Adds motor nodes to the object on the app
-    server.addNode(objectName, TOOL_NAME, "motor1", "node");
-    server.addNode(objectName, TOOL_NAME, "motor2", "node");
-    server.addNode(objectName, TOOL_NAME, "motor3", "node");
-    //server.addNode(objectName, TOOL_NAME, "screen", "node");
+    server.addNode(objectName, TOOL_NAME, "motor1", "node", {x: 125, y: -100, scale:0.175});
+    server.addNode(objectName, TOOL_NAME, "motor2", "node", {x: 125, y: -25, scale:0.175});
+    server.addNode(objectName, TOOL_NAME, "motor3", "node", {x: 125, y: 50, scale:0.175});
+
+    if (complexity == 'beginner' || complexity == 'intermediate') {
+        // Remove the accelerometer/gyroscope nodes
+        server.removeNode(objectName, TOOL_NAME, "accelerometerX")
+        server.removeNode(objectName, TOOL_NAME, "accelerometerY")
+        server.removeNode(objectName, TOOL_NAME, "accelerometerZ")
+        server.removeNode(objectName, TOOL_NAME, "gyroscopeX")
+        server.removeNode(objectName, TOOL_NAME, "gyroscopeY")
+        server.removeNode(objectName, TOOL_NAME, "gyroscopeZ")
+
+        // Removing more nodes for beginner
+        if (complexity == 'beginner') {
+            server.removeNode(objectName, TOOL_NAME, "stopMotors")
+            server.removeNode(objectName, TOOL_NAME, "color")
+            server.removeNode(objectName, TOOL_NAME, "force")
+            
+            server.removeNode(objectName, TOOL_NAME, "motor1")
+            server.removeNode(objectName, TOOL_NAME, "motor2")
+            server.removeNode(objectName, TOOL_NAME, "motor3")
+
+            // Adding LED and Screen nodes and moving the distance node
+            server.addNode(objectName, TOOL_NAME, "screen", "node", {x: -125, y: -25, scale:0.175});
+            server.addNode(objectName, TOOL_NAME, "LED", "node", {x: -125, y: 50, scale:0.175});
+            server.addNode(objectName, TOOL_NAME, "motors", "node", {x: 125, y: -25, scale:0.175});
+            server.moveNode(objectName, TOOL_NAME, "distance", 125, 50)
+        }
+        else {
+            server.moveNode(objectName, TOOL_NAME, "color", -125, -100)
+            server.moveNode(objectName, TOOL_NAME, "distance", -125, -25)
+            server.moveNode(objectName, TOOL_NAME, "force", -125, 50)
+        }
+    }
+
+    if (complexity == 'sensor') {
+        // Remove the motor nodes
+        server.removeNode(objectName, TOOL_NAME, "motor1")
+        server.removeNode(objectName, TOOL_NAME, "motor2")
+        server.removeNode(objectName, TOOL_NAME, "motor3")
+        server.removeNode(objectName, TOOL_NAME, "stopMotors")
+        server.moveNode(objectName, TOOL_NAME, "color", 125, -100)
+        server.moveNode(objectName, TOOL_NAME, "distance", 125, -25)
+        server.moveNode(objectName, TOOL_NAME, "force", 125, 50)
+
+        // Sets the refresh rate for the sensors to 10
+        sensorRefresh = 10
+    }
 
     // Constantly sort the sensor data
     setInterval(() => { sortSensor(); }, 10);
@@ -93,19 +151,19 @@ function startHardwareInterface() {
     // Listens for the stopMotors node
 	server.addReadListener(objectName, TOOL_NAME, "stopMotors", function(data){
 		// When true, stop the Spike motors
-        if(data.value == 1) {
+        if (data.value == 1) {
             console.log('motors off')
             stopMotors()
 		}
-        if(data.value == 0) {
+        if (data.value == 0) {
             runMotors = true
         }
 	});
 
     // Listen for the motor1 node
     server.addReadListener(objectName, TOOL_NAME, "motor1", function(data){
-        if(runMotors) {
-            setTimeout(() => { serial.writePort(motor1 + ".start(" + Math.round(data.value/2) + ")\r\n") }, 0);
+        if (runMotors) {
+            setTimeout(() => { serial.writePort(motor1 + ".start(" + Math.round(data.value) + ")\r\n") }, 0);
         }
         else {
             stopMotors()
@@ -114,8 +172,8 @@ function startHardwareInterface() {
 
     // Listen for the motor2 node
     server.addReadListener(objectName, TOOL_NAME, "motor2", function(data){
-        if(runMotors) {
-            setTimeout(() => { serial.writePort(motor2 + ".start(" + Math.round(-1 * data.value/2) + ")\r\n") }, 0);
+        if (runMotors) {
+            setTimeout(() => { serial.writePort(motor2 + ".start(" + Math.round(data.value) + ")\r\n") }, 0);
         }
         else {
             stopMotors()
@@ -124,8 +182,26 @@ function startHardwareInterface() {
 
     // Listen for the motor3 node
     server.addReadListener(objectName, TOOL_NAME, "motor3", function(data){
+        if (runMotors) {
+            setTimeout(() => { serial.writePort(motor3 + ".start(" + Math.round(data.value) + ")\r\n") }, 0);
+        }
+        else {
+            stopMotors()
+        }
+    });
+
+    // Listens for the motors node (used in beginner setting to control all motors)
+    server.addReadListener(objectName, TOOL_NAME, "motors", function(data){
         if(runMotors) {
-            setTimeout(() => { serial.writePort(motor3 + ".start(" + Math.round(-1 * data.value/2) + ")\r\n") }, 0);
+            if (motor1 != 'none') {
+                setTimeout(() => { serial.writePort(motor1 + ".start(" + Math.round(data.value) + ")\r\n") }, 0);
+            }
+            if (motor2 != 'none') {
+                setTimeout(() => { serial.writePort(motor2 + ".start(" + Math.round(data.value) + ")\r\n") }, 0);
+            }
+            if (motor3 != 'none') {
+                setTimeout(() => { serial.writePort(motor3 + ".start(" + Math.round(data.value) + ")\r\n") }, 0);
+            }
         }
         else {
             stopMotors()
@@ -133,12 +209,16 @@ function startHardwareInterface() {
     });
 
     // Listen for the screen node
-    /*server.addReadListener(objectName, TOOL_NAME, "screen", function(data){
+    server.addReadListener(objectName, TOOL_NAME, "screen", function(data){
         setTimeout(() => { serial.writePort("hub.display.show(\"" + data.value + "\")\r\n") }, 0);
-    });*/
+    });
+
+    server.addReadListener(objectName, TOOL_NAME, "LED", function(data){
+        setTimeout(() => { serial.writePort("hub.led(" + data.value + ")\r\n") }, 0)
+    })
 
     // Constantly read the sensor data
-    setInterval(() => { continuousSensor(); }, 50)
+    setInterval(() => { continuousSensor(); }, sensorRefresh)
 	updateEvery(0, 10);
 }
 
