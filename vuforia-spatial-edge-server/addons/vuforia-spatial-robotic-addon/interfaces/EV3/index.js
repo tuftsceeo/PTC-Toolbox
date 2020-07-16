@@ -120,7 +120,7 @@ var zeroServer = new zerorpc.Server({
     },
 });
 
-zeroServer.bind("tcp://0.0.0.0:4344");
+zeroServer.bind("tcp://0.0.0.0:4243");
 
 exports.enabled = settings('enabled');
 exports.configurable = true;

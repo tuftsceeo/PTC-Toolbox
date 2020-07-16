@@ -36,94 +36,6 @@
 			"developer": true,
 			"links": {},
 			"nodes": {
-				"ev3NodeI2jlylu9t4sbIOmotorA": {
-					"name": "motorA",
-					"objectId": "ev3NodeI2jlylu9t4sb",
-					"frameId": "ev3NodeI2jlylu9t4sbIO",
-					"data": {
-						"value": 0,
-						"mode": "f",
-						"unit": "",
-						"unitMin": 0,
-						"unitMax": 1
-					},
-					"x": -110.73691163088512,
-					"y": -111.79835260539997,
-					"scale": 0.2,
-					"matrix": [],
-					"type": "node",
-					"stress": 0,
-					"privateData": {},
-					"publicData": {},
-					"frameSizeX": 100,
-					"frameSizeY": 100
-				},
-				"ev3NodeI2jlylu9t4sbIOmotorB": {
-					"name": "motorB",
-					"objectId": "ev3NodeI2jlylu9t4sb",
-					"frameId": "ev3NodeI2jlylu9t4sbIO",
-					"data": {
-						"value": 0,
-						"mode": "f",
-						"unit": "",
-						"unitMin": 0,
-						"unitMax": 1
-					},
-					"x": -110.46061910674851,
-					"y": -33.29967312058622,
-					"scale": 0.2,
-					"matrix": [],
-					"type": "node",
-					"stress": 0,
-					"privateData": {},
-					"publicData": {},
-					"frameSizeX": 100,
-					"frameSizeY": 100
-				},
-				"ev3NodeI2jlylu9t4sbIOmotorC": {
-					"name": "motorC",
-					"objectId": "ev3NodeI2jlylu9t4sb",
-					"frameId": "ev3NodeI2jlylu9t4sbIO",
-					"data": {
-						"value": 0,
-						"mode": "f",
-						"unit": "",
-						"unitMin": 0,
-						"unitMax": 1
-					},
-					"x": -107.00899410549911,
-					"y": 42.6335269442568,
-					"scale": 0.2,
-					"matrix": [],
-					"type": "node",
-					"stress": 0,
-					"privateData": {},
-					"publicData": {},
-					"frameSizeX": 100,
-					"frameSizeY": 100
-				},
-				"ev3NodeI2jlylu9t4sbIOmotorD": {
-					"name": "motorD",
-					"objectId": "ev3NodeI2jlylu9t4sb",
-					"frameId": "ev3NodeI2jlylu9t4sbIO",
-					"data": {
-						"value": 0,
-						"mode": "f",
-						"unit": "",
-						"unitMin": 0,
-						"unitMax": 1
-					},
-					"x": -106.68480078146928,
-					"y": 124.75895901894182,
-					"scale": 0.2,
-					"matrix": [],
-					"type": "node",
-					"stress": 0,
-					"privateData": {},
-					"publicData": {},
-					"frameSizeX": 100,
-					"frameSizeY": 100
-				},
 				"ev3NodeI2jlylu9t4sbIOultra": {
 					"name": "ultra",
 					"objectId": "ev3NodeI2jlylu9t4sb",
@@ -135,96 +47,8 @@
 						"unitMin": 0,
 						"unitMax": 1
 					},
-					"x": 120.81623383995758,
-					"y": 112.13765193372441,
-					"scale": 0.2,
-					"matrix": [],
-					"type": "node",
-					"stress": 0,
-					"privateData": {},
-					"publicData": {},
-					"frameSizeX": 100,
-					"frameSizeY": 100
-				},
-				"ev3NodeI2jlylu9t4sbIOtouch": {
-					"name": "touch",
-					"objectId": "ev3NodeI2jlylu9t4sb",
-					"frameId": "ev3NodeI2jlylu9t4sbIO",
-					"data": {
-						"value": 0,
-						"mode": "f",
-						"unit": "",
-						"unitMin": 0,
-						"unitMax": 1
-					},
-					"x": 119.37357373110432,
-					"y": 28.66258890698336,
-					"scale": 0.2,
-					"matrix": [],
-					"type": "node",
-					"stress": 0,
-					"privateData": {},
-					"publicData": {},
-					"frameSizeX": 100,
-					"frameSizeY": 100
-				},
-				"ev3NodeI2jlylu9t4sbIOcolor": {
-					"name": "color",
-					"objectId": "ev3NodeI2jlylu9t4sb",
-					"frameId": "ev3NodeI2jlylu9t4sbIO",
-					"data": {
-						"value": 0,
-						"mode": "f",
-						"unit": "",
-						"unitMin": 0,
-						"unitMax": 1
-					},
-					"x": 107.1140575859598,
-					"y": -120.94502489012989,
-					"scale": 0.2,
-					"matrix": [],
-					"type": "node",
-					"stress": 0,
-					"privateData": {},
-					"publicData": {},
-					"frameSizeX": 100,
-					"frameSizeY": 100
-				},
-				"ev3NodeI2jlylu9t4sbIOgyro": {
-					"name": "gyro",
-					"objectId": "ev3NodeI2jlylu9t4sb",
-					"frameId": "ev3NodeI2jlylu9t4sbIO",
-					"data": {
-						"value": 0,
-						"mode": "f",
-						"unit": "",
-						"unitMin": 0,
-						"unitMax": 1
-					},
-					"x": 109.87311700268356,
-					"y": -46.83941127225651,
-					"scale": 0.2,
-					"matrix": [],
-					"type": "node",
-					"stress": 0,
-					"privateData": {},
-					"publicData": {},
-					"frameSizeX": 100,
-					"frameSizeY": 100
-				},
-				"ev3NodeI2jlylu9t4sbIOledLeft": {
-					"name": "ledLeft",
-					"objectId": "ev3NodeI2jlylu9t4sb",
-					"frameId": "ev3NodeI2jlylu9t4sbIO",
-					"data": {
-						"value": 0,
-						"mode": "f",
-						"unit": "",
-						"unitMin": 0,
-						"unitMax": 1
-					},
-					"x": -32.8636190971375,
-					"y": 120.05997495484587,
+					"x": 40,
+					"y": 30,
 					"scale": 0.2,
 					"matrix": [],
 					"type": "node",
@@ -239,14 +63,14 @@
 					"objectId": "ev3NodeI2jlylu9t4sb",
 					"frameId": "ev3NodeI2jlylu9t4sbIO",
 					"data": {
-						"value": 0,
+						"value": 0.9899585734870318,
 						"mode": "f",
-						"unit": "",
+						"unit": false,
 						"unitMin": 0,
 						"unitMax": 1
 					},
-					"x": 36.3519850862036,
-					"y": 120.9109481095359,
+					"x": -36.76624828094714,
+					"y": -49.04528638204428,
 					"scale": 0.2,
 					"matrix": [],
 					"type": "node",
@@ -254,7 +78,14 @@
 					"privateData": {},
 					"publicData": {},
 					"frameSizeX": 100,
-					"frameSizeY": 100
+					"frameSizeY": 100,
+					"processedData": {
+						"value": 0.9899585734870318,
+						"mode": "f",
+						"unit": false,
+						"unitMin": 0,
+						"unitMax": 1
+					}
 				},
 				"ev3NodeI2jlylu9t4sbIOspeaker": {
 					"name": "speaker",
@@ -267,8 +98,30 @@
 						"unitMin": 0,
 						"unitMax": 1
 					},
-					"x": -7.732216022335592,
-					"y": -120.32143590157818,
+					"x": -40,
+					"y": 30,
+					"scale": 0.2,
+					"matrix": [],
+					"type": "node",
+					"stress": 0,
+					"privateData": {},
+					"publicData": {},
+					"frameSizeX": 100,
+					"frameSizeY": 100
+				},
+				"ev3NodeI2jlylu9t4sbIOmotors": {
+					"name": "motors",
+					"objectId": "ev3NodeI2jlylu9t4sb",
+					"frameId": "ev3NodeI2jlylu9t4sbIO",
+					"data": {
+						"value": 0,
+						"mode": "f",
+						"unit": "",
+						"unitMin": 0,
+						"unitMax": 1
+					},
+					"x": 40,
+					"y": -5,
 					"scale": 0.2,
 					"matrix": [],
 					"type": "node",
