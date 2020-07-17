@@ -319,7 +319,7 @@ async function sortSensor() {
 function processDistance(sensorData) {
     distance = sensorData
     //console.log(distance)
-    server.write(objectName, TOOL_NAME, "distance", server.map(distance, 0, 100, 0, 100), "f")
+    server.write(objectName, TOOL_NAME, "distance", server.map(distance, 0, 150, 0, 150), "f")
 }
 
 // Processes color data
