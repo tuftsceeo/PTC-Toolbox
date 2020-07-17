@@ -113,11 +113,11 @@ function startHardwareInterface() {
         server.removeNode(objectName, TOOL_NAME, "gyroscopeY")
         server.removeNode(objectName, TOOL_NAME, "gyroscopeZ")
 
-        // Removing more nodes for beginner
+        
         if (complexity == 'beginner') {
+            // Removing more nodes for beginner
             server.removeNode(objectName, TOOL_NAME, "color")
             server.removeNode(objectName, TOOL_NAME, "force")
-            
             server.removeNode(objectName, TOOL_NAME, "motor1")
             server.removeNode(objectName, TOOL_NAME, "motor2")
             server.removeNode(objectName, TOOL_NAME, "motor3")
@@ -128,9 +128,11 @@ function startHardwareInterface() {
             server.addNode(objectName, TOOL_NAME, "motors", "node", {x: 125, y: -25, scale:0.175});
             server.moveNode(objectName, TOOL_NAME, "distance", 125, 50)
 
+            // Increases the sensor refresh rate due to more things being sent
             sensorRefresh = 100
         }
         else {
+            // Moving nodes for intermediate
             server.moveNode(objectName, TOOL_NAME, "color", -125, -100)
             server.moveNode(objectName, TOOL_NAME, "distance", -125, -25)
             server.moveNode(objectName, TOOL_NAME, "force", -125, 50)
@@ -138,7 +140,7 @@ function startHardwareInterface() {
     }
 
     if (complexity == 'sensor') {
-        // Remove the motor nodes
+        // Remove the motor nodes for sensor
         server.removeNode(objectName, TOOL_NAME, "motor1")
         server.removeNode(objectName, TOOL_NAME, "motor2")
         server.removeNode(objectName, TOOL_NAME, "motor3")
@@ -149,6 +151,13 @@ function startHardwareInterface() {
 
         // Sets the refresh rate for the sensors to 10
         sensorRefresh = 10
+    }
+
+    if (complexity == 'advanced') { 
+        // Moves nodes for advanced
+        server.moveNode(objectName, TOOL_NAME, "color", 75, -175)
+        server.moveNode(objectName, TOOL_NAME, "distance", 0, -175)
+        server.moveNode(objectName, TOOL_NAME, "force", -75, -175)
     }
 
     // Constantly sort the sensor data
@@ -310,7 +319,7 @@ async function sortSensor() {
 function processDistance(sensorData) {
     distance = sensorData
     //console.log(distance)
-    server.write(objectName, TOOL_NAME, "distance", server.map(distance, 0, 100, 0, 100), "f")
+    server.write(objectName, TOOL_NAME, "distance", server.map(distance, 0, 150, 0, 150), "f")
 }
 
 // Processes color data
