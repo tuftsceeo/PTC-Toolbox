@@ -73,7 +73,7 @@
     </g>
 </svg>
 
-<div id="input" contenteditable>EDIT LABEL</div>
+<div id="input" contenteditable>ENTER NUM</div>
 
 <script>
     var isListeningForKeyboard = false;
@@ -104,7 +104,7 @@
 
 
     input.addEventListener("pointerup", function (){
-        if (input.innerText.toLowerCase() === "edit label") {
+        if (input.innerText.toLowerCase() === "enter num") {
             input.innerText = "";
         }
         isListeningForKeyboard = true;
