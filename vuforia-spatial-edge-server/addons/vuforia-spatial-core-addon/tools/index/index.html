@@ -79,8 +79,6 @@
         console.warn('Reality Interface is not accessible');
     }
 
-    var prev = 0;
-    var val;
     var text = document.querySelector('#text');
     
     var properties = {
@@ -90,19 +88,9 @@
         unit: ""
     };
 
-    function compare(number, prev) {
-        if (number != prev) {
-             val = -1 * number;
-        }
-        if (number == prev) {
-            val = number;
-        }
-    }
 
     try {
         realityInterface.addReadListener('value', function (e) {
-
-            compare(e.value, prev);
 
             properties.value = e.value;
             if(e.unit) {
@@ -113,9 +101,8 @@
             properties.unitMax = e.unitMax;
             properties.unitMin = e.unitMin;
 
-            prev = properties.value;
-
-            realityInterface.write('value', val);
+            var val = parseFloat(e.value) * -1;
+            setInterval(() => {realityInterface.write('value', val); }, 10);
         });
     } catch (e) {
         console.warn('Reality Interface is not accessible');
