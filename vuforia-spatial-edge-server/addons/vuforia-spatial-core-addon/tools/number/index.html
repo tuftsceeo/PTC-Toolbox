@@ -117,25 +117,29 @@
             return;
         }
 
-        var isCharacter = !!e.key.match(/^[a-zA-Z0-9]$/);
-
-        if (isCharacter) {
-            input.innerText = input.innerText + e.key;
+        if (e.key === "Backspace") {
+            input.innerText = input.innerText.slice(0, -1); // remove last character
+        } else if (e.key === " " || e.key === "Shift") {
+            input.innerText = input.innerText + "\u00a0"; // special space character doesn't get escaped
+            resetScroll();
+            setTimeout(function() {
+                resetScroll(); // also do it after a slight delay
+            }, 100);
         } else {
-            if (e.key === "Backspace") {
-                input.innerText = input.innerText.slice(0, -1); // remove last character
-            } else if (e.key === " ") {
-                input.innerText = input.innerText + "\u00a0"; // special space character doesn't get escaped
-                resetScroll();
-                setTimeout(function() {
-                    resetScroll(); // also do it after a slight delay
-                }, 100);
-            }
+            input.innerText = input.innerText + e.key;
         }
 
         resizeText();
         realityInterface.writePublicData("storage", "data",  input.innerText);
-        realityInterface.write('value', parseFloat(input.innerText));
+        num = parseFloat(input.innerText)
+        nodeVal(num);
+    }
+
+    function nodeVal(num) {
+        if (num <= -255) realityInterface.write('value', -255);
+        if (num >= 255) realityInterface.write('value', 255);
+        else realityInterface.write('value', num);
+
     }
 
     function resizeText() {
