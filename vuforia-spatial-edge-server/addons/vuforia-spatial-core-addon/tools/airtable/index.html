@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="objectDefaultFiles/object.js"></script>
+    <script src="objectDefaultFiles/pep.min.js"></script>
+    <script src="objectDefaultFiles/envelopeContents.js"></script>
+
+    <meta charset="UTF-8">
+    <title>airtable</title>
+    <style>
+        .switch {
+          position: relative;
+          display: inline-block;
+          width: 230px;
+          height: 60px;
+        }
+
+        .switch input {display:none;}
+
+        .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #ca2222;
+          -webkit-transition: .4s;
+          transition: .4s;
+          width: 230px;
+          height: 60px;
+        }
+
+        .slider:before {
+          position: absolute;
+          content: "";
+          height: 40px;
+          width: 40px;
+          left: 10px;
+          bottom: 11px;
+          background-color: white;
+          -webkit-transition: .4s;
+          transition: .4s;
+        }
+
+        input:checked + .slider {
+          background-color: #2ab934;
+        }
+
+        input:focus + .slider {
+          box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+          -webkit-transform: translateX(170px);
+          -ms-transform: translateX(170px);
+          transform: translateX(170px);
+        }
+
+        .on
+        {
+          display: none;
+        }
+
+        .on, .off
+        {
+          color: white;
+          position: absolute;
+          transform: translate(-50%,-50%);
+          top: 50%;
+          left: 50%;
+          font-size: 20px;
+          font-family: Verdana, sans-serif;
+        }
+
+        input:checked+ .slider .on
+        {display: block;}
+
+        input:checked + .slider .off
+        {display: none;}
+
+        /* Rounded sliders */
+        .slider.round {
+          border-radius: 34px;
+        }
+
+        .slider.round:before {
+          border-radius: 50%;}
+
+
+
+        @font-face {
+            font-family: 'Roboto';
+            src: url('resources/roboto.ttf');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Roboto';
+            src: url('resources/roboto-bold.ttf');
+            font-weight: bold;
+            font-style: normal;
+        }
+        #api_key {
+            cursor: pointer;
+            font-family: "Roboto", "Avenir", "Futura", Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 32px;
+            color: #82eeff;
+            font-weight: bold;
+            text-align: center;
+            -webkit-text-security: none;
+        }
+        #baseID {
+            cursor: pointer;
+            font-family: "Roboto", "Avenir", "Futura", Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 32px;
+            color: #82eeff;
+            font-weight: bold;
+            text-align: center;
+            -webkit-text-security: none;
+        }
+        #test_box {
+            cursor: pointer;
+            font-family: "Roboto", "Avenir", "Futura", Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 32px;
+            color: #82eeff;
+            font-weight: bold;
+            text-align: center;
+            -webkit-text-security: none;
+        }
+        #at_var {
+            cursor: pointer;
+            font-family: "Roboto", "Avenir", "Futura", Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 32px;
+            color: #82eeff;
+            font-weight: bold;
+            text-align: center;
+            -webkit-text-security: none;
+        }
+        .boxed {
+            border: 12px solid #14e600;
+            width: 45%;
+        }
+    </style>
+</head>
+
+<body style="position: relative; width: 200%; height: 300%">
+
+
+
+
+<div class="boxed">
+    <div id="api_key" contenteditable>Enter API Key</div>
+</div>
+<br>
+<div class="boxed">
+    <div id="baseID" contenteditable>Enter Base ID</div>
+</div>
+<br>
+<div class="boxed">
+    <div id="at_var" contenteditable>Enter Variable</div>
+</div>
+<br>
+<div class="boxed">
+    <div id="test_box" contenteditable>Enter Base ID</div>
+</div>
+<br>
+
+
+
+    
+<br><br>
+<label class="switch" style="left: 100px">
+    <input type="checkbox" id="toggle">
+    <div class="slider round"><!--ADDED HTML -->
+        <span class="on">SENDER</span>
+        <span class="off">RECEIVER</span><!--END-->
+    </div>
+</label>
+
+<script>
+    var first_box = false; 
+    var second_box = false; 
+    var third_box = false; 
+
+
+    var test_box = document.querySelector('#test_box');
+    // var at_var = document.getElementById("at_var");
+
+    var isListeningForKeyboard = false;
+
+
+    // var text = document.getElementById("text");
+    var properties = {
+        value: 0,
+        unitMax: 255,
+        unitMin: -255,
+        unit: ""
+    };
+
+
+    var api_key = document.querySelector('#api_key');
+    var api_key_Length = api_key.innerText.length;
+
+    var baseID = document.querySelector('#baseID');
+    var baseID_Length = baseID.innerText.length;
+
+    var at_var = document.querySelector('#at_var');
+    var at_var_Length = at_var.innerText.length; 
+
+    var saved_api; // global to save api key  
+    var saved_baseID; // global to save base id
+    var saved_atVar; // global to save Airtable Variable  
+
+    // Only keep api key and baseID sensitive 
+    var input1 = true; // bool to help keep information sensitive for UI 
+    var input2 = false; 
+
+
+    // Toggle button
+    var toggle = document.getElementById("toggle");
+    var screenIsTouched = false;
+
+
+    document.addEventListener('pointerup', function(e) {
+        if (screenIsTouched) {
+            document.getElementById("toggle").checked = true;
+            screenIsTouched = false;
+        }
+        else {
+            document.getElementById("toggle").checked = false;
+            screenIsTouched = true;
+        }
+    });
+
+
+    try {
+        var realityInterface = new RealityInterface();
+        realityInterface.initNode('value', 'node', 0, -10); // 0 = x, -25 = y position of the node in the UI 
+
+
+        var _envelopeContents = new EnvelopeContents(realityInterface, document.body);
+        realityInterface.setMoveDelay(500);
+
+        realityInterface.onKeyboardClosed(function() {
+
+            isListeningForKeyboard = false; // stop listening once the keyboard closes
+
+
+            if (input1) {
+                api_key.innerText = "SAVED"; 
+            } 
+
+            if (input2) {
+                baseID.innerText = "SAVED"; 
+             } 
+
+            console.log('reset label frame text selection');
+            renderProperties();
+        });
+
+    } catch (e) {
+        console.warn('Reality Interface is not accessible');
+    }
+
+    api_key.style.fontSize = (250/api_key_Length)+"pt";
+    baseID.style.fontSize = (250/baseID_Length)+"pt";
+    at_var.style.fontSize = (250/at_var_Length)+"pt";
+
+
+    api_key.addEventListener("pointerup", function (){
+        first_box = true; 
+        second_box = false; 
+        third_box = false; 
+        if (api_key.innerText === "Enter API Key"){
+            api_key.innerText = "";
+            input1 = true; 
+        }
+        if (api_key.innerText === "SAVED"){
+            api_key.innerText = "Sorry, Enter Again";
+            input1 = false; 
+        }
+        if (api_key.innerText === "Sorry, Enter Again"){
+            setTimeout(function(){ api_key.innerText = "";}, 800);
+            input1 = true; 
+
+        }
+
+        isListeningForKeyboard = true;
+        realityInterface.openKeyboard();
+    }, false);
+
+    baseID.addEventListener("pointerup", function (){
+        second_box = true;
+        first_box = false; 
+        third_box = false; 
+        if (baseID.innerText === "Enter Base ID"){
+            baseID.innerText = "";
+            input2 = true; 
+        }
+        if (baseID.innerText === "SAVED"){
+            baseID.innerText = "Sorry, Enter Again";
+            input2 = false; 
+        }
+        if (baseID.innerText === "Sorry, Enter Again"){
+            setTimeout(function(){ baseID.innerText = "";}, 800);
+            input2 = true; 
+
+        }
+
+        isListeningForKeyboard = true;
+        realityInterface.openKeyboard();
+    }, false);
+
+    at_var.addEventListener("pointerup", function (){
+        third_box = true;
+        first_box = false; 
+        second_box = false; 
+        if (at_var.innerText === "Enter Variable"){
+            at_var.innerText = "";
+        }
+        isListeningForKeyboard = true;
+        realityInterface.openKeyboard();
+    }, false);
+
+
+
+    function onKeyUp(e) {
+
+        if (first_box) {
+
+            if (!isListeningForKeyboard) {
+                return;
+            }
+
+            if (e.key === "Backspace") {
+                api_key.innerText = api_key.innerText.slice(0, -1); // remove last character
+            } else if (e.key === " " || e.key === "Shift") {
+                api_key.innerText = api_key.innerText + "\u00a0"; // special space character doesn't get escaped
+                resetScroll();
+                setTimeout(function() {
+                    resetScroll(); // also do it after a slight delay
+                }, 100);
+            } else {
+                api_key.innerText = api_key.innerText + e.key;
+            }
+
+            resizeText();
+
+            saved_api = api_key.innerText;
+
+        }
+
+        if (second_box) {
+            
+            if (!isListeningForKeyboard) {
+                return;
+            }
+
+            if (e.key === "Backspace") {
+                baseID.innerText = baseID.innerText.slice(0, -1); // remove last character
+            } else if (e.key === " " || e.key === "Shift") {
+                baseID.innerText = baseID.innerText + "\u00a0"; // special space character doesn't get escaped
+                resetScroll();
+                setTimeout(function() {
+                    resetScroll(); // also do it after a slight delay
+                }, 100);
+            } else {
+                baseID.innerText = baseID.innerText + e.key; 
+            }
+
+            resizeText();
+
+            saved_baseID = baseID.innerText;
+            
+        }
+
+
+        if (third_box) {
+            
+            if (!isListeningForKeyboard) {
+                return;
+            }
+
+            if (e.key === "Backspace") {
+                at_var.innerText = at_var.innerText.slice(0, -1); // remove last character
+            } else if (e.key === " " || e.key === "Shift") {
+                at_var.innerText = at_var.innerText + "\u00a0"; // special space character doesn't get escaped
+                resetScroll();
+                setTimeout(function() {
+                    resetScroll(); // also do it after a slight delay
+                }, 100);
+            } else {
+                at_var.innerText = at_var.innerText + e.key; 
+            }
+
+            resizeText();
+
+            saved_atVar = at_var.innerText;
+            
+        }
+    }
+
+
+
+
+
+
+    function resizeText() {
+        api_key.innerText = api_key.innerText;
+        baseID.innerText = baseID.innerText; 
+        at_var.innerText = at_var.innerText; 
+
+        var fontSize = Math.min(70, (((api_key_Length*20)+150)/(api_key_Length))); // font size increases up to 45pt
+        var api_key_fontSize = Math.min(70, (((baseID_Length*20)+150)/(baseID_Length)));
+        var at_var_fontSize = Math.min(70, (((at_var_Length*20)+150)/(at_var_Length)));
+
+        api_key.style.fontSize = fontSize + "pt";
+        baseID.style.fontSize = api_key_fontSize + "pt"; 
+        at_var.style.fontSize = at_var_fontSize + "pt";
+    }
+
+    function resetScroll() {
+        if (window.scrollX !== 0 || window.scrollY !== 0) {
+            window.scrollTo(0,0); // don't let keyboard events scroll the window
+        }
+        parent.postMessage(JSON.stringify({resetScroll: true}), '*');
+    }
+
+    realityInterface.onKeyUp(onKeyUp);
+
+
+    function renderProperties()
+    {
+        if (properties.value <= -255) properties.value = -255;
+        if (properties.value >= 255) properties.value = 255;
+
+        // airtable();
+
+        setInterval(() => { airtable(); }, 3000); 
+    }
+
+
+    var tablename = "Table 1"; 
+    var key = "key4SssZ2nJDuK1KG";
+    var docID = "apph4VI7Pi70nUDOD";
+
+    function httpGet(BaseID,tablename, APIKey){
+        var xmlHttp = new XMLHttpRequest();
+        var url = "https://api.airtable.com/v0/" + BaseID + "/" + tablename +"/";
+          
+        xmlHttp.open('GET', url, false);
+        xmlHttp.setRequestHeader('Content-Type','application/json');
+        xmlHttp.setRequestHeader('Authorization',"Bearer " + APIKey);
+          
+        xmlHttp.send();
+        return xmlHttp.responseText;
+    }
+
+    function getvalue(name, DOM){
+        var arr = (JSON.parse(httpGet(docID, tablename, key))).records; 
+        arr.forEach(function (arrayItem) {
+            if (arrayItem.fields.Variables == name) {
+                DOM.innerText = arrayItem.fields.Value; 
+            }
+        });
+    }
+
+
+    var temp_id; // hold ID to use when sending/updating values 
+    function getid(name) {
+        var arr = (JSON.parse(httpGet(docID, tablename, key))).records; 
+        arr.forEach(function (arrayItem) {
+            if (arrayItem.fields.Variables == name) {
+                temp_id = arrayItem.id; 
+            }
+        });
+    }
+
+    function httpPatch(BaseID, tablename, APIKey, value){
+        var xmlHttp = new XMLHttpRequest();
+        var url = "https://api.airtable.com/v0/" + BaseID + "/" + tablename +"/";
+
+        getid(at_var.innerText);
+
+        var propValue ={"records": [{"id": temp_id,"fields": {"Value": value.toString()}}]}
+
+        xmlHttp.open('PATCH', url, true);
+        xmlHttp.setRequestHeader('Content-Type','application/json');
+        xmlHttp.setRequestHeader('Authorization','Bearer ' + APIKey);
+        xmlHttp.onreadystatechange = function() {
+        if(xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                console.log(xmlHttp.responseText);
+            }
+            console.log(xmlHttp.status)
+        };
+        xmlHttp.send(JSON.stringify(propValue));
+    }
+
+    var send_val; 
+
+    function airtable(){
+        // If toggle is Sender
+        if (toggle.checked == true){
+            httpPatch(docID, tablename, key, send_val); 
+            test_box.innerText = "Sent Value";  
+        }
+        // If toggle is Receiver 
+        else if (toggle.checked == false){
+            var temp_var = (at_var.innerText).trim();
+            getvalue(temp_var, test_box);
+            realityInterface.write('value', parseFloat(test_box.innerText))
+        }
+    }
+
+
+    function ready() {
+        //document.getElementById("toggle").checked = false;
+        renderProperties();
+    }
+    ready();
+
+    try {
+        realityInterface.addReadListener('value', function (e) {
+
+            properties.value = e.value;
+            send_val = e.value; 
+            if(e.unit) {
+                properties.unit = e.unit;
+            } else {
+                properties.unit = "";
+            }
+            properties.unitMax = e.unitMax;
+            properties.unitMin = e.unitMin;
+            renderProperties();
+        });
+    } catch (e) {
+        console.warn('Reality Interface is not accessible');
+
+        function mockReadListenerTrigger(e) {
+            properties.value = e;
+            renderProperties();
+        }
+    }
+
+
+</script>
+</body>
+</html>
