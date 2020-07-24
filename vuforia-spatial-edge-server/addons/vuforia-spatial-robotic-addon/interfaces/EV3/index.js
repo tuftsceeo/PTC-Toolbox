@@ -17,6 +17,7 @@ const TOOL_NAME = "IO";
 let objectName = "ev3Node";
 
 // ZeroRPC client with client.py file
+//separate message/response for each sensor/motor
 var zeroServer = new zerorpc.Server({
     messageA: function(reply) {
         reply(null, msgA)
@@ -188,7 +189,7 @@ function startHardwareInterface() {
     //remove node from beginner
     server.removeNode(objectName, TOOL_NAME, "motors") 
 
-    //all motors controlled from one node, right led light node, speaker node, ultra node
+    //all motors controlled from one node, right led light node, speaker node, ultra node, stop motors
     if (complexity == "beginner") {
         server.removeNode(objectName, TOOL_NAME, "motorA");
         server.removeNode(objectName, TOOL_NAME, "motorB");
@@ -217,32 +218,36 @@ function startHardwareInterface() {
         server.moveNode(objectName, TOOL_NAME, "stopMotors", 0, 125);
     }
 
+    //if true value passed to node, stop motors
     server.addReadListener(objectName, TOOL_NAME, "stopMotors", function(data) {
         if (data.value == 1) stop();
     });
 
+    //Listen for Motor A node
     server.addReadListener(objectName, TOOL_NAME, "motorA", function(data) {
         console.log(data.value);
         msgA = "A.on(" + get_val(data.value) + ")";   
-        // console.log(get_val(data.value))
     });
 
+    //Listen for Motor B node
     server.addReadListener(objectName, TOOL_NAME, "motorB", function(data) {
-        console.log("here " + data.value);
+        console.log(data.value);
         msgB = "B.on(" + get_val(data.value) + ")"; 
-        // console.log("here" + get_val(flowDataObject.value))  
     });
 
+    //Listen for Motor C node
     server.addReadListener(objectName, TOOL_NAME, "motorC", function(data) {
         console.log(data.value);
         msgC = "C.on(" + get_val(data.value) + ")";   
     });
 
+    //Listen for Motor D node
     server.addReadListener(objectName, TOOL_NAME, "motorD", function(data) {
         console.log(data.value);
         msgD = "D.on(" + get_val(data.value) + ")";   
     });
 
+    //Listen for all motors (all motors run from one node in beginner mode)
     server.addReadListener(objectName, TOOL_NAME, "motors", function(data) {
         console.log(data.value);
         var num = get_val(data.value);
@@ -252,6 +257,7 @@ function startHardwareInterface() {
         msgD = "D.on(" + num + ")";
     });
 
+    //Listen for left LED lights
     server.addReadListener(objectName, TOOL_NAME, "ledLeft", function(data) {
         console.log(data.value)
         if (data.value < 0.2) msgLeft = "leds.set_color('LEFT', 'AMBER', " + data.value + ")"
@@ -261,6 +267,7 @@ function startHardwareInterface() {
         else if (data.value < 1) msgLeft = "leds.set_color('LEFT', 'GREEN', " + data.value + ")"  
     });
 
+    //Listen for right LED lights
     server.addReadListener(objectName, TOOL_NAME, "ledRight", function(data) {
         console.log(data.value)
         if (data.value < 0.2) msgRight = "leds.set_color('RIGHT', 'AMBER', " + data.value + ")"
@@ -270,6 +277,7 @@ function startHardwareInterface() {
         else if (data.value < 1) msgRight = "leds.set_color('RIGHT', 'GREEN', " + data.value + ")"  
     });
 
+    //Listen for speaker
     server.addReadListener(objectName, TOOL_NAME, "speaker", function(data) {
         console.log(data.value)
         var num
@@ -279,60 +287,27 @@ function startHardwareInterface() {
         msgSpkr = "spkr.play_tone(" + num + ", 1, 0, 100, 0)"
     });
 
-
-
     setTouchVal()
     setUltraVal()
     setGyroVal()
     setColorVal()
 
-
-    // server.addReadListener(objectName, TOOL_NAME, "ultra", function(data) {
-    //     msg = "ultra.distance_centimeters"
-    //     if (val != undefined) var num = val.substring(1, val.length)
-    //     data.value = num
-    // });
-
-    // server.addReadListener(objectName, TOOL_NAME, "touch", function(data) {
-    //     msg = "touch.is_pressed"
-    //     if (val != undefined) var num = val.substring(1, val.length)
-    //     data.value = val
-    // });
-
-    // server.addReadListener(objectName, TOOL_NAME, "gyro", function(data) {
-    //     msg = "gy.angle"
-    //     if (val != undefined) var num = val.substring(1, val.length)
-    //     data.value = val
-    // });
-
-
-    // server.addReadListener(objectName, TOOL_NAME, "color", function(data) {
-    //     msg = "color.color"
-    //     if (val != undefined) var num = val.substring(1, val.length)
-    //     data.value = num
-    // });
-
-
-
-
-
 	updateEvery(0, 100);
 }
 
+//continuously writes ultra distance (cm) to node
 function setUltraVal() {
     msgUltra = "ultra.distance_centimeters"
-    //console.log("ultra sensor " + val_u)
     if (val_u != undefined && val_u.substring(0, 1) == "u") {
         var num = val_u.substring(1, val_u.length)
-        //console.log(num)
         server.write(objectName, TOOL_NAME, "ultra", num, "f")
     }
     setTimeout(() => { setUltraVal(); }, 10);
 }
 
+//continuously writes bool for if touched to node
 function setTouchVal() {
     msgTouch = "touch.is_pressed"
-    //console.log("touch sensor " + val)
     if (val_t != undefined && val_t.substring(0, 1) == "t") {
         var num = val_t.substring(1, val_t.length)
         server.write(objectName, TOOL_NAME, "touch", num, "f")
@@ -340,9 +315,9 @@ function setTouchVal() {
     setTimeout(() => { setTouchVal(); }, 10);
 }
 
+//continuously writes gyro angle to node
 function setGyroVal() {
     msgGyro = "gy.angle"
-    //console.log("touch sensor " + val)
     if (val_g != undefined && val_g.substring(0, 1) == "g") {
         var num = val_g.substring(1, val_g.length)
         server.write(objectName, TOOL_NAME, "gyro", num, "f")
@@ -350,9 +325,9 @@ function setGyroVal() {
     setTimeout(() => { setGyroVal(); }, 10);
 }
 
+//continuously writes color number to node
 function setColorVal() {
     msgColor = "color.color"
-    //console.log("touch sensor " + val)
     if (val_c != undefined && val_c.substring(0, 1) == "c") {
         var num = val_c.substring(1, val_c.length)
         server.write(objectName, TOOL_NAME, "color", num, "f")
@@ -366,7 +341,7 @@ function updateEvery(i, time){
 	}, time)
 }
 
-
+//adjusts motor speed to be between -100 and 100
 function get_val(data){
     var speed;
     if ((data >= -100 && data <= -1) || (data <= 100 && data >= 1)) speed = data;
@@ -376,6 +351,7 @@ function get_val(data){
     return speed;
 }
 
+//stops all motors
 function stop() {
     msgA = "A.stop()";
     msgB = "B.stop()";
