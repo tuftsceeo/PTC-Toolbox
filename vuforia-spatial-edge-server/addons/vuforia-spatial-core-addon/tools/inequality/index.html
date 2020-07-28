@@ -185,15 +185,15 @@
     }
 
     function compare() {
-        if (condition === "greater") {
+        if (condition === "greater" || condition == ">") {
             if (in1 > in2) execute(true);
             else execute(false);
         }
-        if (condition === "less") {
+        if (condition === "less" || condition == "<") {
             if (in1 < in2) execute(true);
             else execute(false);
         }
-        if (condition === "equal") {
+        if (condition === "equal" || condition == "=") {
             if (in1 == in2) execute(true);
             else execute(false);
         }
