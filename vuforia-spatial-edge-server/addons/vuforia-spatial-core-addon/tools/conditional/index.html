@@ -86,7 +86,6 @@
     try {
         var realityInterface = new RealityInterface();
         realityInterface.initNode('if', 'node', -55, -50);
-        realityInterface.initNode('else', 'node', -55, -10);
         realityInterface.initNode('if_input', 'node', 30, -50);
         realityInterface.initNode('else_input', 'node', 30, -10);
         realityInterface.initNode('output', 'node', -13, -10);
@@ -107,14 +106,8 @@
         }
         else if (in1 == 0) {
             input.innerHTML = "If Block False; Switch to Else";
-            if (in2 == 1) {
-                realityInterface.write('output', else_in);
-                text.innerHTML = "Else Block True; Output: " + else_in;
-            }
-            else if (in2 == 0) {
-                realityInterface.write('output', 0);
-                text.innerHTML = "Else Block False; No Output";
-            }
+            realityInterface.write('output', else_in);
+            text.innerHTML = "Else Block True; Output: " + else_in;
         }
     }
 
@@ -145,29 +138,6 @@
             properties.unitMax = e.unitMax;
             properties.unitMin = e.unitMin;
             in1 = e.value;
-            renderProperties();
-        });
-    } catch (e) {
-        console.warn('Reality Interface is not accessible');
-
-        function mockReadListenerTrigger(e) {
-            properties.value = e;
-            renderProperties();
-        }
-    }
-
-    try {
-        realityInterface.addReadListener('else', function (e) {
-
-            properties.value = e.value;
-            if(e.unit) {
-                properties.unit = e.unit;
-            } else {
-                properties.unit = "";
-            }
-            properties.unitMax = e.unitMax;
-            properties.unitMin = e.unitMin;
-            in2 = e.value;
             renderProperties();
         });
     } catch (e) {
