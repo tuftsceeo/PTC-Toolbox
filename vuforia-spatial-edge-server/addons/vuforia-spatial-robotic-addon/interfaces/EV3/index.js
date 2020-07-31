@@ -155,7 +155,9 @@ if (exports.enabled){
 
     objectName = exports.settings.ev3Name.value;
     complexity = exports.settings.complexity.value.toLowerCase();
+    complexity = complexity.replace(/\n/g,'');
     console.log("EV3" + objectName)
+    console.log("with complexity: " + complexity)
 
     server.addEventListener('reset', function () {
     	settings = server.loadHardwareInterface(__dirname);
