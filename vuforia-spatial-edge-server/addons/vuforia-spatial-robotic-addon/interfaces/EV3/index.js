@@ -121,7 +121,7 @@ var zeroServer = new zerorpc.Server({
     },
 });
 
-zeroServer.bind("tcp://0.0.0.0:4343");
+zeroServer.bind("tcp://0.0.0.0:4344");
 
 exports.enabled = settings('enabled');
 exports.configurable = true;
@@ -145,7 +145,7 @@ if (exports.enabled){
                 helpText: 'The name of the object that connects to this hardware interface.'
             },
             ev3Complexity: {
-                value: settings('complexity', 'advanced'),
+                value: settings('ev3Complexity', 'advanced'),
                 type: 'text',
                 default: 'advanced',
                 disabled: false,
@@ -155,10 +155,11 @@ if (exports.enabled){
     }
 
     objectName = exports.settings.ev3Name.value;
-    complexity = exports.settings.ev3Complexity.value.toLowerCase();
-    complexity = complexity.replace(/\n/g,'');
+    ev3Complexity = exports.settings.ev3Complexity.value.toLowerCase();
+    ev3Complexity = ev3Complexity.replace(/\n/g,'');
+    console.log(ev3Complexity);
     console.log("EV3" + objectName)
-    console.log("with complexity: " + complexity)
+    console.log("with complexity: " + ev3Complexity)
 
     server.addEventListener('reset', function () {
         settings = server.loadHardwareInterface(__dirname);
@@ -173,26 +174,13 @@ function startHardwareInterface() {
     console.log('EV3: Starting up')
 
     server.enableDeveloperUI(true)
-  
-     // add all nodes to app for advanced mode
-    server.addNode(objectName, TOOL_NAME, "stopMotors", "node", {x: -42, y: 125, scale:0.175})
-    server.addNode(objectName, TOOL_NAME, "motorA", "node", {x: -125, y: -100, scale: 0.175});
-    server.addNode(objectName, TOOL_NAME, "motorB", "node", {x: -125, y: -25, scale: 0.175});
-    server.addNode(objectName, TOOL_NAME, "motorC", "node", {x: -125, y: 50, scale: 0.175});
-    server.addNode(objectName, TOOL_NAME, "motorD", "node", {x: -125, y: 125, scale: 0.175});
-    server.addNode(objectName, TOOL_NAME, "ultra", "node", {x: 125, y: -100, scale: 0.175});
-    server.addNode(objectName, TOOL_NAME, "touch", "node", {x: 125, y: -25, scale: 0.175});
-    server.addNode(objectName, TOOL_NAME, "color", "node", {x: 125, y: 50, scale: 0.175});
-    server.addNode(objectName, TOOL_NAME, "gyro", "node", {x: 125, y: 125, scale: 0.175});
-    server.addNode(objectName, TOOL_NAME, "ledLeft", "node", {x: -42, y: -100, scale: 0.175});
-    server.addNode(objectName, TOOL_NAME, "ledRight", "node", {x: 42, y: -100, scale: 0.175});
-    server.addNode(objectName, TOOL_NAME, "speaker", "node", {x: 42, y: 125, scale: 0.175});
 
     //remove node from beginner
     server.removeNode(objectName, TOOL_NAME, "motors") 
 
     //all motors controlled from one node, right led light node, speaker node, ultra node, stop motors
-    if (complexity == "beginner") {
+    if (ev3Complexity == "beginner") {
+        console.log("within beginner");
         server.removeNode(objectName, TOOL_NAME, "motorA");
         server.removeNode(objectName, TOOL_NAME, "motorB");
         server.removeNode(objectName, TOOL_NAME, "motorC");
@@ -211,13 +199,21 @@ function startHardwareInterface() {
     }
 
     //all motor and sensor nodes
-    if (complexity == "intermediate") {
+    if (ev3Complexity == "intermediate") {
+        console.log("within intermediate");
         server.removeNode(objectName, TOOL_NAME, "ledLeft");
         server.removeNode(objectName, TOOL_NAME, "ledRight");
         server.removeNode(objectName, TOOL_NAME, "speaker");
         server.removeNode(objectName, TOOL_NAME, "motors");
 
+        server.moveNode(objectName, TOOL_NAME, "ultra", 125, -100);
         server.moveNode(objectName, TOOL_NAME, "stopMotors", 0, 125);
+    }
+
+    if (ev3Complexity == "advanced") {
+        server.moveNode(objectName, TOOL_NAME, "speaker", 42, 125);
+        server.moveNode(objectName, TOOL_NAME, "ledRight", 42, -100);
+        
     }
 
     //if true value passed to node, stop motors
@@ -304,6 +300,7 @@ function startHardwareInterface() {
 //continuously writes ultra distance (cm) to node
 function setUltraVal() {
     msgUltra = "ultra.distance_centimeters"
+    console.log(val_u);
     if (val_u != undefined && val_u.substring(0, 1) == "u") {
         var num = val_u.substring(1, val_u.length)
         server.write(objectName, TOOL_NAME, "ultra", num, "f")
