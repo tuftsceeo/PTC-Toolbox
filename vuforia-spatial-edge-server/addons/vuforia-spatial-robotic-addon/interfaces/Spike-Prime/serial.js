@@ -19,7 +19,7 @@ const parser = new parsers.Readline({
 	delimiter: '\r\n',
 })
 
-// The port to connect to (in this case it's a bluetooth serial connection)
+// The port to connect to (CHANGE TO YOUR SERAIL PORT)
 const port = new SerialPort('/dev/tty.LEGOHub40BD3248762A-Ser', {
 	baudRate: 115200,
 })
@@ -61,7 +61,6 @@ function readMessage() {
 			sensorReading = sensorReading.replace(/>>>/g, '')
 			sensorReading = sensorReading.replace(/\n/g, '')
 			sensorReading = sensorReading.replace(/\r/g, '')
-
 		}
 	})
 	//console.log(sensorReading)

@@ -13,7 +13,7 @@ s = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
 s.connect((serverMACAddress, port))
 
 c = zerorpc.Client()
-c.connect("tcp://127.0.0.1:4344")
+c.connect("tcp://127.0.0.1:4343")
 
 while 1:
     text_A = c.messageA()
