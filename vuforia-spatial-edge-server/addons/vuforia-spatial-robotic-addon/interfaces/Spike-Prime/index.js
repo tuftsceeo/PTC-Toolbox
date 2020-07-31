@@ -50,10 +50,10 @@ if (exports.enabled){
     			disabled: false,
     			helpText: 'The name of the object that connects to this hardware interface.'
             },
-            complexity: {
-                value: settings('complexity', 'advanced'),
+            spikeComplexity: {
+                value: settings('complexity', 'beginner'),
                 type: 'text',
-                default: 'advanced',
+                default: 'beginner',
                 disabled: false,
                 helpText: 'The complexity of the interface. "beginner" gives a few nodes, "intermediate" \
                 gives more, and "advanced" gives full control. If you want super accurate sensor data, \
@@ -64,7 +64,8 @@ if (exports.enabled){
     }
 
     objectName = exports.settings.spikeName.value;
-    complexity = exports.settings.complexity.value.toLowerCase();
+    complexity = exports.settings.spikeComplexity.value.toLowerCase();
+    complexity = complexity.replace(/\n/g,'');
     console.log("Spike: " + objectName)
     console.log("with complexity: " + complexity)
 
@@ -228,6 +229,7 @@ function startHardwareInterface() {
         setTimeout(() => { serial.writePort("hub.display.show(\"" + data.value + "\")\r\n") }, 0);
     });
 
+    // Listen for the LED node
     server.addReadListener(objectName, TOOL_NAME, "LED", function(data){
         setTimeout(() => { serial.writePort("hub.led(" + data.value + ")\r\n") }, 0)
     })
