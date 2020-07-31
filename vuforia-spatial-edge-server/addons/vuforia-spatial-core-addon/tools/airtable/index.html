@@ -119,7 +119,16 @@
             text-align: center;
             -webkit-text-security: none;
         }
-        #test_box {
+        /*#test_box {
+            cursor: pointer;
+            font-family: "Roboto", "Avenir", "Futura", Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 32px;
+            color: #82eeff;
+            font-weight: bold;
+            text-align: center;
+            -webkit-text-security: none;
+        }*/
+        #at_var {
             cursor: pointer;
             font-family: "Roboto", "Avenir", "Futura", Helvetica Neue, Helvetica, Arial, sans-serif;
             font-size: 32px;
@@ -128,7 +137,16 @@
             text-align: center;
             -webkit-text-security: none;
         }
-        #at_var {
+        #toggle {
+            cursor: pointer;
+            font-family: "Roboto", "Avenir", "Futura", Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 32px;
+            color: #82eeff;
+            font-weight: bold;
+            text-align: center;
+            -webkit-text-security: none;
+        }
+        #display {
             cursor: pointer;
             font-family: "Roboto", "Avenir", "Futura", Helvetica Neue, Helvetica, Arial, sans-serif;
             font-size: 32px;
@@ -149,11 +167,11 @@
 
 
 
-<div class="boxed">
+<div class="boxed" id="api_key_box">
     <div id="api_key" contenteditable>Enter API Key</div>
 </div>
 <br>
-<div class="boxed">
+<div class="boxed" id="baseID_box">
     <div id="baseID" contenteditable>Enter Base ID</div>
 </div>
 <br>
@@ -161,30 +179,42 @@
     <div id="at_var" contenteditable>Enter Variable</div>
 </div>
 <br>
-<div class="boxed">
-    <div id="test_box" contenteditable>Enter Base ID</div>
+
+<div class="switch" style="left: 100px">
+    <input type="checkbox" id="toggle_switch" unchecked>
+    <div class="slider round" id="toggle" contenteditable>
+        <span class="on">SENDER</span>
+        <span class="off">RECEIVER</span>
+    </div>
+</div>
+<br>
+
+<div class="switch" style="left: 100px">
+    <input type="checkbox" id="display_switch" unchecked>
+    <div class="slider round" id="display" contenteditable>
+        <span class="on">SHOW</span>
+        <span class="off">HIDE</span>
+    </div>
 </div>
 <br>
 
 
+<!-- <div class="boxed" >
+    <div id="test_box" contenteditable></div>
+</div> -->
 
-    
-<br><br>
-<label class="switch" style="left: 100px">
-    <input type="checkbox" id="toggle">
-    <div class="slider round"><!--ADDED HTML -->
-        <span class="on">SENDER</span>
-        <span class="off">RECEIVER</span><!--END-->
-    </div>
-</label>
+
+<br>
 
 <script>
     var first_box = false; 
     var second_box = false; 
     var third_box = false; 
 
+    var temp_value = 0;
 
-    var test_box = document.querySelector('#test_box');
+
+    // var test_box = document.getElementById("test_box");
     // var at_var = document.getElementById("at_var");
 
     var isListeningForKeyboard = false;
@@ -213,25 +243,38 @@
     var saved_atVar; // global to save Airtable Variable  
 
     // Only keep api key and baseID sensitive 
-    var input1 = true; // bool to help keep information sensitive for UI 
+    var input1 = false; // bool to help keep information sensitive for UI 
     var input2 = false; 
 
 
-    // Toggle button
-    var toggle = document.getElementById("toggle");
-    var screenIsTouched = false;
+    var toggle = document.querySelector('#toggle');
+    var toggle_istouched = false;
+
+    var display = document.querySelector('#display');
+    var display_istouched = false;
 
 
-    document.addEventListener('pointerup', function(e) {
-        if (screenIsTouched) {
-            document.getElementById("toggle").checked = true;
-            screenIsTouched = false;
+    toggle.addEventListener("pointerup", function (){
+        if (!toggle_istouched) {
+            document.getElementById("toggle_switch").checked = true;
+            toggle_istouched = true; 
         }
-        else {
-            document.getElementById("toggle").checked = false;
-            screenIsTouched = true;
+        else if (toggle_istouched) {
+            document.getElementById("toggle_switch").checked = false;
+            toggle_istouched = false;
         }
-    });
+    }, false);
+
+    display.addEventListener("pointerup", function (){
+        if (!display_istouched) {
+            document.getElementById("display_switch").checked = true;
+            display_istouched = true; 
+        }
+        else if (display_istouched) {
+            document.getElementById("display_switch").checked = false;
+            display_istouched = false;
+        }
+    }, false);
 
 
     try {
@@ -253,7 +296,7 @@
 
             if (input2) {
                 baseID.innerText = "SAVED"; 
-             } 
+            } 
 
             console.log('reset label frame text selection');
             renderProperties();
@@ -269,6 +312,7 @@
 
 
     api_key.addEventListener("pointerup", function (){
+
         first_box = true; 
         second_box = false; 
         third_box = false; 
@@ -288,6 +332,10 @@
 
         isListeningForKeyboard = true;
         realityInterface.openKeyboard();
+
+        if ((localStorage.getItem('saved_api').trim()) != null) {
+                api_key.innerText = (localStorage.getItem('saved_api').trim()); 
+            }
     }, false);
 
     baseID.addEventListener("pointerup", function (){
@@ -310,6 +358,10 @@
 
         isListeningForKeyboard = true;
         realityInterface.openKeyboard();
+
+        if ((localStorage.getItem('saved_baseID').trim()) != null) {
+                baseID.innerText = (localStorage.getItem('saved_baseID').trim()); 
+            }
     }, false);
 
     at_var.addEventListener("pointerup", function (){
@@ -321,6 +373,10 @@
         }
         isListeningForKeyboard = true;
         realityInterface.openKeyboard();
+
+        if ((localStorage.getItem('saved_atVar').trim()) != null) {
+                at_var.innerText = (localStorage.getItem('saved_atVar').trim()); 
+            }
     }, false);
 
 
@@ -335,19 +391,31 @@
 
             if (e.key === "Backspace") {
                 api_key.innerText = api_key.innerText.slice(0, -1); // remove last character
-            } else if (e.key === " " || e.key === "Shift") {
+            } 
+            else if (e.key === " ") {
                 api_key.innerText = api_key.innerText + "\u00a0"; // special space character doesn't get escaped
                 resetScroll();
                 setTimeout(function() {
                     resetScroll(); // also do it after a slight delay
                 }, 100);
-            } else {
+            } 
+            else if (e.key === "Shift") {
+                api_key.innerText = api_key.innerText; // special space character doesn't get escaped
+                resetScroll();
+                setTimeout(function() {
+                    resetScroll(); // also do it after a slight delay
+                }, 100);
+            } 
+            else {
                 api_key.innerText = api_key.innerText + e.key;
             }
 
             resizeText();
 
             saved_api = api_key.innerText;
+
+            localStorage.setItem('saved_api', api_key.innerText);
+
 
         }
 
@@ -359,20 +427,30 @@
 
             if (e.key === "Backspace") {
                 baseID.innerText = baseID.innerText.slice(0, -1); // remove last character
-            } else if (e.key === " " || e.key === "Shift") {
+            } 
+            else if (e.key === " ") {
                 baseID.innerText = baseID.innerText + "\u00a0"; // special space character doesn't get escaped
                 resetScroll();
                 setTimeout(function() {
                     resetScroll(); // also do it after a slight delay
                 }, 100);
-            } else {
+            }
+            else if (e.key === "Shift") {
+                baseID.innerText = baseID.innerText; // special space character doesn't get escaped
+                resetScroll();
+                setTimeout(function() {
+                    resetScroll(); // also do it after a slight delay
+                }, 100);
+            } 
+            else {
                 baseID.innerText = baseID.innerText + e.key; 
             }
 
             resizeText();
 
             saved_baseID = baseID.innerText;
-            
+
+            localStorage.setItem('saved_baseID', baseID.innerText);
         }
 
 
@@ -384,21 +462,32 @@
 
             if (e.key === "Backspace") {
                 at_var.innerText = at_var.innerText.slice(0, -1); // remove last character
-            } else if (e.key === " " || e.key === "Shift") {
+            } 
+            else if (e.key === " ") {
                 at_var.innerText = at_var.innerText + "\u00a0"; // special space character doesn't get escaped
                 resetScroll();
                 setTimeout(function() {
                     resetScroll(); // also do it after a slight delay
                 }, 100);
-            } else {
+            } 
+            else if (e.key === "Shift") {
+                at_var.innerText = at_var.innerText; // special space character doesn't get escaped
+                resetScroll();
+                setTimeout(function() {
+                    resetScroll(); // also do it after a slight delay
+                }, 100);
+            } 
+            else {
                 at_var.innerText = at_var.innerText + e.key; 
             }
 
             resizeText();
 
             saved_atVar = at_var.innerText;
-            
+
+            localStorage.setItem('saved_atVar', at_var.innerText);
         }
+
     }
 
 
@@ -435,17 +524,37 @@
         if (properties.value <= -255) properties.value = -255;
         if (properties.value >= 255) properties.value = 255;
 
-        // airtable();
+        // if (api_key.innerText != null && baseID.innerText != null) {
+        //     test_box.innerText = "BUT"
+        //     setInterval(() => { airtable(); }, 1000);
 
-        setInterval(() => { airtable(); }, 3000); 
+        // }
+        // if (api_key.innerText == null && baseID.innerText == null) {
+        //     test_box.innerText = "dran"
+        //     setInterval(() => { airtable(); }, 1000);
+
+        // }
+
+        setInterval(() => { airtable(); }, 1000);
+        // airtable();
     }
 
 
-    var tablename = "Table 1"; 
-    var key = "key4SssZ2nJDuK1KG";
-    var docID = "apph4VI7Pi70nUDOD";
+
+
+
+    var tablename = "Table 1"; // This should be the default for every Airtable 
+    // var key = "key4SssZ2nJDuK1KG";
+    // var docID = "apph4VI7Pi70nUDOD";
+
+    var key;// (localStorage.getItem('saved_api').trim());
+    var docID; // (localStorage.getItem('saved_baseID').trim());
+    
 
     function httpGet(BaseID,tablename, APIKey){
+        APIKey = "key4SssZ2nJDuK1KG";
+        BaseID = "apph4VI7Pi70nUDOD";
+
         var xmlHttp = new XMLHttpRequest();
         var url = "https://api.airtable.com/v0/" + BaseID + "/" + tablename +"/";
           
@@ -457,11 +566,14 @@
         return xmlHttp.responseText;
     }
 
-    function getvalue(name, DOM){
+    function getvalue(name){
         var arr = (JSON.parse(httpGet(docID, tablename, key))).records; 
         arr.forEach(function (arrayItem) {
             if (arrayItem.fields.Variables == name) {
-                DOM.innerText = arrayItem.fields.Value; 
+                //DOM.innerText = parseFloat(arrayItem.fields.Value); 
+                temp_value = parseFloat(arrayItem.fields.Value);
+                // DOM.innerText = temp_value;
+                realityInterface.write('value', temp_value);
             }
         });
     }
@@ -478,6 +590,9 @@
     }
 
     function httpPatch(BaseID, tablename, APIKey, value){
+        APIKey = "key4SssZ2nJDuK1KG";
+        BaseID = "apph4VI7Pi70nUDOD";
+
         var xmlHttp = new XMLHttpRequest();
         var url = "https://api.airtable.com/v0/" + BaseID + "/" + tablename +"/";
 
@@ -500,25 +615,35 @@
     var send_val; 
 
     function airtable(){
+    //     if((localStorage.getItem('saved_baseID').trim()) == "apph4VI7Pi70nUDOD"){
+    //     test_box.innerText = "same"
+    // }
+    // else if((localStorage.getItem('saved_baseID').trim()) != "apph4VI7Pi70nUDOD"){
+    //     test_box.innerText = "not"
+    // }
         // If toggle is Sender
-        if (toggle.checked == true){
-            httpPatch(docID, tablename, key, send_val); 
-            test_box.innerText = "Sent Value";  
+        // document.getElementById("toggle_switch").checked = true;
+
+        if (toggle_istouched){
+            httpPatch(docID, tablename, key, send_val);
+            // test_box.innerText = "Sent Value";  
         }
         // If toggle is Receiver 
-        else if (toggle.checked == false){
+        else if (!toggle_istouched){
             var temp_var = (at_var.innerText).trim();
-            getvalue(temp_var, test_box);
-            realityInterface.write('value', parseFloat(test_box.innerText))
+            getvalue(temp_var); 
+        }
+
+        if (display_istouched){
+            document.getElementById("api_key_box").style.display = "none";
+            document.getElementById("baseID_box").style.display = "none";
+        }
+        else if (!display_istouched){
+            document.getElementById("api_key_box").style.display = "block";
+            document.getElementById("baseID_box").style.display = "block";
         }
     }
 
-
-    function ready() {
-        //document.getElementById("toggle").checked = false;
-        renderProperties();
-    }
-    ready();
 
     try {
         realityInterface.addReadListener('value', function (e) {
