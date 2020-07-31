@@ -173,52 +173,6 @@ function startHardwareInterface() {
 
 	server.enableDeveloperUI(true)
 
- //    // add all nodes to app for advanced mode
- //    server.addNode(objectName, TOOL_NAME, "stopMotors", "node", {x: -12, y: 15, scale:0.175})
-	// server.addNode(objectName, TOOL_NAME, "motorA", "node", {x: -40, y: -45, scale: 0.175});
- //    server.addNode(objectName, TOOL_NAME, "motorB", "node", {x: -40, y: -10, scale: 0.175});
- //    server.addNode(objectName, TOOL_NAME, "motorC", "node", {x: -40, y: 25, scale: 0.175});
- //    server.addNode(objectName, TOOL_NAME, "motorD", "node", {x: -40, y: 60, scale: 0.175});
- //    server.addNode(objectName, TOOL_NAME, "ultra", "node", {x: 40, y: -45, scale: 0.175});
- //    server.addNode(objectName, TOOL_NAME, "touch", "node", {x: 40, y: -10, scale: 0.175});
- //    server.addNode(objectName, TOOL_NAME, "color", "node", {x: 40, y: 25, scale: 0.175});
- //    server.addNode(objectName, TOOL_NAME, "gyro", "node", {x: 40, y: 60, scale: 0.175});
- //    server.addNode(objectName, TOOL_NAME, "ledLeft", "node", {x: -12, y: -45, scale: 0.175});
- //    server.addNode(objectName, TOOL_NAME, "ledRight", "node", {x: 14, y: -45, scale: 0.175});
- //    server.addNode(objectName, TOOL_NAME, "speaker", "node", {x: 14, y: 15, scale: 0.175});
-
- //    //remove node from beginner
- //    server.removeNode(objectName, TOOL_NAME, "motors") 
-
- //    //all motors controlled from one node, right led light node, speaker node, ultra node, stop motors
- //    if (complexity == "beginner") {
- //        server.removeNode(objectName, TOOL_NAME, "motorA");
- //        server.removeNode(objectName, TOOL_NAME, "motorB");
- //        server.removeNode(objectName, TOOL_NAME, "motorC");
- //        server.removeNode(objectName, TOOL_NAME, "motorD");
- //        server.removeNode(objectName, TOOL_NAME, "color");
- //        server.removeNode(objectName, TOOL_NAME, "gyro");
- //        server.removeNode(objectName, TOOL_NAME, "touch");
- //        server.removeNode(objectName, TOOL_NAME, "ledLeft");
-
- //        server.moveNode(objectName, TOOL_NAME, "stopMotors", 0, -55);
- //        server.moveNode(objectName, TOOL_NAME, "ledRight", -40, -25);
- //        server.moveNode(objectName, TOOL_NAME, "speaker", -40, -5);
- //        server.moveNode(objectName, TOOL_NAME, "ultra", 40, -25);
- //        server.addNode(objectName, TOOL_NAME, "motors", "node", {x: 40, y: -5, scale: 0.175});
-
- //    }
-
- //    //all motor and sensor nodes
- //    if (complexity == "intermediate") {
- //        server.removeNode(objectName, TOOL_NAME, "ledLeft");
- //        server.removeNode(objectName, TOOL_NAME, "ledRight");
- //        server.removeNode(objectName, TOOL_NAME, "speaker");
- //        server.removeNode(objectName, TOOL_NAME, "motors");
-
- //        server.moveNode(objectName, TOOL_NAME, "stopMotors", 0, -55);
- //    }
-
      // add all nodes to app for advanced mode
     server.addNode(objectName, TOOL_NAME, "stopMotors", "node", {x: -42, y: 125, scale:0.175})
     server.addNode(objectName, TOOL_NAME, "motorA", "node", {x: -125, y: -100, scale: 0.175});
