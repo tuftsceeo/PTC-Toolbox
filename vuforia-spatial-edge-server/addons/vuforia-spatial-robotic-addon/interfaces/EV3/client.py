@@ -117,6 +117,7 @@ while 1:
     c.responseR(data_R.decode())
     c.responseS(data_S.decode())
     c.responseU(data_U.decode())
+    print(data_U.decode())
     c.responseT(data_T.decode())
     c.responseG(data_G.decode())
     c.responseCo(data_Co.decode())

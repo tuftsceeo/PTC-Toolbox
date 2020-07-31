@@ -39,18 +39,19 @@ try:
         if data:
             msg = data.decode()
             if msg != "ignore":
-                #print(msg)
                 fileWrite(msg)
+                sensor_name = msg[0:1]
                 try:
                     f = open("log.txt", 'r')
                     line = f.readline().rstrip()
-                    if (os.parth.getsize("log.txt") == 0):
-                        client.send("ignore")
-                    else:
-                        client.send(line)
-                    f.close()
                     #print(line)
-                    client.send(line) # Echo back to client
+                    if (os.path.getsize("log.txt") == 0):
+                        client.send("ignore") # Echo back to client
+                    else:
+                        client.send(sensor_name + line)
+
+                    f.close()
+                    
                 except:
                     client.send("ignore")
             else:
