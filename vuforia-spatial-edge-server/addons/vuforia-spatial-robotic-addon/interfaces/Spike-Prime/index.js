@@ -50,7 +50,7 @@ if (exports.enabled){
     			disabled: false,
     			helpText: 'The name of the object that connects to this hardware interface.'
             },
-            complexity: {
+            spikeComplexity: {
                 value: settings('complexity', 'beginner'),
                 type: 'text',
                 default: 'beginner',
@@ -64,7 +64,7 @@ if (exports.enabled){
     }
 
     objectName = exports.settings.spikeName.value;
-    complexity = exports.settings.complexity.value.toLowerCase();
+    complexity = exports.settings.spikeComplexity.value.toLowerCase();
     complexity = complexity.replace(/\n/g,'');
     console.log("Spike: " + objectName)
     console.log("with complexity: " + complexity)

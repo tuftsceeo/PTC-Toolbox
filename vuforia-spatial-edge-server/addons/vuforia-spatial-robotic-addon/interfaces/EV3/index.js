@@ -121,7 +121,7 @@ var zeroServer = new zerorpc.Server({
     },
 });
 
-zeroServer.bind("tcp://0.0.0.0:4344");
+zeroServer.bind("tcp://0.0.0.0:4343");
 
 exports.enabled = settings('enabled');
 exports.configurable = true;
@@ -136,46 +136,47 @@ if (exports.enabled){
     console.log("EV3 is connected");
 
     function setup() {
-    	exports.settings = {
-    		ev3Name: {
-    			value: settings('objectName', 'ev3Node'),
-    			type: 'text',
-    			default: 'ev3Node',
-    			disabled: false,
-    			helpText: 'The name of the object that connects to this hardware interface.'
-    		},
-            complexity: {
+        exports.settings = {
+            ev3Name: {
+                value: settings('objectName', 'ev3Node'),
+                type: 'text',
+                default: 'ev3Node',
+                disabled: false,
+                helpText: 'The name of the object that connects to this hardware interface.'
+            },
+            ev3Complexity: {
                 value: settings('complexity', 'advanced'),
                 type: 'text',
                 default: 'advanced',
                 disabled: false,
                 helpText: 'The complexity of the interface. "beginner" gives a few nodes, "intermediate" gives more, and "advanced" gives full control.'
             }
-    	};
+        };
     }
 
     objectName = exports.settings.ev3Name.value;
-    complexity = exports.settings.complexity.value.toLowerCase();
+    complexity = exports.settings.ev3Complexity.value.toLowerCase();
     complexity = complexity.replace(/\n/g,'');
     console.log("EV3" + objectName)
+    console.log("with complexity: " + complexity)
 
     server.addEventListener('reset', function () {
-    	settings = server.loadHardwareInterface(__dirname);
-    	setup();
+        settings = server.loadHardwareInterface(__dirname);
+        setup();
 
-    	console.log('EV3: Settings loaded: ', objectName);
-	});
+        console.log('EV3: Settings loaded: ', objectName);
+    });
 }
 
 // Starts the interface with the hardware
 function startHardwareInterface() {
-	console.log('EV3: Starting up')
+    console.log('EV3: Starting up')
 
-	server.enableDeveloperUI(true)
+    server.enableDeveloperUI(true)
 
  //    // add all nodes to app for advanced mode
  //    server.addNode(objectName, TOOL_NAME, "stopMotors", "node", {x: -12, y: 15, scale:0.175})
-	// server.addNode(objectName, TOOL_NAME, "motorA", "node", {x: -40, y: -45, scale: 0.175});
+    // server.addNode(objectName, TOOL_NAME, "motorA", "node", {x: -40, y: -45, scale: 0.175});
  //    server.addNode(objectName, TOOL_NAME, "motorB", "node", {x: -40, y: -10, scale: 0.175});
  //    server.addNode(objectName, TOOL_NAME, "motorC", "node", {x: -40, y: 25, scale: 0.175});
  //    server.addNode(objectName, TOOL_NAME, "motorD", "node", {x: -40, y: 60, scale: 0.175});
@@ -339,7 +340,7 @@ function startHardwareInterface() {
     setGyroVal()
     setColorVal()
 
-	updateEvery(0, 10);
+    updateEvery(0, 10);
 }
 
 //if you don't want to have to use the transfer tool use the map function within server.write
@@ -387,9 +388,9 @@ function setColorVal() {
 }
 
 function updateEvery(i, time){
-	setTimeout(() => {
-		updateEvery(++i, time);
-	}, time)
+    setTimeout(() => {
+        updateEvery(++i, time);
+    }, time)
 }
 
 //adjusts motor speed to be between -100 and 100
@@ -420,8 +421,3 @@ server.addEventListener("shutdown", function () {
     msgSpkr = "spkr.play_tone(" + 0 + ", 1, 0, 100, 0)";
     stop();
 });
-
-
-
-
-
