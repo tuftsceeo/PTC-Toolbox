@@ -324,6 +324,7 @@ function startHardwareInterface() {
 //continuously writes ultra distance (cm) to node
 function setUltraVal() {
     msgUltra = "ultra.distance_centimeters"
+    console.log(val_u);
     if (val_u != undefined && val_u.substring(0, 1) == "u") {
         var num = val_u.substring(1, val_u.length)
         server.write(objectName, TOOL_NAME, "ultra", num, "f")
