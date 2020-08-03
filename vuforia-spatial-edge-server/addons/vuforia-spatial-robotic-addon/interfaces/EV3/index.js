@@ -13,6 +13,7 @@ var msgLeft = "ignore", msgRight = "ignore", msgSpkr = "ignore";
 var msgUltra = "ignore", msgGyro = "ignore", msgTouch = "ignore", msgColor = "ignore";
 var val_u, val_t, val_c, val_g;
 const TOOL_NAME = "IO";
+var run_motors = true;
 
 let objectName = "ev3Node";
 
@@ -136,51 +137,63 @@ if (exports.enabled){
     console.log("EV3 is connected");
 
     function setup() {
-        exports.settings = {
-            ev3Name: {
-                value: settings('objectName', 'ev3Node'),
-                type: 'text',
-                default: 'ev3Node',
-                disabled: false,
-                helpText: 'The name of the object that connects to this hardware interface.'
-            },
-            ev3Complexity: {
-                value: settings('ev3Complexity', 'advanced'),
+    	exports.settings = {
+    		ev3Name: {
+    			value: settings('objectName', 'ev3Node'),
+    			type: 'text',
+    			default: 'ev3Node',
+    			disabled: false,
+    			helpText: 'The name of the object that connects to this hardware interface.'
+    		},
+            complexity: {
+                value: settings('complexity', 'advanced'),
                 type: 'text',
                 default: 'advanced',
                 disabled: false,
                 helpText: 'The complexity of the interface. "beginner" gives a few nodes, "intermediate" gives more, and "advanced" gives full control.'
             }
-        };
+    	};
     }
 
     objectName = exports.settings.ev3Name.value;
-    ev3Complexity = exports.settings.ev3Complexity.value.toLowerCase();
-    ev3Complexity = ev3Complexity.replace(/\n/g,'');
-    console.log(ev3Complexity);
+    complexity = exports.settings.complexity.value.toLowerCase();
+    console.log(complexity);
+    complexity = complexity.replace(/\n/g,'');
     console.log("EV3" + objectName)
-    console.log("with complexity: " + ev3Complexity)
 
     server.addEventListener('reset', function () {
-        settings = server.loadHardwareInterface(__dirname);
-        setup();
+    	settings = server.loadHardwareInterface(__dirname);
+    	setup();
 
-        console.log('EV3: Settings loaded: ', objectName);
-    });
+    	console.log('EV3: Settings loaded: ', objectName);
+	});
 }
 
 // Starts the interface with the hardware
 function startHardwareInterface() {
-    console.log('EV3: Starting up')
+	console.log('EV3: Starting up')
 
-    server.enableDeveloperUI(true)
+	server.enableDeveloperUI(true)
+
+     // add all nodes to app for advanced mode
+    server.addNode(objectName, TOOL_NAME, "stopMotors", "node", {x: -42, y: 125, scale:0.175})
+    server.addNode(objectName, TOOL_NAME, "motorA", "node", {x: -125, y: -100, scale: 0.175});
+    server.addNode(objectName, TOOL_NAME, "motorB", "node", {x: -125, y: -25, scale: 0.175});
+    server.addNode(objectName, TOOL_NAME, "motorC", "node", {x: -125, y: 50, scale: 0.175});
+    server.addNode(objectName, TOOL_NAME, "motorD", "node", {x: -125, y: 125, scale: 0.175});
+    server.addNode(objectName, TOOL_NAME, "ultra", "node", {x: 125, y: -100, scale: 0.175});
+    server.addNode(objectName, TOOL_NAME, "touch", "node", {x: 125, y: -25, scale: 0.175});
+    server.addNode(objectName, TOOL_NAME, "color", "node", {x: 125, y: 50, scale: 0.175});
+    server.addNode(objectName, TOOL_NAME, "gyro", "node", {x: 125, y: 125, scale: 0.175});
+    server.addNode(objectName, TOOL_NAME, "ledLeft", "node", {x: -42, y: -100, scale: 0.175});
+    server.addNode(objectName, TOOL_NAME, "ledRight", "node", {x: 42, y: -100, scale: 0.175});
+    server.addNode(objectName, TOOL_NAME, "speaker", "node", {x: 42, y: 125, scale: 0.175});
 
     //remove node from beginner
     server.removeNode(objectName, TOOL_NAME, "motors") 
 
     //all motors controlled from one node, right led light node, speaker node, ultra node, stop motors
-    if (ev3Complexity == "beginner") {
-        console.log("within beginner");
+    if (complexity == "beginner") {
         server.removeNode(objectName, TOOL_NAME, "motorA");
         server.removeNode(objectName, TOOL_NAME, "motorB");
         server.removeNode(objectName, TOOL_NAME, "motorC");
@@ -199,60 +212,71 @@ function startHardwareInterface() {
     }
 
     //all motor and sensor nodes
-    if (ev3Complexity == "intermediate") {
-        console.log("within intermediate");
+    if (complexity == "intermediate") {
         server.removeNode(objectName, TOOL_NAME, "ledLeft");
         server.removeNode(objectName, TOOL_NAME, "ledRight");
         server.removeNode(objectName, TOOL_NAME, "speaker");
         server.removeNode(objectName, TOOL_NAME, "motors");
 
-        server.moveNode(objectName, TOOL_NAME, "ultra", 125, -100);
         server.moveNode(objectName, TOOL_NAME, "stopMotors", 0, 125);
-    }
-
-    if (ev3Complexity == "advanced") {
-        server.moveNode(objectName, TOOL_NAME, "speaker", 42, 125);
-        server.moveNode(objectName, TOOL_NAME, "ledRight", 42, -100);
-        
     }
 
     //if true value passed to node, stop motors
     server.addReadListener(objectName, TOOL_NAME, "stopMotors", function(data) {
-        if (data.value == 1) stop();
+        if (data.value == 1) {
+            console.log("motors off");
+            stop();
+        }
+        if (data.value == 0) run_motors = true;
     });
 
     //Listen for Motor A node
     server.addReadListener(objectName, TOOL_NAME, "motorA", function(data) {
-        console.log(data.value);
-        msgA = "A.on(" + get_val(data.value) + ")";   
+        if (run_motors) {
+            console.log(data.value);
+            msgA = "A.on(" + get_val(data.value) + ")";   
+        }
+        else stop();
     });
 
     //Listen for Motor B node
     server.addReadListener(objectName, TOOL_NAME, "motorB", function(data) {
-        console.log(data.value);
-        msgB = "B.on(" + get_val(data.value) + ")"; 
+        if (run_motors) {
+            console.log(data.value);
+            msgB = "B.on(" + get_val(data.value) + ")"; 
+        }
+        else stop();
     });
 
     //Listen for Motor C node
     server.addReadListener(objectName, TOOL_NAME, "motorC", function(data) {
-        console.log(data.value);
-        msgC = "C.on(" + get_val(data.value) + ")";   
+        if (run_motors) {
+            console.log(data.value);
+            msgC = "C.on(" + get_val(data.value) + ")"; 
+        }
+        else stop();  
     });
 
     //Listen for Motor D node
     server.addReadListener(objectName, TOOL_NAME, "motorD", function(data) {
-        console.log(data.value);
-        msgD = "D.on(" + get_val(data.value) + ")";   
+        if (run_motors) {
+            console.log(data.value);
+            msgD = "D.on(" + get_val(data.value) + ")"; 
+        }
+        else stop();   
     });
 
     //Listen for all motors (all motors run from one node in beginner mode)
     server.addReadListener(objectName, TOOL_NAME, "motors", function(data) {
-        console.log(data.value);
-        var num = get_val(data.value);
-        msgA = "A.on(" + num + ")";
-        msgB = "B.on(" + num + ")";
-        msgC = "C.on(" + num + ")";
-        msgD = "D.on(" + num + ")";
+        if (run_motors) {
+            console.log(data.value);
+            var num = get_val(data.value);
+            msgA = "A.on(" + num + ")";
+            msgB = "B.on(" + num + ")";
+            msgC = "C.on(" + num + ")";
+            msgD = "D.on(" + num + ")";
+        }
+        else stop();
     });
 
     //Listen for left LED lights
@@ -290,7 +314,7 @@ function startHardwareInterface() {
     setGyroVal()
     setColorVal()
 
-    updateEvery(0, 10);
+	updateEvery(0, 10);
 }
 
 //if you don't want to have to use the transfer tool use the map function within server.write
@@ -338,9 +362,9 @@ function setColorVal() {
 }
 
 function updateEvery(i, time){
-    setTimeout(() => {
-        updateEvery(++i, time);
-    }, time)
+	setTimeout(() => {
+		updateEvery(++i, time);
+	}, time)
 }
 
 //adjusts motor speed to be between -100 and 100
@@ -355,6 +379,7 @@ function get_val(data){
 
 //stops all motors
 function stop() {
+    run_motors = false;
     msgA = "A.stop()";
     msgB = "B.stop()";
     msgC = "C.stop()";
@@ -371,3 +396,8 @@ server.addEventListener("shutdown", function () {
     msgSpkr = "spkr.play_tone(" + 0 + ", 1, 0, 100, 0)";
     stop();
 });
+
+
+
+
+
