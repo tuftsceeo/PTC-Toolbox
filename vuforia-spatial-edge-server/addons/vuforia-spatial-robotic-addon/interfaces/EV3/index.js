@@ -12,6 +12,7 @@ var msgA = "ignore", msgB = "ignore", msgC = "ignore", msgD = "ignore";
 var msgLeft = "ignore", msgRight = "ignore", msgSpkr = "ignore";
 var msgUltra = "ignore", msgGyro = "ignore", msgTouch = "ignore", msgColor = "ignore";
 var val_u, val_t, val_c, val_g;
+var stopped = false
 const TOOL_NAME = "IO";
 
 let objectName = "ev3Node";
@@ -223,40 +224,51 @@ function startHardwareInterface() {
     //if true value passed to node, stop motors
     server.addReadListener(objectName, TOOL_NAME, "stopMotors", function(data) {
         if (data.value == 1) stop();
+        else stopped = false;
     });
 
     //Listen for Motor A node
     server.addReadListener(objectName, TOOL_NAME, "motorA", function(data) {
         console.log(data.value);
-        msgA = "A.on(" + get_val(data.value) + ")";   
+        if (!stopped) {
+            msgA = "A.on(" + get_val(data.value) + ")";   
+        }
     });
 
     //Listen for Motor B node
     server.addReadListener(objectName, TOOL_NAME, "motorB", function(data) {
         console.log(data.value);
-        msgB = "B.on(" + get_val(data.value) + ")"; 
+        if (!stopped) {
+            msgB = "B.on(" + get_val(data.value) + ")";   
+        }
     });
 
     //Listen for Motor C node
     server.addReadListener(objectName, TOOL_NAME, "motorC", function(data) {
         console.log(data.value);
-        msgC = "C.on(" + get_val(data.value) + ")";   
+        if (!stopped) {
+            msgC = "C.on(" + get_val(data.value) + ")";   
+        }
     });
 
     //Listen for Motor D node
     server.addReadListener(objectName, TOOL_NAME, "motorD", function(data) {
         console.log(data.value);
-        msgD = "D.on(" + get_val(data.value) + ")";   
+        if (!stopped) {
+            msgD = "D.on(" + get_val(data.value) + ")";   
+        }
     });
 
     //Listen for all motors (all motors run from one node in beginner mode)
     server.addReadListener(objectName, TOOL_NAME, "motors", function(data) {
         console.log(data.value);
         var num = get_val(data.value);
-        msgA = "A.on(" + num + ")";
-        msgB = "B.on(" + num + ")";
-        msgC = "C.on(" + num + ")";
-        msgD = "D.on(" + num + ")";
+        if (!stopped) {
+            msgA = "A.on(" + num + ")";
+            msgB = "B.on(" + num + ")";
+            msgC = "C.on(" + num + ")";
+            msgD = "D.on(" + num + ")";
+        }
     });
 
     //Listen for left LED lights
@@ -359,6 +371,8 @@ function get_val(data){
 
 //stops all motors
 function stop() {
+    console.log("stopping the motors")
+    stopped = true
     msgA = "A.stop()";
     msgB = "B.stop()";
     msgC = "C.stop()";
