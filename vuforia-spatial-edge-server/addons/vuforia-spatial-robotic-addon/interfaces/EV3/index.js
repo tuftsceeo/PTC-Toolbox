@@ -12,7 +12,6 @@ var msgA = "ignore", msgB = "ignore", msgC = "ignore", msgD = "ignore";
 var msgLeft = "ignore", msgRight = "ignore", msgSpkr = "ignore";
 var msgUltra = "ignore", msgGyro = "ignore", msgTouch = "ignore", msgColor = "ignore";
 var val_u, val_t, val_c, val_g;
-var stopped = false
 const TOOL_NAME = "IO";
 var run_motors = true;
 
