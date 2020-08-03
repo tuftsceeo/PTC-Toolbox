@@ -14,6 +14,7 @@ var msgUltra = "ignore", msgGyro = "ignore", msgTouch = "ignore", msgColor = "ig
 var val_u, val_t, val_c, val_g;
 var stopped = false
 const TOOL_NAME = "IO";
+var run_motors = true;
 
 let objectName = "ev3Node";
 
@@ -122,7 +123,7 @@ var zeroServer = new zerorpc.Server({
     },
 });
 
-zeroServer.bind("tcp://0.0.0.0:4343");
+zeroServer.bind("tcp://0.0.0.0:4344");
 
 exports.enabled = settings('enabled');
 exports.configurable = true;
@@ -152,7 +153,7 @@ if (exports.enabled){
                 disabled: false,
                 helpText: 'The complexity of the interface. "beginner" gives a few nodes, "intermediate" gives more, and "advanced" gives full control.'
             }
-        };
+    	};
     }
 
     objectName = exports.settings.ev3Name.value;
@@ -162,19 +163,19 @@ if (exports.enabled){
     console.log("with complexity: " + ev3Complexity)
 
     server.addEventListener('reset', function () {
-        settings = server.loadHardwareInterface(__dirname);
-        setup();
+    	settings = server.loadHardwareInterface(__dirname);
+    	setup();
 
-        console.log('EV3: Settings loaded: ', objectName);
-    });
+    	console.log('EV3: Settings loaded: ', objectName);
+	});
 }
 
 // Starts the interface with the hardware
 function startHardwareInterface() {
-    console.log('EV3: Starting up')
+	console.log('EV3: Starting up')
 
-    server.enableDeveloperUI(true)
-
+	server.enableDeveloperUI(true)
+  
      // add all nodes to app for advanced mode
     server.addNode(objectName, TOOL_NAME, "stopMotors", "node", {x: -42, y: 125, scale:0.175})
     server.addNode(objectName, TOOL_NAME, "motorA", "node", {x: -125, y: -100, scale: 0.175});
@@ -223,47 +224,54 @@ function startHardwareInterface() {
 
     //if true value passed to node, stop motors
     server.addReadListener(objectName, TOOL_NAME, "stopMotors", function(data) {
-        if (data.value == 1) stop();
-        else stopped = false;
+        if (data.value == 1) {
+            console.log("motors off");
+            stop();
+        }
+        if (data.value == 0) run_motors = true;
     });
 
     //Listen for Motor A node
     server.addReadListener(objectName, TOOL_NAME, "motorA", function(data) {
-        console.log(data.value);
-        if (!stopped) {
+        if (run_motors) {
+            console.log(data.value);
             msgA = "A.on(" + get_val(data.value) + ")";   
         }
+        else stop();
     });
 
     //Listen for Motor B node
     server.addReadListener(objectName, TOOL_NAME, "motorB", function(data) {
-        console.log(data.value);
-        if (!stopped) {
-            msgB = "B.on(" + get_val(data.value) + ")";   
+        if (run_motors) {
+            console.log(data.value);
+            msgB = "B.on(" + get_val(data.value) + ")"; 
         }
+        else stop();
     });
 
     //Listen for Motor C node
     server.addReadListener(objectName, TOOL_NAME, "motorC", function(data) {
-        console.log(data.value);
-        if (!stopped) {
-            msgC = "C.on(" + get_val(data.value) + ")";   
+        if (run_motors) {
+            console.log(data.value);
+            msgC = "C.on(" + get_val(data.value) + ")"; 
         }
+        else stop();  
     });
 
     //Listen for Motor D node
     server.addReadListener(objectName, TOOL_NAME, "motorD", function(data) {
-        console.log(data.value);
-        if (!stopped) {
-            msgD = "D.on(" + get_val(data.value) + ")";   
+        if (run_motors) {
+            console.log(data.value);
+            msgD = "D.on(" + get_val(data.value) + ")"; 
         }
+        else stop();   
     });
 
     //Listen for all motors (all motors run from one node in beginner mode)
     server.addReadListener(objectName, TOOL_NAME, "motors", function(data) {
-        console.log(data.value);
-        var num = get_val(data.value);
-        if (!stopped) {
+        if (run_motors) {
+            console.log(data.value);
+            var num = get_val(data.value);
             msgA = "A.on(" + num + ")";
             msgB = "B.on(" + num + ")";
             msgC = "C.on(" + num + ")";
@@ -306,7 +314,7 @@ function startHardwareInterface() {
     setGyroVal()
     setColorVal()
 
-    updateEvery(0, 10);
+	updateEvery(0, 10);
 }
 
 //if you don't want to have to use the transfer tool use the map function within server.write
@@ -316,6 +324,7 @@ function startHardwareInterface() {
 //continuously writes ultra distance (cm) to node
 function setUltraVal() {
     msgUltra = "ultra.distance_centimeters"
+    console.log(val_u);
     if (val_u != undefined && val_u.substring(0, 1) == "u") {
         var num = val_u.substring(1, val_u.length)
         server.write(objectName, TOOL_NAME, "ultra", num, "f")
@@ -354,9 +363,9 @@ function setColorVal() {
 }
 
 function updateEvery(i, time){
-    setTimeout(() => {
-        updateEvery(++i, time);
-    }, time)
+	setTimeout(() => {
+		updateEvery(++i, time);
+	}, time)
 }
 
 //adjusts motor speed to be between -100 and 100
@@ -371,8 +380,7 @@ function get_val(data){
 
 //stops all motors
 function stop() {
-    console.log("stopping the motors")
-    stopped = true
+    run_motors = false;
     msgA = "A.stop()";
     msgB = "B.stop()";
     msgC = "C.stop()";
@@ -389,3 +397,8 @@ server.addEventListener("shutdown", function () {
     msgSpkr = "spkr.play_tone(" + 0 + ", 1, 0, 100, 0)";
     stop();
 });
+
+
+
+
+
