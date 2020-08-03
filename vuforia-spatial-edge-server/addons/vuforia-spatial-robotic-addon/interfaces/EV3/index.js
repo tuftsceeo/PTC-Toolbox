@@ -12,6 +12,7 @@ var msgA = "ignore", msgB = "ignore", msgC = "ignore", msgD = "ignore";
 var msgLeft = "ignore", msgRight = "ignore", msgSpkr = "ignore";
 var msgUltra = "ignore", msgGyro = "ignore", msgTouch = "ignore", msgColor = "ignore";
 var val_u, val_t, val_c, val_g;
+var stopped = false
 const TOOL_NAME = "IO";
 var run_motors = true;
 
@@ -137,16 +138,16 @@ if (exports.enabled){
     console.log("EV3 is connected");
 
     function setup() {
-    	exports.settings = {
-    		ev3Name: {
-    			value: settings('objectName', 'ev3Node'),
-    			type: 'text',
-    			default: 'ev3Node',
-    			disabled: false,
-    			helpText: 'The name of the object that connects to this hardware interface.'
-    		},
-            complexity: {
-                value: settings('complexity', 'advanced'),
+        exports.settings = {
+            ev3Name: {
+                value: settings('objectName', 'ev3Node'),
+                type: 'text',
+                default: 'ev3Node',
+                disabled: false,
+                helpText: 'The name of the object that connects to this hardware interface.'
+            },
+            ev3Complexity: {
+                value: settings('ev3Complexity', 'advanced'),
                 type: 'text',
                 default: 'advanced',
                 disabled: false,
@@ -156,10 +157,10 @@ if (exports.enabled){
     }
 
     objectName = exports.settings.ev3Name.value;
-    complexity = exports.settings.complexity.value.toLowerCase();
-    console.log(complexity);
-    complexity = complexity.replace(/\n/g,'');
+    ev3Complexity = exports.settings.ev3Complexity.value.toLowerCase();
+    ev3Complexity = ev3Complexity.replace(/\n/g,'');
     console.log("EV3" + objectName)
+    console.log("with complexity: " + ev3Complexity)
 
     server.addEventListener('reset', function () {
     	settings = server.loadHardwareInterface(__dirname);
@@ -174,7 +175,7 @@ function startHardwareInterface() {
 	console.log('EV3: Starting up')
 
 	server.enableDeveloperUI(true)
-
+  
      // add all nodes to app for advanced mode
     server.addNode(objectName, TOOL_NAME, "stopMotors", "node", {x: -42, y: 125, scale:0.175})
     server.addNode(objectName, TOOL_NAME, "motorA", "node", {x: -125, y: -100, scale: 0.175});
@@ -193,7 +194,7 @@ function startHardwareInterface() {
     server.removeNode(objectName, TOOL_NAME, "motors") 
 
     //all motors controlled from one node, right led light node, speaker node, ultra node, stop motors
-    if (complexity == "beginner") {
+    if (ev3Complexity == "beginner") {
         server.removeNode(objectName, TOOL_NAME, "motorA");
         server.removeNode(objectName, TOOL_NAME, "motorB");
         server.removeNode(objectName, TOOL_NAME, "motorC");
@@ -212,7 +213,7 @@ function startHardwareInterface() {
     }
 
     //all motor and sensor nodes
-    if (complexity == "intermediate") {
+    if (ev3Complexity == "intermediate") {
         server.removeNode(objectName, TOOL_NAME, "ledLeft");
         server.removeNode(objectName, TOOL_NAME, "ledRight");
         server.removeNode(objectName, TOOL_NAME, "speaker");
@@ -276,7 +277,6 @@ function startHardwareInterface() {
             msgC = "C.on(" + num + ")";
             msgD = "D.on(" + num + ")";
         }
-        else stop();
     });
 
     //Listen for left LED lights

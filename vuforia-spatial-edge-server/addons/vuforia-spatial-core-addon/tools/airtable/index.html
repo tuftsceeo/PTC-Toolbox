@@ -535,7 +535,7 @@
 
         // }
 
-        setInterval(() => { airtable(); }, 1000);
+        setInterval(() => { airtable(); }, 2000);
         // airtable();
     }
 
@@ -614,6 +614,15 @@
 
     var send_val; 
 
+    function sleep(milliseconds) {
+      const date = Date.now();
+      let currentDate = null;
+      do {
+        currentDate = Date.now();
+      } while (currentDate - date < milliseconds);
+    }
+
+
     function airtable(){
     //     if((localStorage.getItem('saved_baseID').trim()) == "apph4VI7Pi70nUDOD"){
     //     test_box.innerText = "same"
@@ -625,6 +634,7 @@
         // document.getElementById("toggle_switch").checked = true;
 
         if (toggle_istouched){
+            sleep(100);
             httpPatch(docID, tablename, key, send_val);
             // test_box.innerText = "Sent Value";  
         }

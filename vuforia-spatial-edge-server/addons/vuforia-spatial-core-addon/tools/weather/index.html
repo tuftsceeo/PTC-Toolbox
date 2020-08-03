@@ -20,15 +20,9 @@
             font-style: normal;
         }
         #input {
-            position: absolute;
-            left: 25px;
-            top: 80px;
-            display: inline-block;
-            padding: 0;
-            margin: 0;
-            width: 200px;
-            height: 100px;
-            line-height: 283px;
+            position: relative;
+            left: 0px;
+            top: 0px;
             text-align: center;
             vertical-align: middle;
             -webkit-user-select: text;
@@ -36,82 +30,50 @@
             user-select: text;
             cursor: pointer;
             font-family: "Roboto", "Avenir", "Futura", Helvetica Neue, Helvetica, Arial, sans-serif;
-            font-size: 32px;
+            font-size: 30px;
             color: #00ff67;
         }
 
         #text {
-            position: absolute;
-            left: 120px;
-            top: -70px;
-            display: inline-block;
-            padding: 0;
-            margin: 0;
-            width: 50%;
-            height: 50%;
-            line-height: 200px;
-            text-align: right;
+            position: relative;
+            top: 5px;
+            text-align: center;
             vertical-align: middle;
             font-family: "Roboto", "Avenir", "Futura", Helvetica Neue, Helvetica, Arial, sans-serif;
             font-size: 28pt;
             color: #00ff67;
         }
         #city {
-            position: absolute;
-            left: 15px;
-            top: -70px;
-            display: inline-block;
-            padding: 0;
-            margin: 0;
-            width: 50%;
-            height: 50%;
-            line-height: 200px;
-            text-align: left;
-            vertical-align: middle;
+            position: relative;
+            top: 5px;
+            text-align: center;
             font-family: "Roboto", "Avenir", "Futura", Helvetica Neue, Helvetica, Arial, sans-serif;
             font-size: 19pt;
             color: #00ff67;
+            overflow-wrap: break-word;
         }
 
         #input:hover {
             opacity: 0.75;
             cursor: pointer;
         }
+        #boxed {
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 270px;
+            height: 300px;
+            border: 8px solid #16ff00;
+            padding: 0px;
+            margin: 20px;
+        }
     </style>
 </head>
 <body style="width: 120%; height: 120%">
-
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
-    <defs>
-        <style>
-            .cls-1 {
-                opacity: 0.5;
-            }
-
-            .cls-2 {
-                fill: #00ff67;
-            }
-        </style>
-    </defs>
-    <title>Asset 40</title>
-    <g id="Layer_2" data-name="Layer 2">
-        <g id="UI">
-            <g>
-                <g class="cls-1">
-                    <polygon points="0 0 0 240 57 240 240 240 240 37 240 0 0 0"/>
-                </g>
-                <g>
-                    <path class="cls-2" d="M194,6V194H6V6H240m6-6H0V240H240V0Z"/>
-                </g>
-            </g>
-        </g>
-    </g>
-</svg>
-
-<div id="text">1.000</div>
-<div id="input" contenteditable>Enter Zip</div>
-<img id="image" src="https://openweathermap.org/img/wn/10d@2x.png" style="position: absolute; left: 30px; top: 20px; height: 200px; width: 200px">
-<div id="city">N/A</div>
+<div id="boxed">
+    <div id="city">N/A</div>
+    <div id="text">1.000</div>
+    <img id="image" src="https://openweathermap.org/img/wn/10d@2x.png" style="position: relative; top: -30px; display: block;margin-left: auto; margin-right: auto; width: 65%; height: 65%;">
+    <div id="input" contenteditable style="top: -55px">Enter Ctry, Zip</div>
+</div>
 
 
 <script>
@@ -119,6 +81,8 @@
 
 
     var isListeningForKeyboard = false;
+
+    var country_code, zip_code;
 
 
     var text = document.querySelector('#text');
@@ -132,6 +96,9 @@
 
     var input = document.querySelector('#input');
     var inputLength = input.innerText.length;
+
+    var city_name = document.querySelector('#city');
+    var city_length = city_name.innerText.length;
 
 
     try {
@@ -152,11 +119,12 @@
         console.warn('Reality Interface is not accessible');
     }
 
-    input.style.fontSize = (250/inputLength)+"pt";
+    input.style.fontSize = (1/inputLength)+"pt";
+    // city_name.style.fontSize = (250/city_length)+"pt";
 
 
     input.addEventListener("pointerup", function (){
-        if (input.innerText.toLowerCase() === "enter zip") {
+        if (input.innerText.toLowerCase() === "enter ctry, zip") {
             input.innerText = "";
         }
         isListeningForKeyboard = true;
@@ -169,31 +137,40 @@
             return;
         }
 
-        var isCharacter = !!e.key.match(/^[a-zA-Z0-9]$/);
-
-        if (isCharacter) {
+        if (e.key === "Backspace") {
+            input.innerText = input.innerText.slice(0, -1); // remove last character
+        } 
+        else if (e.key === " ") {
+            input.innerText = input.innerText + "\u00a0"; // special space character doesn't get escaped
+            resetScroll();
+            setTimeout(function() {
+                resetScroll(); // also do it after a slight delay
+            }, 100);
+        } 
+        else if (e.key === "Shift") {
+            input.innerText = input.innerText; // special space character doesn't get escaped
+            resetScroll();
+            setTimeout(function() {
+                resetScroll(); // also do it after a slight delay
+            }, 100);
+        }
+        else {
             input.innerText = input.innerText + e.key;
-        } else {
-            if (e.key === "Backspace") {
-                input.innerText = input.innerText.slice(0, -1); // remove last character
-            } else if (e.key === " ") {
-                input.innerText = input.innerText + "\u00a0"; // special space character doesn't get escaped
-                resetScroll();
-                setTimeout(function() {
-                    resetScroll(); // also do it after a slight delay
-                }, 100);
-            }
         }
 
         resizeText();
         realityInterface.writePublicData("storage", "data",  input.innerText);
+
+        country_code = input.innerText.substring(0, 2).toLowerCase();
+        zip_code = input.innerText.substring(4, inputLength - 1);
+
     }
 
     function resizeText() {
         input.innerText = input.innerText.toUpperCase();
         
         var inputLength = input.innerText.length;
-        var fontSize = Math.min(70, (((inputLength*3)+150)/(inputLength))); // font size increases up to 45pt
+        var fontSize = Math.min(70, (((inputLength*12)+150)/(inputLength))); // font size increases up to 45pt
         console.log('inputLength ' + inputLength + ' => fontSize' + fontSize);
         input.style.fontSize = fontSize + "pt";
     }
@@ -237,7 +214,7 @@
         //text.innerText = numberToText(properties.value);
         // text.innerText = input.innerText;
         //b6fb6cd636d2c3f44a1f7949ff4febf7
-        var new_url = "https://api.openweathermap.org/data/2.5/weather?zip="+[input.innerText]+",us&appid=5fbfbc42b553a1914b3ba75d8ab862ae";
+        var new_url = "https://api.openweathermap.org/data/2.5/weather?zip="+[zip_code]+","+[country_code]+"&appid=5fbfbc42b553a1914b3ba75d8ab862ae";
         renderTemperature(new_url, text);
                     //"https://api.openweathermap.org/data/2.5/weather?zip=19050,us&appid=b6fb6cd636d2c3f44a1f7949ff4febf7"
     }
@@ -249,9 +226,14 @@
             if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
                 var val = xmlHttp.responseText;
                 val = JSON.parse(val);
-                var temperature = (val.main.temp - 273.15) * (9/5) + 32; // Converting kelvins to fahrenheit
-                DOM.innerText = temperature.toFixed(0) + "\u2109";
-
+                if (country_code == "us") {
+                    var temperature = (val.main.temp - 273.15) * (9/5) + 32; // Converting kelvins to fahrenheit
+                    DOM.innerText = temperature.toFixed(0) + "\u2109";
+                }
+                else {
+                    var temperature = (val.main.temp - 273.15); // Converting kelvins to celsius
+                    DOM.innerText = temperature.toFixed(0) + "\u2103";
+                }
                 realityInterface.write('value', temperature);
                 // Getting image
                 var icon = val.weather[0].icon; // Weather is an array, that has 1 element of a JSON object 
@@ -259,11 +241,13 @@
                 document.getElementById("image").src = img_url;
 
                 var city = val.name; // This is to get user's city from zipcode
-                document.getElementById("city").innerHTML = city;
+
+                city_name.innerHTML = city;
             }
             else {
                 DOM.innerText = "N/A";
-                document.getElementById("city").innerHTML = "N/A";
+                city_name.innerHTML = "N/A";
+                resizeText();
             }
         }
         xmlHttp.open("GET", theUrl, true); // true for asynchronous 
@@ -276,27 +260,6 @@
     }
     ready();
 
-    try {
-        realityInterface.addReadListener('value', function (e) {
-
-            properties.value = 69;
-            if(e.unit) {
-                properties.unit = e.unit;
-            } else {
-                properties.unit = "";
-            }
-            properties.unitMax = e.unitMax;
-            properties.unitMin = e.unitMin;
-            renderProperties();
-        });
-    } catch (e) {
-        console.warn('Reality Interface is not accessible');
-
-        function mockReadListenerTrigger(e) {
-            properties.value = e;
-            renderProperties();
-        }
-    }
 
 
 </script>
