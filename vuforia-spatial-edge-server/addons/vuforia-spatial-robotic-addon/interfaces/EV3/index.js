@@ -138,14 +138,14 @@ if (exports.enabled){
     console.log("EV3 is connected");
 
     function setup() {
-        exports.settings = {
-            ev3Name: {
-                value: settings('objectName', 'ev3Node'),
-                type: 'text',
-                default: 'ev3Node',
-                disabled: false,
-                helpText: 'The name of the object that connects to this hardware interface.'
-            },
+    	exports.settings = {
+    		ev3Name: {
+    			value: settings('objectName', 'ev3Node'),
+    			type: 'text',
+    			default: 'ev3Node',
+    			disabled: false,
+    			helpText: 'The name of the object that connects to this hardware interface.'
+    		},
             ev3Complexity: {
                 value: settings('ev3Complexity', 'advanced'),
                 type: 'text',
@@ -177,7 +177,6 @@ function startHardwareInterface() {
 	server.enableDeveloperUI(true)
   
      // add all nodes to app for advanced mode
-    server.addNode(objectName, TOOL_NAME, "stopMotors", "node", {x: -42, y: 125, scale:0.175})
     server.addNode(objectName, TOOL_NAME, "motorA", "node", {x: -125, y: -100, scale: 0.175});
     server.addNode(objectName, TOOL_NAME, "motorB", "node", {x: -125, y: -25, scale: 0.175});
     server.addNode(objectName, TOOL_NAME, "motorC", "node", {x: -125, y: 50, scale: 0.175});
@@ -189,6 +188,7 @@ function startHardwareInterface() {
     server.addNode(objectName, TOOL_NAME, "ledLeft", "node", {x: -42, y: -100, scale: 0.175});
     server.addNode(objectName, TOOL_NAME, "ledRight", "node", {x: 42, y: -100, scale: 0.175});
     server.addNode(objectName, TOOL_NAME, "speaker", "node", {x: 42, y: 125, scale: 0.175});
+    server.addNode(objectName, TOOL_NAME, "stopMotors", "node", {x: -42, y: 125, scale: 0.175})
 
     //remove node from beginner
     server.removeNode(objectName, TOOL_NAME, "motors") 
@@ -208,6 +208,7 @@ function startHardwareInterface() {
         server.moveNode(objectName, TOOL_NAME, "ledRight", 125, -100);
         server.moveNode(objectName, TOOL_NAME, "speaker", 125, -25);
         server.moveNode(objectName, TOOL_NAME, "ultra", 125, 50);
+
         server.addNode(objectName, TOOL_NAME, "motors", "node", {x: 125, y: 125, scale: 0.175});
 
     }
@@ -220,6 +221,14 @@ function startHardwareInterface() {
         server.removeNode(objectName, TOOL_NAME, "motors");
 
         server.moveNode(objectName, TOOL_NAME, "stopMotors", 0, 125);
+        server.moveNode(objectName, TOOL_NAME, "ultra", 125, -100);
+    }
+
+    if (ev3Complexity == "advanced") {
+        server.moveNode(objectName, TOOL_NAME, "ledRight", 42, -100);
+        server.moveNode(objectName, TOOL_NAME, "ultra", 125, -100);
+        server.moveNode(objectName, TOOL_NAME, "stopMotors", -42, 125);
+        server.moveNode(objectName, TOOL_NAME, "speaker", 42, 125);
     }
 
     //if true value passed to node, stop motors
