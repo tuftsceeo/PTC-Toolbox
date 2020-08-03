@@ -7,7 +7,7 @@ import bluetooth
 import time
 import zerorpc
 
-serverMACAddress = 'F0:45:DA:15:FB:D6' #change to your EV3 Bluetooth address
+serverMACAddress = 'F0:45:DA:15:FB:8D' #change to your EV3 Bluetooth address
 port = 3
 s = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
 s.connect((serverMACAddress, port))
@@ -116,7 +116,6 @@ while 1:
     c.responseR(data_R.decode())
     c.responseS(data_S.decode())
     c.responseU(data_U.decode())
-    print(data_U.decode())
     c.responseT(data_T.decode())
     c.responseG(data_G.decode())
     c.responseCo(data_Co.decode())

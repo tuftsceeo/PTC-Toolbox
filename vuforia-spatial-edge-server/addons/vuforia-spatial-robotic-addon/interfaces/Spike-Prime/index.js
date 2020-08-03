@@ -51,9 +51,9 @@ if (exports.enabled){
     			helpText: 'The name of the object that connects to this hardware interface.'
             },
             spikeComplexity: {
-                value: settings('complexity', 'beginner'),
+                value: settings('spikeComplexity', 'intermediate'),
                 type: 'text',
-                default: 'beginner',
+                default: 'intermediate',
                 disabled: false,
                 helpText: 'The complexity of the interface. "beginner" gives a few nodes, "intermediate" \
                 gives more, and "advanced" gives full control. If you want super accurate sensor data, \
@@ -64,10 +64,10 @@ if (exports.enabled){
     }
 
     objectName = exports.settings.spikeName.value;
-    complexity = exports.settings.spikeComplexity.value.toLowerCase();
-    complexity = complexity.replace(/\n/g,'');
+    spikeComplexity = exports.settings.spikeComplexity.value.toLowerCase();
+    spikeComplexity = spikeComplexity.replace(/\n/g,'');
     console.log("Spike: " + objectName)
-    console.log("with complexity: " + complexity)
+    console.log("with complexity: " + spikeComplexity)
 
     server.addEventListener('reset', function () {
     	settings = server.loadHardwareInterface(__dirname);
@@ -105,7 +105,7 @@ function startHardwareInterface() {
     server.removeNode(objectName, TOOL_NAME, "screen")
     server.removeNode(objectName, TOOL_NAME, "motors")    
 
-    if (complexity == 'beginner' || complexity == 'intermediate') {
+    if (spikeComplexity == 'beginner' || spikeComplexity == 'intermediate') {
         // Remove the accelerometer/gyroscope nodes
         server.removeNode(objectName, TOOL_NAME, "accelerometerX")
         server.removeNode(objectName, TOOL_NAME, "accelerometerY")
@@ -115,7 +115,7 @@ function startHardwareInterface() {
         server.removeNode(objectName, TOOL_NAME, "gyroscopeZ")
 
         
-        if (complexity == 'beginner') {
+        if (spikeComplexity == 'beginner') {
             // Removing more nodes for beginner
             server.removeNode(objectName, TOOL_NAME, "color")
             server.removeNode(objectName, TOOL_NAME, "force")
@@ -140,7 +140,7 @@ function startHardwareInterface() {
         }
     }
 
-    if (complexity == 'sensor') {
+    if (spikeComplexity == 'sensor') {
         // Remove the motor nodes for sensor
         server.removeNode(objectName, TOOL_NAME, "motor1")
         server.removeNode(objectName, TOOL_NAME, "motor2")
@@ -154,7 +154,7 @@ function startHardwareInterface() {
         sensorRefresh = 10
     }
 
-    if (complexity == 'advanced') { 
+    if (spikeComplexity == 'advanced') { 
         // Moves nodes for advanced
         server.moveNode(objectName, TOOL_NAME, "color", 75, -175)
         server.moveNode(objectName, TOOL_NAME, "distance", 0, -175)
