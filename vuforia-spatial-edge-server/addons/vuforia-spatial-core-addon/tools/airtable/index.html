@@ -105,7 +105,7 @@
             cursor: pointer;
             font-family: "Roboto", "Avenir", "Futura", Helvetica Neue, Helvetica, Arial, sans-serif;
             font-size: 32px;
-            color: #82eeff;
+            color: rgb(45,255,255);
             font-weight: bold;
             text-align: center;
             -webkit-text-security: none;
@@ -114,25 +114,16 @@
             cursor: pointer;
             font-family: "Roboto", "Avenir", "Futura", Helvetica Neue, Helvetica, Arial, sans-serif;
             font-size: 32px;
-            color: #82eeff;
+            color: rgb(45,255,255);
             font-weight: bold;
             text-align: center;
             -webkit-text-security: none;
         }
-        /*#test_box {
-            cursor: pointer;
-            font-family: "Roboto", "Avenir", "Futura", Helvetica Neue, Helvetica, Arial, sans-serif;
-            font-size: 32px;
-            color: #82eeff;
-            font-weight: bold;
-            text-align: center;
-            -webkit-text-security: none;
-        }*/
         #at_var {
             cursor: pointer;
             font-family: "Roboto", "Avenir", "Futura", Helvetica Neue, Helvetica, Arial, sans-serif;
             font-size: 32px;
-            color: #82eeff;
+            color: rgb(45,255,255);
             font-weight: bold;
             text-align: center;
             -webkit-text-security: none;
@@ -141,7 +132,7 @@
             cursor: pointer;
             font-family: "Roboto", "Avenir", "Futura", Helvetica Neue, Helvetica, Arial, sans-serif;
             font-size: 32px;
-            color: #82eeff;
+            color: rgb(45,255,255);
             font-weight: bold;
             text-align: center;
             -webkit-text-security: none;
@@ -150,7 +141,7 @@
             cursor: pointer;
             font-family: "Roboto", "Avenir", "Futura", Helvetica Neue, Helvetica, Arial, sans-serif;
             font-size: 32px;
-            color: #82eeff;
+            color: rgb(45,255,255);
             font-weight: bold;
             text-align: center;
             -webkit-text-security: none;
@@ -158,6 +149,7 @@
         .boxed {
             border: 12px solid #14e600;
             width: 45%;
+            background-color: rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
@@ -198,14 +190,6 @@
 </div>
 <br>
 
-
-<!-- <div class="boxed" >
-    <div id="test_box" contenteditable></div>
-</div> -->
-
-
-<br>
-
 <script>
     var first_box = false; 
     var second_box = false; 
@@ -213,14 +197,8 @@
 
     var temp_value = 0;
 
-
-    // var test_box = document.getElementById("test_box");
-    // var at_var = document.getElementById("at_var");
-
     var isListeningForKeyboard = false;
 
-
-    // var text = document.getElementById("text");
     var properties = {
         value: 0,
         unitMax: 255,
@@ -248,16 +226,19 @@
 
 
     var toggle = document.querySelector('#toggle');
-    var toggle_istouched = false;
+    var toggle_istouched;
 
     var display = document.querySelector('#display');
-    var display_istouched = false;
+    var display_istouched;
+
+
+    var testing = 0;
 
 
     toggle.addEventListener("pointerup", function (){
         if (!toggle_istouched) {
             document.getElementById("toggle_switch").checked = true;
-            toggle_istouched = true; 
+            toggle_istouched = true;  
         }
         else if (toggle_istouched) {
             document.getElementById("toggle_switch").checked = false;
@@ -524,19 +505,7 @@
         if (properties.value <= -255) properties.value = -255;
         if (properties.value >= 255) properties.value = 255;
 
-        // if (api_key.innerText != null && baseID.innerText != null) {
-        //     test_box.innerText = "BUT"
-        //     setInterval(() => { airtable(); }, 1000);
-
-        // }
-        // if (api_key.innerText == null && baseID.innerText == null) {
-        //     test_box.innerText = "dran"
-        //     setInterval(() => { airtable(); }, 1000);
-
-        // }
-
         setInterval(() => { airtable(); }, 2000);
-        // airtable();
     }
 
 
@@ -547,13 +516,13 @@
     // var key = "key4SssZ2nJDuK1KG";
     // var docID = "apph4VI7Pi70nUDOD";
 
-    var key;// (localStorage.getItem('saved_api').trim());
-    var docID; // (localStorage.getItem('saved_baseID').trim());
+    var key = (localStorage.getItem('saved_api').trim());
+    var docID = (localStorage.getItem('saved_baseID').trim());
     
 
     function httpGet(BaseID,tablename, APIKey){
-        APIKey = "key4SssZ2nJDuK1KG";
-        BaseID = "apph4VI7Pi70nUDOD";
+        APIKey = (localStorage.getItem('saved_api').trim());
+        BaseID = (localStorage.getItem('saved_baseID').trim());;
 
         var xmlHttp = new XMLHttpRequest();
         var url = "https://api.airtable.com/v0/" + BaseID + "/" + tablename +"/";
@@ -570,12 +539,16 @@
         var arr = (JSON.parse(httpGet(docID, tablename, key))).records; 
         arr.forEach(function (arrayItem) {
             if (arrayItem.fields.Variables == name) {
-                //DOM.innerText = parseFloat(arrayItem.fields.Value); 
-                temp_value = parseFloat(arrayItem.fields.Value);
-                // DOM.innerText = temp_value;
+                if ((arrayItem.fields.Value) === 1) {
+                    temp_value = parseFloat(arrayItem.fields.Value);
+                } 
+                else{
+                    temp_value = (arrayItem.fields.Value);
+                }
                 realityInterface.write('value', temp_value);
             }
         });
+        return;
     }
 
 
@@ -590,8 +563,8 @@
     }
 
     function httpPatch(BaseID, tablename, APIKey, value){
-        APIKey = "key4SssZ2nJDuK1KG";
-        BaseID = "apph4VI7Pi70nUDOD";
+        APIKey = (localStorage.getItem('saved_api').trim());
+        BaseID = (localStorage.getItem('saved_baseID').trim());;
 
         var xmlHttp = new XMLHttpRequest();
         var url = "https://api.airtable.com/v0/" + BaseID + "/" + tablename +"/";
@@ -621,36 +594,34 @@
         currentDate = Date.now();
       } while (currentDate - date < milliseconds);
     }
-
-
+ 
     function airtable(){
-    //     if((localStorage.getItem('saved_baseID').trim()) == "apph4VI7Pi70nUDOD"){
-    //     test_box.innerText = "same"
-    // }
-    // else if((localStorage.getItem('saved_baseID').trim()) != "apph4VI7Pi70nUDOD"){
-    //     test_box.innerText = "not"
-    // }
         // If toggle is Sender
-        // document.getElementById("toggle_switch").checked = true;
-
         if (toggle_istouched){
-            sleep(100);
             httpPatch(docID, tablename, key, send_val);
-            // test_box.innerText = "Sent Value";  
+
+            if (display_istouched){
+                document.getElementById("api_key_box").style.display = "none";
+                document.getElementById("baseID_box").style.display = "none";
+            }
+            else if (!display_istouched){
+                document.getElementById("api_key_box").style.display = "block";
+                document.getElementById("baseID_box").style.display = "block";
+            }
         }
         // If toggle is Receiver 
         else if (!toggle_istouched){
             var temp_var = (at_var.innerText).trim();
             getvalue(temp_var); 
-        }
 
-        if (display_istouched){
-            document.getElementById("api_key_box").style.display = "none";
-            document.getElementById("baseID_box").style.display = "none";
-        }
-        else if (!display_istouched){
-            document.getElementById("api_key_box").style.display = "block";
-            document.getElementById("baseID_box").style.display = "block";
+            if (display_istouched){
+                document.getElementById("api_key_box").style.display = "none";
+                document.getElementById("baseID_box").style.display = "none";
+            }
+            else if (!display_istouched){
+                document.getElementById("api_key_box").style.display = "block";
+                document.getElementById("baseID_box").style.display = "block";
+            }    
         }
     }
 
@@ -667,14 +638,12 @@
             }
             properties.unitMax = e.unitMax;
             properties.unitMin = e.unitMin;
-            renderProperties();
         });
     } catch (e) {
         console.warn('Reality Interface is not accessible');
 
         function mockReadListenerTrigger(e) {
             properties.value = e;
-            renderProperties();
         }
     }
 

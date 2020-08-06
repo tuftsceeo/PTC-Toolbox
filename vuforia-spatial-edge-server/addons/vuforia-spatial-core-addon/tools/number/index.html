@@ -136,8 +136,8 @@
     }
 
     function nodeVal(num) {
-        if (num <= -255) realityInterface.write('value', -255);
-        if (num >= 255) realityInterface.write('value', 255);
+        if (num <= -5000) realityInterface.write('value', -5000);
+        if (num >= 5000) realityInterface.write('value', 5000);
         else realityInterface.write('value', num);
 
     }
