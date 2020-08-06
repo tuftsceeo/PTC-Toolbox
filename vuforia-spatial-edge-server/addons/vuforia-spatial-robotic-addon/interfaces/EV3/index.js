@@ -361,7 +361,7 @@ function setGyroVal() {
 
 //continuously writes color number to node
 function setColorVal() {
-    msgColor = "color.color"
+    msgColor = "color.color_name"
     if (val_c != undefined && val_c.substring(0, 1) == "c") {
         var num = val_c.substring(1, val_c.length)
         server.write(objectName, TOOL_NAME, "color", num, "f")
