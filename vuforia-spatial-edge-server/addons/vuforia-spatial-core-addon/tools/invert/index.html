@@ -102,7 +102,7 @@
             properties.unitMin = e.unitMin;
 
             var val = parseFloat(e.value) * -1;
-            setInterval(() => {realityInterface.write('value', val); }, 10);
+            realityInterface.write('value', val);
         });
     } catch (e) {
         console.warn('Reality Interface is not accessible');

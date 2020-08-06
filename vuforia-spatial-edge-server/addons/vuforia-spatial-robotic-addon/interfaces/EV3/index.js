@@ -361,6 +361,7 @@ function setGyroVal() {
 
 //continuously writes color number to node
 function setColorVal() {
+    //change to color.color if you want the corresponsing color number instead of the color name
     msgColor = "color.color_name"
     if (val_c != undefined && val_c.substring(0, 1) == "c") {
         var num = val_c.substring(1, val_c.length)
