@@ -177,18 +177,18 @@ function startHardwareInterface() {
 	server.enableDeveloperUI(true)
   
      // add all nodes to app for advanced mode
-    server.addNode(objectName, TOOL_NAME, "stopMotors", "node", {x: -1111142, y: 125, scale:0.175})
-    server.addNode(objectName, TOOL_NAME, "motorA", "node", {x: -11111125, y: -100, scale: 0.175});
-    server.addNode(objectName, TOOL_NAME, "motorB", "node", {x: -11111125, y: -25, scale: 0.175});
-    server.addNode(objectName, TOOL_NAME, "motorC", "node", {x: -11111125, y: 50, scale: 0.175});
-    server.addNode(objectName, TOOL_NAME, "motorD", "node", {x: -11111125, y: 125, scale: 0.175});
-    server.addNode(objectName, TOOL_NAME, "ultra", "node", {x: 11111125, y: -100, scale: 0.175});
-    server.addNode(objectName, TOOL_NAME, "touch", "node", {x: 11111125, y: -25, scale: 0.175});
-    server.addNode(objectName, TOOL_NAME, "color", "node", {x: 11111125, y: 50, scale: 0.175});
-    server.addNode(objectName, TOOL_NAME, "gyro", "node", {x: 11111125, y: 125, scale: 0.175});
-    server.addNode(objectName, TOOL_NAME, "ledLeft", "node", {x: -1111142, y: -100, scale: 0.175});
-    server.addNode(objectName, TOOL_NAME, "ledRight", "node", {x: 4111112, y: -100, scale: 0.175});
-    server.addNode(objectName, TOOL_NAME, "speaker", "node", {x: 4111112, y: 125, scale: 0.175});
+    server.addNode(objectName, TOOL_NAME, "stopMotors", "node", {x: -42, y: 125, scale:0.175})
+    server.addNode(objectName, TOOL_NAME, "motorA", "node", {x: -125, y: -100, scale: 0.175});
+    server.addNode(objectName, TOOL_NAME, "motorB", "node", {x: -125, y: -25, scale: 0.175});
+    server.addNode(objectName, TOOL_NAME, "motorC", "node", {x: -125, y: 50, scale: 0.175});
+    server.addNode(objectName, TOOL_NAME, "motorD", "node", {x: -125, y: 125, scale: 0.175});
+    server.addNode(objectName, TOOL_NAME, "ultra", "node", {x: 125, y: -100, scale: 0.175});
+    server.addNode(objectName, TOOL_NAME, "touch", "node", {x: 125, y: -25, scale: 0.175});
+    server.addNode(objectName, TOOL_NAME, "color", "node", {x: 125, y: 50, scale: 0.175});
+    server.addNode(objectName, TOOL_NAME, "gyro", "node", {x: 125, y: 125, scale: 0.175});
+    server.addNode(objectName, TOOL_NAME, "ledLeft", "node", {x: -42, y: -100, scale: 0.175});
+    server.addNode(objectName, TOOL_NAME, "ledRight", "node", {x: 42, y: -100, scale: 0.175});
+    server.addNode(objectName, TOOL_NAME, "speaker", "node", {x: 42, y: 125, scale: 0.175});
 
     //remove node from beginner
     server.removeNode(objectName, TOOL_NAME, "motors") 
@@ -204,11 +204,11 @@ function startHardwareInterface() {
         server.removeNode(objectName, TOOL_NAME, "touch");
         server.removeNode(objectName, TOOL_NAME, "ledLeft");
 
-        server.moveNode(objectName, TOOL_NAME, "stopMotors", 111142, 125);
-        server.moveNode(objectName, TOOL_NAME, "ledRight", 111125, -100);
-        server.moveNode(objectName, TOOL_NAME, "speaker", 1111125, -25);
-        server.moveNode(objectName, TOOL_NAME, "ultra", 1111125, 50);
-        server.addNode(objectName, TOOL_NAME, "motors", "node", {x: 11111125, y: 125, scale: 0.175});
+        server.moveNode(objectName, TOOL_NAME, "stopMotors", 42, 125);
+        server.moveNode(objectName, TOOL_NAME, "ledRight", 125, -100);
+        server.moveNode(objectName, TOOL_NAME, "speaker", 125, -25);
+        server.moveNode(objectName, TOOL_NAME, "ultra", 125, 50);
+        server.addNode(objectName, TOOL_NAME, "motors", "node", {x: 125, y: 125, scale: 0.175});
 
     }
 
