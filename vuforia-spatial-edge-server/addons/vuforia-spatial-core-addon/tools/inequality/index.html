@@ -70,7 +70,7 @@
     var isListeningForKeyboard = false;
     var in1, in2, condition;
 
-
+    //initializes text variable (prints outputs of tool)
     var text = document.getElementById("text");
     var properties = {
         value: 0,
@@ -79,18 +79,18 @@
         unit: ""
     };
 
-
+    //initializes input variable (user inputs inequality sign)
     var input = document.querySelector('#input');
     var inputLength = input.innerText.length;
 
 
     try {
         var realityInterface = new RealityInterface();
-        realityInterface.initNode('bool', 'node', 30, 0);
-        realityInterface.initNode('value', 'node', 30, -45);
-        realityInterface.initNode('input1', 'node', -30, -45);
-        realityInterface.initNode('input2', 'node', -30, 0);
-        realityInterface.initNode('storage', 'storeData');
+        realityInterface.initNode('bool', 'node', 30, 0);   //bool node outputs true if inequality true, false otherwise
+        realityInterface.initNode('value', 'node', 30, -45);    //value node outputs input1 if inequality true
+        realityInterface.initNode('input1', 'node', -30, -45);  //first input to compare 
+        realityInterface.initNode('input2', 'node', -30, 0);    //second input to compare
+        realityInterface.initNode('storage', 'storeData');  //stores the inequality sign input from user
 
         var _envelopeContents = new EnvelopeContents(realityInterface, document.body);
         realityInterface.setMoveDelay(500);
@@ -108,7 +108,7 @@
 
     input.style.fontSize = (250/inputLength)+"pt";
 
-
+    //when user taps top box, inequality sign entered
     input.addEventListener("pointerup", function (){
         if (input.innerText === "Enter less/greater/equal") {
             input.innerText = "";
@@ -138,6 +138,7 @@
         resizeText();
         realityInterface.writePublicData("storage", "data",  input.innerText);
 
+        //set the condition equal to the user input
         condition = input.innerText.toLowerCase();
     }
 
@@ -172,11 +173,13 @@
     }
 
     function execute(works) {
+        //if true, write input1 to value, 1 to bool
         if (works) {
             realityInterface.write('value', in1);
             realityInterface.write('bool', 1);
             text.innerHTML = "True, " + in1;
         }
+        //if false, write 0 to both value and bool
         else {
             realityInterface.write('bool', 0);
             realityInterface.write('value', 0);
@@ -185,6 +188,7 @@
 
     }
 
+    //depending on what the condition is and if the inequality is true, call the execute function 
     function compare() {
         if (condition === "greater" || condition == ">") {
             if (in1 > in2) execute(true);
@@ -200,7 +204,7 @@
         }
     }
 
-
+    //called when user types in condition
     function renderProperties()
     {
         if (properties.value <= -255) properties.value = -255;
@@ -215,6 +219,7 @@
     }
     ready();
 
+    //continuously set in1 equal to whatever is coming into input1
     try {
         realityInterface.addReadListener('input1', function (e) {
 
@@ -238,6 +243,7 @@
         }
     }
 
+    //continuously set in2 equal to whatever is coming into input2
     try {
         realityInterface.addReadListener('input2', function (e) {
 

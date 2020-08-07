@@ -71,7 +71,7 @@
 <script>
     try {
         var realityInterface = new RealityInterface();
-        realityInterface.initNode('value', 'node', 0, 0);
+        realityInterface.initNode('value', 'node', 0, 0);   //value node represents the inverted number
 
         var _envelopeContents = new EnvelopeContents(realityInterface, document.body);
         realityInterface.setMoveDelay(10);
@@ -79,16 +79,7 @@
         console.warn('Reality Interface is not accessible');
     }
 
-    var text = document.querySelector('#text');
-    
-    var properties = {
-        value: 0,
-        unitMax: 100,
-        unitMin: -100,
-        unit: ""
-    };
-
-
+    //continuously checks number coming into value
     try {
         realityInterface.addReadListener('value', function (e) {
 
@@ -101,6 +92,7 @@
             properties.unitMax = e.unitMax;
             properties.unitMin = e.unitMin;
 
+            //multiply number coming in by -1 and write to value node
             var val = parseFloat(e.value) * -1;
             realityInterface.write('value', val);
         });

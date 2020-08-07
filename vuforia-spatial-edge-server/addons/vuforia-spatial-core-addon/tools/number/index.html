@@ -81,7 +81,7 @@
 
     try {
         var realityInterface = new RealityInterface();
-        realityInterface.initNode('value', 'node', 0, 0);
+        realityInterface.initNode('value', 'node', 0, 0);   //value node represents the number input from user
 
         var _envelopeContents = new EnvelopeContents(realityInterface, document.body);
         realityInterface.setMoveDelay(500);
@@ -89,6 +89,7 @@
         realityInterface.onKeyboardClosed(function() {
             isListeningForKeyboard = false; // stop listening once the keyboard closes
             console.log('reset label frame text selection');
+            //when keyboard closed call function to write value to node
             nodeVal(num);
         });
 
@@ -96,13 +97,14 @@
         console.warn('Reality Interface is not accessible');
     }
 
+    //initialize input variable (user inputs number)
     var input = document.querySelector('#input');
     var inputLength = input.innerText.length;
     console.log(inputLength);
 
     input.style.fontSize = (700/inputLength)+"pt";
 
-
+    //when box hit, user enters the number (positive or negative)
     input.addEventListener("pointerup", function (){
         if (input.innerText.toLowerCase() === "enter num") {
             input.innerText = "";
@@ -130,19 +132,23 @@
         }
 
         resizeText();
+        //set num equal to user input and ensure its a float
         num = parseFloat(input.innerText)
         // nodeVal(num);
     }
 
     function nodeVal(num) {
+        //if num outside lower bound, write -5000 in display and to node
         if (num <= -5000) {
             input.innerText = -5000;
             realityInterface.write('value', -5000);
         }
+        //if num outside upper bound, write 5000 in display and to node
         if (num >= 5000) {
             input.innerText = 5000;
             realityInterface.write('value', 5000);
         }
+        //write num to node if within bounds
         else realityInterface.write('value', num);
 
     }

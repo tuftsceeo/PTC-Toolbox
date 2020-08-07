@@ -80,7 +80,8 @@ function httpPut(url,key,name,val){
     xmlHttp.send(JSON.stringify(propValue));
 }
 
-
+//change endpointUrl below/url in PutInfo to match your endpoint
+//also change currentEndpointUrl in index.html file
 
 var request = require('request');
 
@@ -92,7 +93,7 @@ var generalProperties = {
     blockSize: 1,
     privateData: {},
     // these properties are accessible to user modification via the block's settings menu (gui/index.html)
-    publicData: {endpointUrl: 'Boost_light'},
+    publicData: {endpointUrl: 'toolbox_post'},
     // sets which input indices of the block can have links drawn to them
     activeInputs: [true, false, false, false],
     // sets which output indices of the block can have links drawn from them
@@ -127,13 +128,13 @@ exports.render = function (object, frame, node, block, index, thisBlock, callbac
 
     // BUT ALSO: makes a post request to the server endpoint configured in publicData
     if (index === 0) {
-        console.log('making post request to', thisBlock.publicData);
+        console.log('making post request to', thisBlock.generalProperties);
     }
 
 
     console.log(thisBlock.processedData[0].value);
     console.log("url: " + thisBlock.publicData.endpointUrl);
-    PutInfo(thisBlock.publicData.endpointUrl , thisBlock.processedData[0].value);
+    PutInfo(thisBlock.publicData.endpointUrl, thisBlock.processedData[0].value);
 
     callback(object, frame, node, block, index, thisBlock);
 };
