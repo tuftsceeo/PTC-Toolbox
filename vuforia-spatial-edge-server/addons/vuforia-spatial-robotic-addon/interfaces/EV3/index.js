@@ -12,7 +12,6 @@ var msgA = "ignore", msgB = "ignore", msgC = "ignore", msgD = "ignore";
 var msgLeft = "ignore", msgRight = "ignore", msgSpkr = "ignore";
 var msgUltra = "ignore", msgGyro = "ignore", msgTouch = "ignore", msgColor = "ignore";
 var val_u, val_t, val_c, val_g;
-var stopped = false
 const TOOL_NAME = "IO";
 var run_motors = true;
 
@@ -138,14 +137,14 @@ if (exports.enabled){
     console.log("EV3 is connected");
 
     function setup() {
-        exports.settings = {
-            ev3Name: {
-                value: settings('objectName', 'ev3Node'),
-                type: 'text',
-                default: 'ev3Node',
-                disabled: false,
-                helpText: 'The name of the object that connects to this hardware interface.'
-            },
+    	exports.settings = {
+    		ev3Name: {
+    			value: settings('objectName', 'ev3Node'),
+    			type: 'text',
+    			default: 'ev3Node',
+    			disabled: false,
+    			helpText: 'The name of the object that connects to this hardware interface.'
+    		},
             ev3Complexity: {
                 value: settings('ev3Complexity', 'advanced'),
                 type: 'text',
@@ -177,7 +176,6 @@ function startHardwareInterface() {
 	server.enableDeveloperUI(true)
   
      // add all nodes to app for advanced mode
-    server.addNode(objectName, TOOL_NAME, "stopMotors", "node", {x: -42, y: 125, scale:0.175})
     server.addNode(objectName, TOOL_NAME, "motorA", "node", {x: -125, y: -100, scale: 0.175});
     server.addNode(objectName, TOOL_NAME, "motorB", "node", {x: -125, y: -25, scale: 0.175});
     server.addNode(objectName, TOOL_NAME, "motorC", "node", {x: -125, y: 50, scale: 0.175});
@@ -189,6 +187,7 @@ function startHardwareInterface() {
     server.addNode(objectName, TOOL_NAME, "ledLeft", "node", {x: -42, y: -100, scale: 0.175});
     server.addNode(objectName, TOOL_NAME, "ledRight", "node", {x: 42, y: -100, scale: 0.175});
     server.addNode(objectName, TOOL_NAME, "speaker", "node", {x: 42, y: 125, scale: 0.175});
+    server.addNode(objectName, TOOL_NAME, "stopMotors", "node", {x: -42, y: 125, scale: 0.175})
 
     //remove node from beginner
     server.removeNode(objectName, TOOL_NAME, "motors") 
@@ -208,6 +207,7 @@ function startHardwareInterface() {
         server.moveNode(objectName, TOOL_NAME, "ledRight", 125, -100);
         server.moveNode(objectName, TOOL_NAME, "speaker", 125, -25);
         server.moveNode(objectName, TOOL_NAME, "ultra", 125, 50);
+
         server.addNode(objectName, TOOL_NAME, "motors", "node", {x: 125, y: 125, scale: 0.175});
 
     }
@@ -220,6 +220,14 @@ function startHardwareInterface() {
         server.removeNode(objectName, TOOL_NAME, "motors");
 
         server.moveNode(objectName, TOOL_NAME, "stopMotors", 0, 125);
+        server.moveNode(objectName, TOOL_NAME, "ultra", 125, -100);
+    }
+
+    if (ev3Complexity == "advanced") {
+        server.moveNode(objectName, TOOL_NAME, "ledRight", 42, -100);
+        server.moveNode(objectName, TOOL_NAME, "ultra", 125, -100);
+        server.moveNode(objectName, TOOL_NAME, "stopMotors", -42, 125);
+        server.moveNode(objectName, TOOL_NAME, "speaker", 42, 125);
     }
 
     //if true value passed to node, stop motors
@@ -324,7 +332,6 @@ function startHardwareInterface() {
 //continuously writes ultra distance (cm) to node
 function setUltraVal() {
     msgUltra = "ultra.distance_centimeters"
-    console.log(val_u);
     if (val_u != undefined && val_u.substring(0, 1) == "u") {
         var num = val_u.substring(1, val_u.length)
         server.write(objectName, TOOL_NAME, "ultra", num, "f")
@@ -354,7 +361,8 @@ function setGyroVal() {
 
 //continuously writes color number to node
 function setColorVal() {
-    msgColor = "color.color"
+    //change to color.color if you want the corresponsing color number instead of the color name
+    msgColor = "color.color_name"
     if (val_c != undefined && val_c.substring(0, 1) == "c") {
         var num = val_c.substring(1, val_c.length)
         server.write(objectName, TOOL_NAME, "color", num, "f")
@@ -397,8 +405,3 @@ server.addEventListener("shutdown", function () {
     msgSpkr = "spkr.play_tone(" + 0 + ", 1, 0, 100, 0)";
     stop();
 });
-
-
-
-
-
