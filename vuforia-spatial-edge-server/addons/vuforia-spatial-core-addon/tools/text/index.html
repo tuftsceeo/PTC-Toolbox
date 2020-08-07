@@ -31,29 +31,7 @@
             border: 12px solid #16ff00;
             padding: 5px;
             background-color: rgba(0, 0, 0, 0.5);
-            /*position: absolute;
-            left: 0;
-            top: 0;
-            display: inline-block;
-            padding: 0;
-            margin: 0;
-            width: 700px;
-            height: 283px;
-            line-height: 283px;
-            text-align: center;
-            vertical-align: middle;
-            font-family: "Roboto", "Avenir", "Futura", Helvetica Neue, Helvetica, Arial, sans-serif;
-            font-size: 100pt;
-            color: rgb(45,255,255);*/
         } 
-        #boxed {
-            position: relative;
-            background-color: rgba(0, 0, 0, 0.5);
-            width: 80%;
-            border: 12px solid #16ff00;
-            /*padding-bottom: 14px;*/
-            margin: 20px;
-        }
     </style>
 </head>
 <body style="width: 300px; height: 300px">
@@ -63,6 +41,7 @@
 
 <script>
     try {
+        // initializing new node, this is how you can make new nodes
         var realityInterface = new RealityInterface();
         realityInterface.initNode('value', 'node', 0, 0);
 
@@ -71,21 +50,23 @@
     } catch (e) {
         console.warn('Reality Interface is not accessible');
     }
-
+    // global text variable, this will be used to obtain text values
+    // also is used within resizing to make tool responsive 
     var text = document.querySelector('#text');
     
     var properties = {
         value: "Text"
     };
-
+    // resizes text to fit inside the border of the text box
+    // currently this tool will resize up to 150 characters 
     function resizeText() {
         var textLength = text.innerHTML.length;
-        var fontSize = Math.min(70, (((textLength*20)+150)/(textLength))); // font size increases up to 45pt
+        var fontSize = Math.min(70, (((textLength*20)+150)/(textLength))); 
         console.log('textLength ' + textLength + ' => fontSize' + fontSize);
         text.style.fontSize = fontSize + "pt";
     }
 
-
+    // sets text equal to whatever value is connected to its node
     function renderProperties() {
         text.innerHTML = properties.value;
         resizeText()
@@ -101,6 +82,8 @@
         realityInterface.addReadListener('value', function (e) {
 
             properties.value = e.value;
+            // properties.value defaults to 0, instead of displaying 0, we display Text 
+            // when a value is connected to the text tool, Text will change to value connected 
             if (properties.value == 0){
                 properties.value = "Text";
             }
@@ -109,10 +92,8 @@
     } catch (e) {
         console.warn('Reality Interface is not accessible');
 
-        // test suite for in-browser simulation without loading in AR
         function mockReadListenerTrigger(e) {
             properties.value = e;
-            // renderProperties();
         }
     }
 
