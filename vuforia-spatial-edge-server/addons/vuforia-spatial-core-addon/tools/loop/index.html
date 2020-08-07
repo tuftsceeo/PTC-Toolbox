@@ -66,13 +66,12 @@
 <script>
 
     var count = 0;
-    var count_val;
     var keyboard_count = 0;
 
     var isListeningForKeyboard = false;
     var loop_num;
 
-
+    //initializes text variable (prints current loop num)
     var text = document.getElementById("text");
     var properties = {
         value: 0,
@@ -81,31 +80,27 @@
         unit: ""
     };
 
-    var text2 = document.getElementById("text2");
-    var properties = {
-        value: 0,
-        unitMax: 255,
-        unitMin: -255,
-        unit: ""
-    };
-
-
+    //initializes input variable (user inputs number of loops)
     var input = document.querySelector('#input');
     var inputLength = input.innerText.length;
 
 
     try {
+        //two nodes for loop tool 
         var realityInterface = new RealityInterface();
-        realityInterface.initNode('bool', 'node', 30, 0);
-        realityInterface.initNode('count', 'node', 30, -45);
+        realityInterface.initNode('bool', 'node', 30, 0);   //bool node outputs true when loop is process, false otherwise
+        realityInterface.initNode('count', 'node', 30, -45);    //count node increases when number above 0 connected
 
         var _envelopeContents = new EnvelopeContents(realityInterface, document.body);
         realityInterface.setMoveDelay(500);
 
         realityInterface.onKeyboardClosed(function() {
-            keyboard_count+=1;
+            //keyborad_count accounts for the fact that start never ends 
+            //second time the loop is run, count increases by 2 instead of 1, so keyboard_count fixes this 
+            keyboard_count+=1;  
             isListeningForKeyboard = false; // stop listening once the keyboard closes
             console.log('reset label frame text selection');
+            //call the start function after loop_num entered by user so loop can begin
             start();
         });
 
@@ -115,7 +110,7 @@
 
     input.style.fontSize = (250/inputLength)+"pt";
 
-
+    //when user taps top box, number of loops entered
     input.addEventListener("pointerup", function (){
         if (input.innerText === "Enter # of loops") {
             input.innerText = "";
@@ -144,6 +139,7 @@
 
         resizeText();
 
+        //set the loop_nunm equal to the user input
         loop_num = parseInt(input.innerText);
 
     }
@@ -173,8 +169,8 @@
         if (properties.value >= 255) properties.value = 255;
     }
 
-    var counter = 0;
-
+    //checks if the count is equivalent to the loop_num entered by user, ends loop if so
+    //resets count and writes 0 to bool to end loop
     function check() {
         if (count >= loop_num) {
             realityInterface.write('bool', 0);
@@ -183,14 +179,17 @@
         }
     }
 
+    //called when user enters loop_num, writes 1 to bool to show the loop is occurring
     function start() {
         realityInterface.write('bool', 1);
         text.innerHTML = count;
         execute();
     }
 
+    //if the input in count is not equal to 0 then count increases
     function checking(num) {
         if (num != 0) {
+            //use keyboard count to account for count not properly resetting
             count = count + (1/keyboard_count);
             text.innerHTML = "Loop Num: " + Math.ceil(count);
             check();      
@@ -198,6 +197,7 @@
         else return;
     }
 
+    //continuously checks if the count node has an input
     function execute() {
         realityInterface.addReadListener('count', function (e) {
 
@@ -209,6 +209,7 @@
                 }
                 properties.unitMax = e.unitMax;
                 properties.unitMin = e.unitMin;
+                //sends value from node to cheking function
                 checking(e.value);
                 renderProperties();
             });
