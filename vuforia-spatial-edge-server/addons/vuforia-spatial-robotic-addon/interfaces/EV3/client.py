@@ -121,5 +121,5 @@ while 1:
     c.responseT(data_T.decode())
     c.responseG(data_G.decode())
     c.responseCo(data_Co.decode())
-    
+ 
 s.close()
