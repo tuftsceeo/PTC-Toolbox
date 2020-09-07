@@ -1,3 +1,3 @@
-const APIKEY1 = "key4SssZ2nJDuK1KG";
-const BASEID1 = "apph4VI7Pi70nUDOD";
-const TABLENAME1 = "Table 1";
+const APIKEY1 = "xxxxxxxxxxxxxx";
+const BASEID1 = "xxxxxxxxxxxxxx";
+const TABLENAME1 = "xxxxxxx";
