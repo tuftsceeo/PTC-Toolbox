@@ -32,6 +32,7 @@ for i in range(6):
 
 # Define a read function that outputs the data of the accelerometer/gyroscope
 # and any sensors that are connected to the Spike Prime
+
 def read():
     if (colorSensor != -1):
         exec("print(" + portName[colorSensor] + ".get_color())")
