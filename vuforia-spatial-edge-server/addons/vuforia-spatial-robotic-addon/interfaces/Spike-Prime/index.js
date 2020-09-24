@@ -2,6 +2,7 @@
 //Spike Prime Vuforia
 
 // Variables
+const fetch = require("node-fetch");
 var serial = require('./serial.js');
 var server = require('@libraries/hardwareInterfaces');
 var settings = server.loadHardwareInterface(__dirname);
@@ -17,6 +18,11 @@ var firstMotor, secondMotor, thirdMotor
 var TOOL_NAME = "code"
 var runMotors = true
 var sensorRefresh = 50
+var oldArr = [], oldFullArr = []
+var fullFFT = [], fullArr = []
+var oldFs = 0
+var FFTAxis = 0, FFTLength = 16
+var maxMag = 0, maxMagIndex = 0
 
 let objectName = 'spikeNode';
 
@@ -26,7 +32,7 @@ exports.configurable = true;
 // Send the initialize file to the Spike Prime, which determines motor/sensor ports
 try {
     serial.openPort()
-    serial.sendFile('initialize.py')
+    setTimeout(() => {serial.sendFile('initialize.py')}, 5000)
     initializePorts()
 } catch(e) {
     console.log('Spike Prime NOT connected')
@@ -95,6 +101,10 @@ function startHardwareInterface() {
     server.addNode(objectName, TOOL_NAME, "gyroscopeX", "node", {x: -200, y: -100, scale:0.175});
     server.addNode(objectName, TOOL_NAME, "gyroscopeY", "node", {x: -200, y: -25, scale:0.175});
     server.addNode(objectName, TOOL_NAME, "gyroscopeZ", "node", {x: -200, y: 50, scale:0.175});
+    server.addNode(objectName, TOOL_NAME, "FFTStart", "node", {x: -275, y:-100, scale:0.175});
+    server.addNode(objectName, TOOL_NAME, "FFTLength", "node", {x: -275, y:-25, scale:0.175});
+    server.addNode(objectName, TOOL_NAME, "FFTAxis", "node", {x: -275, y:50, scale:0.175});
+    server.addNode(objectName, TOOL_NAME, "FFTOutput", "node", {x: -275, y:125, scale:0.175})
 
     // Adds motor nodes to the object on the app
     server.addNode(objectName, TOOL_NAME, "motor1", "node", {x: 125, y: -100, scale:0.175});
@@ -233,6 +243,46 @@ function startHardwareInterface() {
         }
     });
 
+    // Listens for the FFTAxis node. 0,1,2 are the only possible values (X,Y,Z axis)
+    server.addReadListener(objectName, TOOL_NAME, "FFTAxis", function(data) {
+        if (data.value == 0) {
+            FFTAxis = 0
+        }
+        else if (data.value == 1) {
+            FFTAxis = 1
+        }
+        else if (data.value == 2) {
+            FFTAxis = 2
+        }
+        else {
+            FFTAxis = 0
+        }
+    });
+
+    // Listens for the FFTLength node. The length can only be a power of 2 between 16 and 2048.
+    server.addReadListener(objectName, TOOL_NAME, "FFTLength", function(data) {
+        if (data.value > 2048) {
+            FFTLength = 2048
+        }
+        else if (data.value < 16) {
+            FFTLength = 16
+        }
+        else if (Number.isInteger(Math.log(data.value)/Math.log(2))) {
+            FFTLength = data.value
+        }
+        else {
+            FFTLength = Math.pow(2, Math.ceil(Math.log(data.value)/Math.log(2)))
+        }
+    });
+
+    // When true, calls fft on the Spike Prime, which gets an array of accelerometer values on axis FFTAxis of length FFTLength
+    server.addReadListener(objectName, TOOL_NAME, "FFTStart", function(data) {
+        if (data.value == 1) {
+            console.log('fft')
+            setTimeout(() => { serial.writePort("fft(" + FFTAxis + "," + FFTLength + ")\r\n") }, 0);
+        }
+    });
+
     // Listen for the screen node (beginner mode only)
     server.addReadListener(objectName, TOOL_NAME, "screen", function(data){
         setTimeout(() => { serial.writePort("hub.display.show(\"" + data.value + "\")\r\n") }, 0);
@@ -241,7 +291,7 @@ function startHardwareInterface() {
     // Listen for the LED node (beginner mode only)
     server.addReadListener(objectName, TOOL_NAME, "LED", function(data){
         setTimeout(() => { serial.writePort("hub.led(" + data.value + ")\r\n") }, 0)
-    })
+    });
 
     // Constantly read the sensor data
     setInterval(() => { continuousSensor(); }, sensorRefresh)
@@ -262,7 +312,6 @@ function initializePorts() {
         }
         console.log(ports)
         definePorts()
-        //setTimeout(() => { continuousSensor(); }, 1000)
     }
     else {
         setTimeout(() => { initializePorts(); }, 0);
@@ -313,11 +362,17 @@ function continuousSensor() {
 // Force is the only float number between 0 and 1
 // Distance is the only float number above 1
 // Accelerometer is the only array of exactly length 6
+// FFT data either comes in lengths of 2^n or 2^n + 1
+// For 2^n data, add it to a array that stores all 2^n length arrays in a row
+// For 2^n + 1 data, this is the end of the FFT data because it has the fs at the end
 async function sortSensor() {
     sensorData = readSensor()
     sensorData = sensorData.replace(/ /g, '')
+    arr = sensorData.replace(/\[/g, '')
+    arr = arr.replace(/\]/g, '')
+    arr = arr.replace(/{.*}/, '')
     //console.log(sensorData)
-    arr = sensorData.split(',')
+    arr = arr.split(',')
     if (colors.includes(sensorData) && sensorData.toString().length > 0) {
         processColor(sensorData)
     }
@@ -329,6 +384,23 @@ async function sortSensor() {
     }
     else if (arr.length == 6) {
         processAccelerometer(sensorData)
+    }
+    else if (arr.length == 128) {
+        if (JSON.stringify(arr) != JSON.stringify(oldArr)) {
+            fullFFT = fullFFT.concat(arr)
+            oldArr = arr
+        }
+    }
+    else if (Number.isInteger(Math.log(arr.length - 1)/Math.log(2)) && arr.length > 9) {
+        fullArr = fullFFT.concat(arr)
+        fs = fullArr.pop()
+        fs = parseFloat(fs)
+        if (JSON.stringify(fullArr) != JSON.stringify(oldFullArr) && fs != oldFs) {
+            processFFT(fullArr, fs)
+            fullFFT = []
+            oldFullArr = fullArr
+            oldFs = fs
+        }
     }
 }
 
@@ -366,6 +438,39 @@ function processForce(sensorData) {
     force = sensorData * 10
     //console.log(force)
     server.write(objectName, TOOL_NAME, "force", server.map(force, 0, 10, 0, 10), "f")
+}
+
+// Process the arr of FFT data sampled at fs times per second by posting it to our heroku server
+function processFFT(arr, fs) {
+    arr = Object.values(arr.map(s => Number(s)))
+    //console.log(arr)
+    //console.log(fs)
+    //console.log(arr.length)
+
+    const headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+    }
+    const body = JSON.stringify({
+        "amplitude": arr, 
+        "sampling_rate": fs
+    })
+
+    fetch("https://ptc-fft-server.herokuapp.com/fft/simple_fft", {headers, method: "POST", body})
+        .then(res => res.json())
+        .then(res => {
+            console.log(res.magnitude)
+            console.log(res.frequencies)
+            for (var i = 0; i < res.magnitude.length; i++) {
+                if (res.magnitude[i] > maxMag) {
+                    maxMag = res.magnitude[i]
+                    maxMagIndex = i
+                }
+            }
+            //console.log(res.frequencies[maxMagIndex])
+            server.write(objectName, TOOL_NAME, "FFTOutput", res.frequencies[maxMagIndex], "f")
+        })
+        .catch(res => { console.log("error " + res)})
 }
 
 // Send commands to stop all the motors

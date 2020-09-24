@@ -41,6 +41,7 @@ function readMessage() {
 		raw = port.read()
 		if (raw != null) {
 			sensorReading = raw.toString('utf8')
+			//console.log(sensorReading)
 			// Checks to see if there is exactly one enter line
 			if (((sensorReading.match(/\n/g) || []).length) == 1)  {
 				//Do nothing
@@ -110,8 +111,14 @@ async function sendFile(name) {
 		else if (line[0] == ' ' && line[4] == ' ' && line[8] != ' '){
 			tabs = 2
 		}
-		else{
+		else if (line[0] == ' ' && line[4] == ' ' && line[8] == ' ' && line[12] != ' '){
 			tabs = 3
+		}
+		else if (line[0] == ' ' && line[4] == ' ' && line[8] == ' ' && line[12] == ' ' && line[16] != ' '){
+			tabs = 4
+		}
+		else {
+			tabs = 5
 		}
 		//console.log(tabs)
 
